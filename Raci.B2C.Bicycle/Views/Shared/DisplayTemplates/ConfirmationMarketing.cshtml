@@ -1,0 +1,124 @@
+﻿@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.PageExtensions
+@model Raci.B2C.Bicycle.Models.BicycleQuote
+
+
+<style>
+    
+    
+    body
+    {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .confirmationMessage
+    {
+        max-width: 760px;
+        background: #ffd300;
+	    color: #425563;
+        padding: 30px;
+        font-size: 16px;
+    }
+
+        .confirmationMessage p {
+            line-height: 1;
+        }
+
+        .confirmationMessage h2 {
+            margin-bottom: 24px;
+            font-family: StagBold, Arial, sans-serif !important;
+            font-size: 30px;
+            margin-top: 0;
+            color: #425563;
+        }
+				.confirmationMessage h2 > span 
+				{
+						color: #FFFFFF;
+				}
+
+    .confirmationMB
+    {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+        .confirmationMB h4 {
+            font-weight: bold;
+            font-size: inherit;
+            color: inherit;
+            margin: 21px 0;
+        }
+
+
+        .confirmationMB p
+        {
+            font-weight: bold;
+        }
+
+        .confirmationMB ul
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        .confirmationMB li
+        {
+            list-style: none;
+            padding: 0 0 5px 30px;
+        }
+            .confirmationMB li:before {
+                font-family: StagSemiBold,Arial,Helvetica,sans-serif;
+                font-size: 20px;
+                content: '»';
+                padding: 0 10px 0 0;
+                color: #FFFFFF;
+                display: inline-block;
+                width: 30px;
+                margin-left: -30px;
+                line-height: 1;
+            }
+
+    .more-info-button {
+        float: right;
+        margin-top: 13px;
+    }
+
+    /* 
+     * Styles are designed to be mobile-first, the following styles are applied when the user is viewing on the desktop
+     */
+    @@media only screen and (min-width: 768px)
+    {
+        .confirmationMessage
+        {
+            max-width: 485px;
+            background: #ffd300;
+        }
+
+        .confirmationMB
+        {
+            margin-top: 20px;
+        }
+				
+    }
+</style>
+
+<div id="confirmationMarketing" class="confirmationMessage">
+    <h2>Thank you for purchasing<br /><span>RAC Insurance</span></h2>
+    <p>
+        Your policy number is <span id="policy-number-span">@Model.PolicyNumber</span>.
+    </p>
+    <p>
+        You will receive an email with a copy of your policy schedule shortly.
+    </p>
+    <p>
+        It is important that you read and understand the product features and details outlined in the <a id="pds-url" href="http://rac.com.au/insurance/product-disclosure-statements/bicycle-insurance-disclosure" target="_newtab">Product Disclosure Statement</a>.<br />
+    </p>
+    
+    <p>
+        Please read these documents and review your details carefully.
+    </p>
+    <p>
+        Call us on <strong class="u-noWrap">08 6150 6410</strong> if you need to make changes. 
+    </p>
+    
+</div>

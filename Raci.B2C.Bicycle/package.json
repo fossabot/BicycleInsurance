@@ -1,0 +1,19 @@
+{
+  "Microsoft.AspNet.Mvc": "6.0.0-beta4",
+  "Microsoft.AspNet.StaticFiles": "1.0.0-beta4",
+  "name": "package",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "gulp": "3.8.11",
+    "gulp-bower": "0.0.10",
+    "gulp-config": "0.3.0",
+    "gulp-less": "3.0.3",
+    "gulp-plumber": "1.0.0",
+    "gulp-typescript": "^2.7.6",
+    "gulp-sourcemaps": "^1.5.2",
+    "merge": "^1.2.0",
+    "requirejs": "^2.1.18",
+    "rimraf": "^2.4.0"
+  }
+}

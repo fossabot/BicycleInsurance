@@ -1,0 +1,19 @@
+﻿@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = Currency;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Other;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper Currency(EditorParameters editorParameters)
+{
+    string currencyFormat = editorParameters.Format ?? "{0:c0}";
+    
+    <div id ="@ViewData.TemplateInfo.GetFullHtmlFieldId(Html.StringExpressionFor(x => x))_Answer" class="display-answer">
+        @string.Format(@currencyFormat, @Model)
+    </div>
+}

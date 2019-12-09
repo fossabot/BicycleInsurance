@@ -1,0 +1,104 @@
+﻿@using System.Globalization
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = DateTextControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper DateTextControl(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    string errorClass = "";
+
+    string dayText = "";
+    string monthText = "";
+    string yearText = "";
+    
+    Dictionary<string, object> dayParameters = new Dictionary<string, object>();
+    Dictionary<string, object> monthParameters = new Dictionary<string, object>();
+    Dictionary<string, object> yearParameters = new Dictionary<string, object>();
+
+    if ((Model != null) && (Model.Day != null))
+    {
+        dayText = Model.Day.ToString(CultureInfo.InvariantCulture);
+    }
+
+    if ((Model != null) && (Model.Month != null))
+    {
+        monthText = Model.Month.ToString(CultureInfo.InvariantCulture);
+    }
+
+    if ((Model != null) && (Model.Year != null))
+    {
+        yearText = Model.Year.ToString(CultureInfo.InvariantCulture);
+    }
+    
+    dayParameters["data-role"] = "textbox";
+    dayParameters["style"] = "width:100%;";
+    dayParameters["placeholder"] = "dd";
+    dayParameters["data-spinners"] = "false";
+    dayParameters["min"] = 1;
+    dayParameters["max"] = 31;
+    dayParameters["maxLength"] = 2;
+    dayParameters["data-format"] = "{0:00}";
+    dayParameters["type"] = "number";
+    
+    monthParameters["data-role"] = "textbox";
+    monthParameters["style"] = "width:100%;";
+    monthParameters["placeholder"] = "mm";
+    monthParameters["data-spinners"] = "false";
+    monthParameters["min"] = 1;
+    monthParameters["max"] = 12;
+    monthParameters["maxLength"] = 2;
+    monthParameters["data-format"] = "{0:00}";
+    monthParameters["type"] = "number";
+    
+    yearParameters["data-role"] = "textbox";
+    yearParameters["style"] = "width:100%;";
+    yearParameters["placeholder"] = "yyyy";
+    yearParameters["data-spinners"] = "false";
+    yearParameters["min"] = 1900;
+    yearParameters["max"] = 9999;
+    yearParameters["maxLength"] = 4;
+    yearParameters["data-format"] = "d";
+    yearParameters["type"] = "number";
+
+    if (editorParameters.State == EditorState.Disabled)
+    {
+        dayParameters["disabled"] = "disabled";
+        monthParameters["disabled"] = "disabled";
+        yearParameters["disabled"] = "disabled";
+    }
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        dayParameters["readonly"] = "readonly";
+        monthParameters["readonly"] = "readonly";
+        yearParameters["readonly"] = "readonly";
+    }
+
+    if (Html.HasError(m => m))
+    {
+        errorClass = "input-validation-error";
+    }
+    <div class="row collapse text-date-data @errorClass" id="@htmlId">
+        <div class="large-4 small-4 columns">
+            @Html.TextBox("Day", dayText, dayParameters)
+        </div>
+        <div class="large-4 small-4 columns">
+            @Html.TextBox("Month", monthText, monthParameters)
+        </div>
+        <div class="large-4 small-4 columns last">
+            @Html.TextBox("Year", yearText, yearParameters)
+        </div>
+    </div>
+
+}
+

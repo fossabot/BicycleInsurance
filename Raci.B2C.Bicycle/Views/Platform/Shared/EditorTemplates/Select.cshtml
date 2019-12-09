@@ -1,0 +1,68 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = SelectList;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Select;
+}
+
+@UIControls.SimpleQuestionAnswer( Html, editorParameters)
+
+@helper SelectList(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    bool dataSourceDefined = false;
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    if (!string.IsNullOrWhiteSpace(editorParameters.SelectOption))
+    {
+        parameters["data-option-label"] = editorParameters.SelectOption;
+    }
+
+    if (editorParameters.ListWidth != null)
+    {
+        parameters["data-list-width"] = editorParameters.ListWidth;
+    }
+
+    if (!string.IsNullOrWhiteSpace(editorParameters.DataSource))
+    {
+        parameters["data-source"] = editorParameters.DataSource;
+        dataSourceDefined = true;
+    }
+
+    if (editorParameters.Options != null)
+    {
+        parameters["data-source"] = editorParameters.Options.ToJsonArray();
+        dataSourceDefined = true;
+    }
+
+    if (dataSourceDefined == false)
+    {
+        BaseReferenceData referenceData = Html.GetReferenceData();
+        SelectList selectItems = referenceData.GetSelectOptions(htmlFieldName).CreateSelectList(null);
+
+        parameters["data-source"] = @selectItems.ToJsonArray();
+    }
+
+    //Disabled will make the field unclickable and look correct, where as readonly will only make the field unclickable
+    //so for drop down lists we want to treat readonly as disabled so drop down lists can render correctly.
+    if (editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly)
+    {
+        parameters["disabled"] = "disabled";
+    }
+
+    parameters["data-role"] = "dropdownlist";
+    parameters["data-text-field"] = "Text";
+    parameters["data-value-field"] = "Value";
+    parameters["style"] = "width:100%;";
+    parameters["class"] = Html.ViewData["class"] + " roadmap";
+
+    @Html.TextBoxFor( m => m, parameters)
+}

@@ -1,0 +1,66 @@
+﻿@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+@using Raci.B2C.Web.Util
+@model Raci.B2C.Web.Models.Common.ExcessData
+
+@if (Html.IsIncludeField(m => m))
+{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.QuestionWidthSmall = EditorWidth.Columns6;
+    editorParameters.WidthSmall = EditorWidth.Columns6;
+    editorParameters.QuestionWidth = EditorWidth.Columns8;
+    editorParameters.Editor = ExcessInputControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Select;
+
+    @UIControls.SimpleQuestionAnswer(Html, editorParameters)
+    @SliderControl()
+}
+
+@helper ExcessInputControl(EditorParameters editorParameters)
+{
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("ExcessLevelId");
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("ExcessLevelId");
+    
+    <input id="@htmlFieldNameId" 
+           value="@Model.ExcessLevelId" 
+           name="@htmlFieldName" 
+           class="modifyQuoteField excess roadmap" 
+           data-role="dropdownlist" 
+           data-text-field="Excess" 
+           data-value-field="ExcessLevelId" 
+           data-source="@Html.Encode(@Model.ExcessLevelIdValues.ToJson())" 
+           data-change="pageController.excessDropDownListChange" />
+}
+
+@helper SliderControl()
+{
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("ExcessLevelId");
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("ExcessLevelId");
+    <div class="slider-control show-for-medium-up">
+        <div class="row collapse">
+            <div class="small-6 large-6 columns slider-boundaries">
+                @this.Literal(m => m.ExcessLevelIdValues[0].Excess).Format("c0")
+            </div>
+            <div class="small-6 large-6 columns right-align slider-boundaries">
+                @this.Literal(m => m.ExcessLevelIdValues[Model.ExcessLevelIdValues.Count - 1].Excess).Format("c0")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="slider-container">
+                <input id="@(htmlFieldNameId)_Slider" 
+                   value="@Model.ExcessIndex()" 
+                   data-role="slider" 
+                   data-min="0" 
+                   data-max="@(Model.ExcessLevelIdValues.Count - 1)" 
+                   data-small-step="1" 
+                   data-large-step="1" 
+                   data-show-buttons="false" 
+                   data-tick-placement="none" 
+                   data-tooltip="{enabled: false}" 
+                   data-slide="pageController.excessSliderSlide" />
+            </div>
+        </div>
+    </div>
+}

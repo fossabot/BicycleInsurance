@@ -1,0 +1,58 @@
+﻿@using System.Dynamic
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+@using Raci.B2C.Web.Mvc.Script
+@using Raci.B2C.Web.Views.Shared.EditorTemplates.Scripts
+
+@if (Html.IsIncludeField(m => m))
+{
+    string controlId = ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    DateTime? startDate = ViewData["StartDate"] as DateTime?;
+    DateTime? endDate = ViewData["EndDate"] as DateTime?;
+    int? validForDays = ViewData["ValidForDays"] as int?;
+    string currentValue;
+    DateTime? modelValue;
+
+    IDictionary<string, object> properties = new Dictionary<string, object>();
+
+    if (startDate != null)
+    {
+        properties["data-startDate"] = startDate.Value.ToLongDateString();
+    }
+
+    if (endDate != null)
+    {
+        properties["data-endDate"] = endDate.Value.ToLongDateString();
+    }
+
+    if (validForDays != null)
+    {
+        properties["data-validForDays"] = validForDays.Value;
+    }
+
+    modelValue = Model as DateTime?;
+    
+    if( modelValue != null )
+    {
+        currentValue = (Model as DateTime?).Value.ToString("dd/MM/yyyy");
+    }
+    else
+    {
+        currentValue = "";
+    }
+    
+    <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.Other) >
+        <div class="question">
+            @Html.QuestionLabelFor(m => m)
+        </div>
+        <div class="answer">
+            @Html.TextBox("", currentValue, properties)
+            @Html.HelpFor(m => m)
+        </div>
+    </div>
+    
+    ScriptRegistrarFactory.ScriptRegistrar.AddStartup(new DynamicStartupScript
+    {
+        StartupScriptInitialisation = () => string.Format( "decorateCalendarControl('{0}');", controlId)
+    });
+}

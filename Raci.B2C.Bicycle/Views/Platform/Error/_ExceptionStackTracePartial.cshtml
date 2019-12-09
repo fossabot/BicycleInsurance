@@ -1,0 +1,24 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Raci.B2C.Web.Models.ErrorViewModel
+
+@if (!(Model.OriginalErrorMessage.IsNullOrWhiteSpace()))
+{
+    <p>
+        <code>
+            <pre>
+            <strong>@Model.OriginalErrorMessage</strong>
+            </pre>
+        </code>
+    </p>
+}
+
+@if (!(Model.StackTrace.IsNullOrWhiteSpace()))
+{
+    <p>
+        <code>
+            <pre>
+                @Model.StackTrace
+            </pre>
+        </code>
+    </p>
+}

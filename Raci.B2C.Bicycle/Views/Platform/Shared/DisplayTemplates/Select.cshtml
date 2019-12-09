@@ -1,0 +1,17 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@if (Html.IsIncludeField(m => m))
+{ 
+    ((HtmlHelper)Html).ViewData["displayOnly"] = true;
+
+    <div class="@Html.GetQuestionContainerClass()"@Html.GetDependencyAttributes("", DependencyStartupScriptType.Select)>
+        <div class="question">
+            @Html.QuestionLabel("")
+        </div>
+        <div class="answer">
+            @UIControls.SelectList(Html, Model)
+            @Html.HelpFor(m => m)        
+        </div>
+    </div>
+}

@@ -1,0 +1,6 @@
+﻿@using Raci.B2C.Web.Mvc.PageExtensions
+@model Raci.B2C.Web.Models.Common.DirectDebitViewModel
+
+@Html.QuestionFor2(m => m.Bsb, parameters: new EditorParameters{ Width = EditorWidth.Columns3, MaxLength = 6 })
+@Html.QuestionFor2(m => m.AccountNumber, parameters: new EditorParameters{ Width = EditorWidth.Columns3 })
+@Html.QuestionFor2(m => m.AccountName)

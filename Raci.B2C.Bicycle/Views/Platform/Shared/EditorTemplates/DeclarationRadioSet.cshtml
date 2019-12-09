@@ -1,0 +1,14 @@
+﻿@if (Html.IsIncludeField(m => m))
+{
+    string contentKey = ViewData.ContainsKey("contentKey") ? ViewData["contentKey"].ToString() : null;
+        
+    @Html.QuestionLabelFor(m => m)
+
+    if (!string.IsNullOrEmpty(contentKey))
+    {
+        @Html.Content(contentKey)
+    }
+    @UIControls.RadioSet(Html, Model)
+    <br/>
+    <br/>
+}

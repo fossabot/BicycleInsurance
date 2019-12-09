@@ -1,0 +1,38 @@
+﻿@model Raci.B2C.Web.Models.Common.CreditCardNumberViewModel
+
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = CardNumberControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper CardNumberControl(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    parameters["data-role"] = "textbox";
+    parameters["style"] = "width:100%;";
+    parameters["maxlength"] = 4;
+    
+    <div id="@htmlFieldNameId" class="row collapse credit-card-number">
+        <div class="small-3 columns first">
+            @Html.TextBoxFor(m => m.CreditCardNumber1, parameters)
+        </div>
+        <div class="small-3 columns">
+            @Html.TextBoxFor(m => m.CreditCardNumber2, parameters)
+        </div>
+        <div class="small-3 columns">
+            @Html.TextBoxFor(m => m.CreditCardNumber3, parameters)
+        </div>
+        <div class="small-3 columns last">
+            @Html.TextBoxFor(m => m.CreditCardNumber4, parameters)
+        </div>
+    </div>
+}

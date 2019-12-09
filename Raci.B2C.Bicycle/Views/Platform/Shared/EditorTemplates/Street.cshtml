@@ -1,0 +1,30 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model string
+           
+@if (Html.IsIncludeField(m => m))
+{
+    string controlSubscript = ViewData["Subscript"] as string;
+    string watermark = ViewData["watermark"] as string;
+
+    <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.Other) >
+        <div class="question">
+        </div>
+        <div class="answer" style="margin-left: 0px; width: 200px;">
+            @UIControls.TextBox(Html, Model, watermark : watermark)
+          
+            @if(!String.IsNullOrEmpty(controlSubscript))
+            {
+                <br class="clear" />
+                this.Literal(controlSubscript).Class("questionLabel");
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.hint))
+            {
+                <br />
+                @ViewBag.hint
+            }
+            @Html.HelpFor(m => m)
+        </div>
+    </div>
+}

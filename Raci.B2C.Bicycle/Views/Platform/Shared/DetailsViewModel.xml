@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <generalItems>
+    <item id="PageTitleText">
+      Hi {0}
+    </item>
+    
+    <item id="MyDetailsSummaryTitleText">
+		My details
+    </item>
+	  
+   <item id="ChangeDetailsButtonText">
+		Change my personal details
+	</item>
+
+    <item id="MyLoginDetails">
+      My login details
+    </item>
+
+    <item id="MyDetailsSummaryText">
+      <![CDATA[
+        <p>Please review your personal details below and update your details where appropriate. Any changes you make within this section will flow through to your membership and roadside assistance records.</p>
+        
+        <p>To review your login details please use the 'My login details' button below.</p>
+      ]]>
+    </item>
+  </generalItems>
+	
+  <questions>
+    <question id="MyDetailsSummaryViewModel.FullName" label="Name">
+    </question>
+
+    <question id="MyDetailsSummaryViewModel.MobileNumber" label="Mobile phone number">
+    </question>
+
+    <question id="MyDetailsSummaryViewModel.HomeNumber" label="Home phone number">
+    </question>
+
+    <question id="MyDetailsSummaryViewModel.WorkNumber" label="Work phone number">
+    </question>
+
+    <question id="MyDetailsSummaryViewModel.EmailAddress" label="Email address">
+    </question>
+
+    <question id="MyDetailsSummaryViewModel.MailingAddress" label="Mailing address">
+    </question>
+  </questions>
+</root>

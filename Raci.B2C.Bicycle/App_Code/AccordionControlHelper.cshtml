@@ -1,0 +1,80 @@
+﻿@*
+    text: button text
+    hasBack: render back button
+    forceFormSubmit: forces a form submit in place of auto calculation of the next action
+    submitButtonExtraClasses: extra classes
+*@
+@helper SubmitButton(string text, bool hasBack = true, bool forceFormSubmit = false, string submitButtonExtraClasses = "", bool isPayNow = false)
+{
+    string submitWidth = "small-12";
+    string backwidth = isPayNow ? "small-4" : "small-5";
+    
+    <div class="button-container row">
+        @if (hasBack)
+        {
+            submitWidth = isPayNow ? "small-8" : "small-7";
+
+            <div class="@backwidth collapse-right columns">
+                <button class="btn back back-button" type="button">
+                    <span class="icon-symbol"><i></i></span>
+                    <span class="btn-text">Back</span>
+                </button>
+            </div>
+        }
+
+        <div class="@submitWidth @submitButtonExtraClasses collape-left columns text-right">
+            @if (isPayNow)
+            {
+                <div class="secure-icon secure-icon-pcm"></div>
+            }
+            <button data-force-form-submit="@forceFormSubmit" class="btn primary animate-chevron-right accordion-button">
+                <span class="btn-text">@text</span>
+                <span class="icon-symbol"><i class="icon-chevron-right"></i></span>
+            </button>
+        </div>
+    </div>
+}
+
+@helper DialogSubmit(string text)
+{
+    <div class="button-container row">
+        <div class="small-12 columns text-right">
+            <button class="btn primary animate-chevron-right dialog-button">
+                <span class="btn-text">@text</span>
+                <span class="icon-symbol"><i class="icon-chevron-right"></i></span>
+            </button>
+        </div>
+    </div>
+}
+
+@helper BuyButton(string text, bool hasBack = true)
+{
+    string submitWidth = "small-12";
+
+    <div class="button-container row">
+        @if (hasBack)
+        {
+            submitWidth = "small-8";
+            @UIControls.BackButton(text);
+        }
+
+        <div class="@submitWidth columns text-right">
+            <button class="btn primary buy-button animate-chevron-right" onclick="return pageController.submitForm(this, 'SubmitAction', 'Submit')">
+                <span class="btn-text">@text</span>
+                <span class="icon-symbol"><i class="icon-chevron-right"></i></span>
+            </button>
+        </div>
+    </div>
+}
+
+@helper UrlButton(string text, string url, string submitButtonExtraClasses = "")
+{
+    <div class="button-container row">
+        <div class="small-12 @submitButtonExtraClasses columns text-right">
+            <a href="@url" class="btn primary animate-chevron-right">
+                <span class="btn-text">@text</span>
+                <span class="icon-symbol"><i class="icon-chevron-right"></i></span>
+            </a>
+        </div>
+    </div>
+}

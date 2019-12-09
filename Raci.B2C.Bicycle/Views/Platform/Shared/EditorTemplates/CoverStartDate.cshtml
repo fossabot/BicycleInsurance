@@ -1,0 +1,28 @@
+﻿@using Raci.B2C.Common
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.QuestionWidth = EditorWidth.Columns5;
+    editorParameters.WidthSmall = EditorWidth.Columns6;
+    editorParameters.QuestionWidthSmall = EditorWidth.Columns6;
+    editorParameters.Width = EditorWidth.Columns7;
+    editorParameters.Editor = CoverStartDateControl;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper CoverStartDateControl(EditorParameters editorParameters)
+{
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+
+    DateTime currentValue = Model;
+    DateTime minimumDate = SystemDateTime.Today;
+    DateTime maximumDate = editorParameters.MaxDateTime.Date;
+
+    string unselectableTemplate = "<div class='calendar-unselectable'>#= data.value #</div>";
+    string selectableTemplate = "<div class='calendar-selectable'>#= data.value #</div>";
+
+    <input id="@htmlFieldNameId" data-currentvalue='{"day": @currentValue.Day, "month": @currentValue.Month, "year": @currentValue.Year}' name="@htmlFieldName" class="customise-calendar cover-start-date customise-input-date roadmap show-for-medium-up" data-role="datepicker" data-minimum='{"day": @minimumDate.Day, "month": @minimumDate.Month, "year": @minimumDate.Year}' data-maximum='{"day": @maximumDate.Day, "month": @maximumDate.Month, "year": @maximumDate.Year}' data-format="d MMMM yyyy" data-change="pageController.UpdatePremium" data-month='{"empty": "@unselectableTemplate", "content": "@selectableTemplate" }' />
+}

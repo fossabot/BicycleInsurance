@@ -1,0 +1,53 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model Raci.B2C.Web.Models.Common.TelephoneData
+           
+@if (Html.IsIncludeField(m => m))
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string telephoneTypeHtmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("PhoneType");
+    string telephoneTypeHtmlId = telephoneTypeHtmlFieldName.FormatAsHtmlId();
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    SelectList selectListItems = referenceData.GetSelectOptions(htmlFieldName).CreateSelectList((object)Model.PhoneType);
+
+    string result = "";
+    SelectListItem firstOrDefault = null;
+
+    if (selectListItems.SelectedValue != null)
+    {
+        firstOrDefault = selectListItems.FirstOrDefault(item => item.Value == selectListItems.SelectedValue.ToString());
+    }
+
+    if (firstOrDefault != null)
+    {
+        result = firstOrDefault.Text;
+    }
+    
+    <div>
+        <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.Other)> 
+            <div class="question">
+                @Html.QuestionLabel("")
+            </div>
+            <div id="@(htmlFieldName.FormatAsHtmlId())">
+                <div class="answer">
+                    @Html.DisplayFor(m => m.PhoneNumber, TemplateNames.SimpleString)
+                </div>        
+                <div class="dependentQuestionSetContainer">
+                    <div class="answer">
+                        @{
+                            ((HtmlHelper)Html).ViewData["id"] = telephoneTypeHtmlId;
+                            ((HtmlHelper)Html).ViewData["displayOnly"] = true;
+                            ((HtmlHelper)Html).ViewData["data-role"] = "dropdownlist";
+                        }
+                        <!-- the k-state-disabled class is picked up by the initialiseKendoControls(scope) method in common.js, which sets the list mode
+                             to disabled, whilst still keeping the standard dropDownList rendering -->
+                        @Html.EditorFor(m => m.PhoneType, templateName: TemplateNames.SimpleSelect, options: selectListItems.CreateSelectList(null), @class : "k-state-disabled")
+                    </div>    
+                </div>
+            </div>
+            <br class="clear" />
+        </div>               
+    </div>
+}

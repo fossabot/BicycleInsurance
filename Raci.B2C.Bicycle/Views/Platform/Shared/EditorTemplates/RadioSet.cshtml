@@ -1,0 +1,98 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = RadioSet;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.RadioSet;
+
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    bool stackRadioButtons = referenceData.GetSelectOptions(Html.ViewData.TemplateInfo.GetFullHtmlFieldName("")).Count() >= 3;
+
+    editorParameters.AdditionalAnswerClass = editorParameters.AdditionalAnswerClass ?? "" + " radioSetAnswer";
+
+    if (editorParameters.QuestionWidthSmall == null)
+    {
+        editorParameters.QuestionWidthSmall = stackRadioButtons ? EditorWidth.Columns12 : EditorWidth.Columns7;
+    }
+
+    if (editorParameters.WidthSmall == null)
+    {
+        editorParameters.WidthSmall = stackRadioButtons ? EditorWidth.Columns12 : EditorWidth.Columns5;
+    }
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper RadioSet(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string validationClassName = Html.DetermineValidationClass(Html.ViewData.TemplateInfo.GetFullHtmlFieldName("")).ToString();
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+
+    BaseReferenceData referenceData = Html.GetReferenceData();
+
+    IList<SelectListItem> selectItems = referenceData.GetSelectOptions(Html.ViewData.TemplateInfo.GetFullHtmlFieldName("")).CreateSelectList((object)Model).ToList();
+
+    var activeRadioState = editorParameters.RadioStackState;
+
+    string additionalClasses = editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly ? "rb-disabled" : "";
+
+    switch (activeRadioState)
+    {
+        case StackState.Automatic:
+            additionalClasses += selectItems.Count() >= 3 ? " radioSet-stacked-mobile radioSet-stacked-desktop" : string.Empty;
+            break;
+
+        case StackState.StackOnDesktopAndMobile:
+            additionalClasses += " radioSet-stacked-mobile radioSet-stacked-desktop";
+            break;
+
+        case StackState.StackOnMobile:
+            additionalClasses += " radioSet-stacked-mobile";
+            break;
+
+        case StackState.StackOnDesktop:
+            additionalClasses += " radioSet-stacked-desktop";
+            break;
+    }
+    
+    <div class="@validationClassName @additionalClasses radioSet" id="@htmlFieldNameId">
+        @{
+            for (int i = 0; i < selectItems.Count(); i++)
+            {
+                SelectListItem currentItem = selectItems[i];
+                string fieldId = TagBuilder.CreateSanitizedId(htmlFieldName + "." + currentItem.Value);
+
+                string className = i == 0 ? "first" : i == selectItems.Count() - 1 ? "last" : "";
+
+                bool isChecked = false;
+
+                if (Model != null)
+                {
+                    isChecked = string.Equals(Model.ToString(), currentItem.Value, StringComparison.OrdinalIgnoreCase);
+                }
+
+                <div id="@(fieldId)_Label" class="radio-button-label @className">
+
+                    @*
+                    The following is a work around for an IE-8 issue where disabled doesnt play nice
+                    *@
+                    @if (editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly)
+                    {
+                        @Html.RadioButton("", currentItem.Value, isChecked, new { id = fieldId, @class = className, @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.RadioButton("", currentItem.Value, isChecked, new { id = fieldId, @class = className })
+                    }
+
+                    <span class="rb-radio"></span>
+                    <span class="rb-text">@currentItem.Text</span>
+                </div>
+            }
+        }
+    </div>
+}

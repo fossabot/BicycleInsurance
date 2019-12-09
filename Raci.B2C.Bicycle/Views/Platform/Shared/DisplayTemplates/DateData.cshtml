@@ -1,0 +1,24 @@
+﻿@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc.Dependency
+@model Raci.B2C.Web.Models.Common.DateData
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = DateData;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Date;
+    editorParameters.QuestionWidthSmall = editorParameters.QuestionWidthSmall ?? EditorWidth.Columns6;
+    editorParameters.WidthSmall = editorParameters.WidthSmall ?? EditorWidth.Columns6;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper DateData(EditorParameters editorParameters)
+{
+    @Html.HiddenFor(m => m.Day)
+    @Html.HiddenFor(m => m.Month)
+    @Html.HiddenFor(m => m.Year)
+
+    <div class="display-answer">
+        @Model.ToDateTime().GetValueOrDefault().ToString("d MMM yyyy")
+    </div>
+}

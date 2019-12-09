@@ -1,0 +1,27 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@{
+ string controlSubscript = ViewData["Subscript"] as string;
+ string controlSuperScript = ViewData["Superscript"] as string;
+ string containerclass = ViewData["class"] as string;
+ }
+ 
+ <div class="@containerclass">
+
+@* render the superscript text above *@
+ @if (!String.IsNullOrEmpty(controlSuperScript))
+ {
+    <div class="superscript" style="width: 100%;">@controlSuperScript</div>
+ }
+
+@* render the control *@
+@UIControls.TextBox(Html, Model)
+
+@* render the subscript text below *@
+@if (!String.IsNullOrEmpty(controlSubscript))
+{
+    this.Literal(controlSubscript).Class("questionLabel");
+    <br class="clear" />
+}
+ </div>

@@ -1,0 +1,45 @@
+﻿@helper AddItem(string label, string value)
+{
+    if (value != null)
+    {
+    <tr>
+        <td class="summary-label">@label</td>
+        <td class="summary-value">@value</td>
+    </tr>
+}
+}
+
+@helper SummaryContent()
+{
+    <table class="summary-inner-table">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="summary-header-payment">Payment details</div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="summary-table">
+                        <tbody>
+                            @AddItem("Payment frequency:", @Model.Summary.PaymentFrequency)
+                            @AddItem("Amount:", @Model.Summary.AmountPaid)                            
+                            @AddItem("Receipt number:", @Model.Summary.PaymentDetailsText)
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+<table class="summary-content-table" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr style="width: 100%">
+            <td width="100%">@SummaryContent()
+            </td>
+        </tr>
+    </tbody>
+</table>
+

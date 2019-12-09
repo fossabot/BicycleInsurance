@@ -1,0 +1,43 @@
+﻿@using Raci.B2C.Common
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = CoverStartDateControl;
+    editorParameters.DefaultAnswerLayout = false;
+    
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper CoverStartDateControl(EditorParameters editorParameters)
+{
+    string showChangeLinkStyle = "";
+
+    bool? hideChange = ViewBag.IsPolicyIssued;
+
+    if (hideChange.GetValueOrDefault())
+    {
+        showChangeLinkStyle = "display:none !important";
+    }
+    
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+
+    <div class="answer answer-field @UIControls.AnswerSpan(EditorWidth.Columns5, EditorWidth.Columns4) @editorParameters.AdditionalAnswerClass">
+        <div class="display-answer">
+            <div class="show-for-medium-up">
+                @(((DateTime)Model).ToString("d MMMM yyyy"))
+            </div>
+            <div class="show-for-small">
+                @(((DateTime)Model).ToString("d MMM yyyy"))
+            </div>
+        </div>
+    </div>
+    
+    <div class="small-3 large-3 columns">
+        <a class="link display-answer show-for-medium-up" style="@showChangeLinkStyle" onclick="return pageController.submitForm(this, 'SubmitAction', 'ChangeQuoteDetails', ''); " href="#" >Change details</a>
+        <a class="link display-answer show-for-small" style="@showChangeLinkStyle" onclick="return pageController.submitForm(this, 'SubmitAction', 'ChangeQuoteDetails', ''); " href="#">Change</a>
+    </div>
+    
+}

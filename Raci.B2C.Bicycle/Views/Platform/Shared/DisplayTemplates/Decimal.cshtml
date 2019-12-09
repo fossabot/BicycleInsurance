@@ -1,0 +1,16 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = Decimal;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Other;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper Decimal(EditorParameters editorParameters)
+{
+    <div class="display-answer">
+        @Model
+    </div>
+}

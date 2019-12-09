@@ -1,0 +1,58 @@
+﻿@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model string
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = SuburbData;
+    editorParameters.Errors = ErrorMessages;
+    editorParameters.LabelForExpression = "Suburb";
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper SuburbData(EditorParameters editorParameters)
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+
+   
+    Dictionary<string, object> suburbParameters = new Dictionary<string, object>();
+    suburbParameters["style"] = "width:100%";
+    suburbParameters["autocorrect"] = "off";
+    suburbParameters["autocapitalize"] = "off";
+    suburbParameters["autocomplete"] = "off";
+    suburbParameters["data-role"] = "suburbEntry";
+    // NB: We were unable to use ViewBag or ViewData to pass these values for some reason [JD, CM, DM] therefore as there
+    // is only currently a single use they are hard coded to match that usage scenario.
+    suburbParameters["data-id-member-id"] = "Question_Building_RiskLocation_ZipId";
+    suburbParameters["data-id-member-cityid"] = "Question_Building_RiskLocation_CityId";
+    suburbParameters["data-name-member-id"] = htmlId;//Question_Building_RiskLocation_SuburbName (Fixed with hack in control.ts)
+    suburbParameters["data-postcode-member-id"] = "Question_Building_RiskLocation_PostCode";
+    suburbParameters["data-url"] = Url.Action(MVC.Address.GetSuburbPostCodeCompletionList());
+    suburbParameters["class"] = "suburbEntry";
+
+    if (editorParameters != null)
+    {
+        suburbParameters["data-placeholder"] = editorParameters.Watermark;
+    }
+
+    if (editorParameters.State == EditorState.Disabled)
+    {
+        suburbParameters["disabled"] = "disabled";
+    }
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        suburbParameters["readonly"] = "readonly";
+    }
+
+    <div>
+        @Html.TextBoxFor(m => m, suburbParameters)
+    </div>
+}
+
+@helper ErrorMessages()
+{
+    @Html.ValidationMessageRaciFor2(m => m)
+}

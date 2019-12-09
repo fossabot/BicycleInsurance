@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+  <generalItems>
+    <item id="pageTitle">
+      Bicycle insurance quote
+    </item>
+  </generalItems>
+
+  <questions>
+    <question id="PolicyStartDate" label="Is your car financed?">
+      <errors>
+        <add key="Required" value="Please select if your car is financed." />
+      </errors>
+      <helpText title="Car finance">
+        <![CDATA[
+        Your car is considered to be under finance if you have; a secured loan with a financial institution; a hire purchase agreement; or a lease agreement.
+        ]]>
+      </helpText>
+    </question>
+  </questions>
+  <errors>
+    <error id="DriverAgeRangeError">
+      Please ensure that all drivers are between the age of 16 and 100 (dd-mm-yyyy).
+    </error>
+  </errors>
+</root>

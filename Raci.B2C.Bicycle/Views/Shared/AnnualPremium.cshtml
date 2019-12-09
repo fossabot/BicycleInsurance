@@ -1,0 +1,44 @@
+﻿@model Raci.B2C.Bicycle.Models.BicycleQuoteQuoteOption
+
+<div class="annual-premium-container">
+    <div class="row medium-padding-top">
+        <div class="price-label small-4 large-5 collapse-right columns">
+            Online price
+        </div>
+        <div class="small-8 large-7 columns price-amount right-align">
+            <label>$</label>@Model.FormattedAnnualPremium
+        </div>
+    </div>
+    <div class="row annual-premium-subtext">
+        <div class="small-8 columns annual-cost-breakdown">
+            @*<a class="help-link" rel="#annual-cost-breakdown-detail-@(ViewBag.ProductKey)" rev="Annual cost breakdown" data-local="true">Annual cost breakdown</a>*@
+        </div>
+        <div class="small-4 right-align annual-per-year-label collapse-right columns">
+            per year
+        </div>
+
+        @*<div style="display: none" id="annual-cost-breakdown-detail-@(ViewBag.ProductKey)" class="annual-cost-breakdown-detail">
+            <div class="breakdown-items">
+                <div class="row collapse breakdown-item">
+                    <div class="small-8 columns">Basic</div>
+                    <div class="small-4 columns text-right">@Model.Breakdown.Basic.ToString("c")</div>
+                </div>
+                <div class="row collapse breakdown-item">
+                    <div class="small-8 columns">Government charges</div>
+                    <div class="small-4 columns text-right">@Model.Breakdown.StampDuty.ToString("c")</div>
+                </div>
+                <div class="row collapse breakdown-item">
+                    <div class="small-8 columns">GST</div>
+                    <div class="small-4 columns text-right">@Model.Breakdown.Gst.ToString("c")</div>
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="breakdown-total">
+                    <div class="collapse-left collapse-right small-8 columns">Total</div>
+                    <div class="collapse-left collapse-right small-4 columns text-right">@Model.Breakdown.Total.ToString("c")</div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+

@@ -1,0 +1,76 @@
+﻿@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.PageExtensions
+@model Raci.B2C.Bicycle.Models.BicycleQuote
+
+@{
+    ViewBag.Title = "Confirmation";
+    ViewBag.PageTitle = new MvcHtmlString("Bicycle insurance policy");
+    ViewBag.ActiveStepNumber = 4;
+
+    Layout = Request.IsAjaxRequest() ? null : (ViewEngines.Engines.FindView(this.ViewContext.Controller.ControllerContext, "_BikeQuoteMaster", "").View as RazorView)?.ViewPath;
+
+    string selectedAccordion = (string)ViewData["selectedAccordion"];
+
+    Dictionary<string, object> formAttributes = new Dictionary<string, object>();
+    formAttributes.Add("class", "insuranceForm questionForm formTop");
+
+    EditorParameters editorParameters = new EditorParameters();
+    editorParameters.State = EditorState.Display;
+    editorParameters.QuestionWidth = EditorWidth.Columns4;
+    editorParameters.Width = EditorWidth.Columns8;
+    editorParameters.QuestionWidthSmall = EditorWidth.Columns4;
+    editorParameters.WidthSmall = EditorWidth.Columns8;
+
+}
+
+@if (Html.HasModelError())
+{
+    @Html.ValidationSummary(true)
+}
+
+@using (Ajax.BeginForm(LocalMVC.Payment.Index(), new AjaxOptions() { OnSuccess = "pageController.ajaxSubmitSuccess" }, formAttributes))
+{
+    @Html.AntiForgeryToken()
+    @Html.AntiBotCheck()
+
+    <span id="googleDataLayer" data-google-ga="@Model.GoogleDataLayer"></span>
+
+    <div class="row">
+        <div class="large-6 small-12 push-6 summary-columns-marketing">
+            <div class="row collapse">
+                @Html.Partial("DisplayTemplates/ConfirmationMarketing", Model)@*@MakeLinkButton(ContentKey.MotorQuote.General.confirmationBackToRACIButton, ExternalUrlConfig.Instance.InsuranceUrl)
+                    @MakeLinkButton(ContentKey.MotorQuote.General.confirmationRACHomeButton, ExternalUrlConfig.Instance.HomeInsuranceUrl)*@
+
+            </div>
+        </div>
+
+        <div class="large-6 small-12 pull-6 summary-columns">
+            <div class="summary-container">
+
+                <div class="summary-heading">
+                    Policy Summary
+                </div>
+
+                <div class="summary-items">
+                    @Html.QuestionFor2(x => x.PolicyNumber, parameters: editorParameters)
+                    @Html.QuestionFor2(x => x.Confirmation.Make, parameters: editorParameters)
+                    @Html.QuestionFor2(x => x.Confirmation.Model, parameters: editorParameters)
+                    @Html.QuestionFor2(x => x.Confirmation.Year, parameters: editorParameters)
+                    @Html.QuestionFor2(x => x.Confirmation.PolicyStartDate, parameters: editorParameters)
+                </div>
+
+                <div class="summary-items">
+                    @Html.QuestionFor2(x => x.Confirmation.Excess, parameters: editorParameters)
+                    @Html.QuestionFor2(x => x.Confirmation.Premium, parameters: editorParameters)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section ScriptIncludes {
+    <script>
+        var pageController = new B2C.DefaultPageController();
+        pageController.init();
+    </script>
+}

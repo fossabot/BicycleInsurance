@@ -1,0 +1,991 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6ADF363A-72B0-43B0-A5D0-054AB3FD3679}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Raci.B2C.Bicycle</RootNamespace>
+    <AssemblyName>Raci.B2C.Bicycle</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
+    <ApplicationInsightsResourceId>/subscriptions/cdd6492d-9212-49a5-bfb3-d93d3050c5eb/resourcegroups/trialproducts-prod/providers/microsoft.insights/components/prodbicycleinsuranceraciweb</ApplicationInsightsResourceId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OctoPackEnforceAddingFiles>True</OctoPackEnforceAddingFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Braintree-2.51.0, Version=2.51.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Braintree.2.51.0\lib\Braintree-2.51.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsQuery, Version=1.3.3.249, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.9.6\lib\net20\Ionic.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.1.210, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.1.210, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.1.210, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.1.210, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.1.210, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.0.5639, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Web.TelemetryChannel, Version=1.0.0.4227, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.TelemetryChannel.1.0.0\lib\net45\Microsoft.ApplicationInsights.Web.TelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.1.4.1\lib\dotnet\Microsoft.Rest.ClientRuntime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvcContrib.FluentHtml, Version=3.0.100.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcContrib.Mvc3.FluentHtml-ci.3.0.100.0\lib\MvcContrib.FluentHtml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NewRelic.Api.Agent, Version=5.8.28.0, Culture=neutral, PublicKeyToken=06552fced0b33d87, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewRelic.Azure.WebSites.5.8.28.0\lib\NewRelic.Api.Agent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PreMailer.Net, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PreMailer.Net.1.4.2\lib\net40\PreMailer.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raci.B2C.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raci.B2CPlatform.1.0.0.106\lib\Raci.B2C.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raci.B2C.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raci.B2CPlatform.1.0.0.106\lib\Raci.B2C.Model.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raci.B2C.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raci.B2CPlatform.1.0.0.106\lib\Raci.B2C.Service.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raci.B2C.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raci.B2CPlatform.1.0.0.106\lib\Raci.B2C.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.7.3.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.7.3\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=6.3.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.3.0\lib\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.1.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=6.3.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.6.3.0\lib\SendGridMail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\T4MVCExtensions.3.16.0\lib\net40\T4MVCExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="apple-touch-icon-114x114.png" />
+    <Content Include="apple-touch-icon-120x120.png" />
+    <Content Include="apple-touch-icon-144x144.png" />
+    <Content Include="apple-touch-icon-57x57.png" />
+    <Content Include="apple-touch-icon-72x72.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="App_Content\marketingCompetition.html" />
+    <Content Include="App_Content\marketingCompetitionMobile.html" />
+    <Content Include="Content\bicycle-payment.css">
+      <DependentUpon>bicycle-payment.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Bicycle-premium-container.css">
+      <DependentUpon>Bicycle-premium-container.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Bicycle-premium-container.min.css">
+      <DependentUpon>Bicycle-premium-container.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Images\question-mark.png" />
+    <Content Include="Content\Images\tick-icon.png" />
+    <Content Include="Content\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="dist\b2cplatform.desktop.min.css" />
+    <Content Include="dist\b2cplatform.min-blessed1.css" />
+    <Content Include="dist\b2cplatform.min.css" />
+    <Content Include="dist\b2cplatform.min.js" />
+    <Content Include="dist\font-stag-sans\StagSans-Bold-Web.svg" />
+    <Content Include="dist\font-stag-sans\StagSans-Book-Web.svg" />
+    <Content Include="dist\font-stag-sans\StagSans-Medium-Web.svg" />
+    <Content Include="dist\font-stag-sans\StagSans-Semibold-Web.svg" />
+    <Content Include="dist\fonts\b2c-icons.svg" />
+    <Content Include="dist\images\4Way17_18.jpg" />
+    <Content Include="dist\images\4Way7_8.jpg" />
+    <Content Include="dist\images\access_icon.gif" />
+    <Content Include="dist\images\active_heading_bg.gif" />
+    <Content Include="dist\images\active_heading_small_bg.gif" />
+    <Content Include="dist\images\arrow_down.gif" />
+    <Content Include="dist\images\bar_line.gif" />
+    <Content Include="dist\images\begin_quote.gif" />
+    <Content Include="dist\images\benefit_bottom.gif" />
+    <Content Include="dist\images\benefit_top.gif" />
+    <Content Include="dist\images\BgHeadRays.png" />
+    <Content Include="dist\images\BgHeadRays.svg" />
+    <Content Include="dist\images\bg_arrow_more.gif" />
+    <Content Include="dist\images\bg_header.gif" />
+    <Content Include="dist\images\bg_progress_active.gif" />
+    <Content Include="dist\images\bg_progress_inactive.gif" />
+    <Content Include="dist\images\bg_shadow.gif" />
+    <Content Include="dist\images\BG_yellow_gradient.gif" />
+    <Content Include="dist\images\bottom.gif" />
+    <Content Include="dist\images\Bubble-advert.png" />
+    <Content Include="dist\images\buttons_bg.gif" />
+    <Content Include="dist\images\calendar_icon.gif" />
+    <Content Include="dist\images\callme_btn.gif" />
+    <Content Include="dist\images\car.jpg" />
+    <Content Include="dist\images\CarDiagramVerticalResized_2.jpg" />
+    <Content Include="dist\images\carpark28_29.jpg" />
+    <Content Include="dist\images\car_btn_disabled.gif" />
+    <Content Include="dist\images\car_btn_white.gif" />
+    <Content Include="dist\images\car_header.gif" />
+    <Content Include="dist\images\Check.gif" />
+    <Content Include="dist\images\circle.png" />
+    <Content Include="dist\images\cluetip\arrowdown.gif" />
+    <Content Include="dist\images\cluetip\arrowleft.gif" />
+    <Content Include="dist\images\cluetip\arrowright.gif" />
+    <Content Include="dist\images\cluetip\arrowup.gif" />
+    <Content Include="dist\images\cluetip\bl.gif" />
+    <Content Include="dist\images\cluetip\bl.png" />
+    <Content Include="dist\images\cluetip\br.gif" />
+    <Content Include="dist\images\cluetip\br.png" />
+    <Content Include="dist\images\cluetip\darrowdown.gif" />
+    <Content Include="dist\images\cluetip\darrowleft.gif" />
+    <Content Include="dist\images\cluetip\darrowright.gif" />
+    <Content Include="dist\images\cluetip\darrowup.gif" />
+    <Content Include="dist\images\cluetip\itunes.png" />
+    <Content Include="dist\images\cluetip\rarrowdown.gif" />
+    <Content Include="dist\images\cluetip\rarrowleft.gif" />
+    <Content Include="dist\images\cluetip\rarrowright.gif" />
+    <Content Include="dist\images\cluetip\rarrowup.gif" />
+    <Content Include="dist\images\cluetip\tl.gif" />
+    <Content Include="dist\images\cluetip\tl.png" />
+    <Content Include="dist\images\cluetip\tr.gif" />
+    <Content Include="dist\images\cluetip\tr.png" />
+    <Content Include="dist\images\cluetip\wait.gif" />
+    <Content Include="dist\images\Compare.gif" />
+    <Content Include="dist\images\congratsIcon.png" />
+    <Content Include="dist\images\cover_benefits_home.jpg" />
+    <Content Include="dist\images\cover_benefits_motor.jpg" />
+    <Content Include="dist\images\customSelect-arrow.gif" />
+    <Content Include="dist\images\details_bg.gif" />
+    <Content Include="dist\images\details_header_bg.gif" />
+    <Content Include="dist\images\DirectDebit.gif" />
+    <Content Include="dist\images\discounts_bg.gif" />
+    <Content Include="dist\images\discounts_bottom.gif" />
+    <Content Include="dist\images\discounts_top.gif" />
+    <Content Include="dist\images\discount_tick.gif" />
+    <Content Include="dist\images\dropdown_arrow_rac.png" />
+    <Content Include="dist\images\dropdown_arrow_rac_disabled.png" />
+    <Content Include="dist\images\dropdown_arrow_rac_hover.png" />
+    <Content Include="dist\images\email\buy-online-button.png" />
+    <Content Include="dist\images\email\car_header.png" />
+    <Content Include="dist\images\email\email-dotted-line.png" />
+    <Content Include="dist\images\email\email-faq-button.png" />
+    <Content Include="dist\images\email\email-feedback-button.png" />
+    <Content Include="dist\images\email\email-header-claim.png" />
+    <Content Include="dist\images\email\header_slice.gif" />
+    <Content Include="dist\images\email\RAC_logo.png" />
+    <Content Include="dist\images\email\retrieve-your-quote-button.png" />
+    <Content Include="dist\images\email\tick.png" />
+    <Content Include="dist\images\email_quote_btn.gif" />
+    <Content Include="dist\images\error_icon.gif" />
+    <Content Include="dist\images\error_message_footer.gif" />
+    <Content Include="dist\images\exclamation.jpg" />
+    <Content Include="dist\images\features_bullet.gif" />
+    <Content Include="dist\images\finalAction_bg.gif" />
+    <Content Include="dist\images\find_my_address_btn.gif" />
+    <Content Include="dist\images\footer-circle-ie.png" />
+    <Content Include="dist\images\footer_slice.gif" />
+    <Content Include="dist\images\get_quote_button.gif" />
+    <Content Include="dist\images\header-background-claim-incomplete-email.jpg" />
+    <Content Include="dist\images\header-background-coc-email.jpg" />
+    <Content Include="dist\images\header-background-email.png" />
+    <Content Include="dist\images\header.gif" />
+    <Content Include="dist\images\header_slice.gif" />
+    <Content Include="dist\images\help-ccv.jpg" />
+    <Content Include="dist\images\help-membership-card.jpg" />
+    <Content Include="dist\images\help_tiles.gif" />
+    <Content Include="dist\images\hLine.gif" />
+    <Content Include="dist\images\home_btn_disabled.gif" />
+    <Content Include="dist\images\home_btn_white.gif" />
+    <Content Include="dist\images\home_header.gif" />
+    <Content Include="dist\images\info_icon.gif" />
+    <Content Include="dist\images\InsuranceDashboardDummy.png" />
+    <Content Include="dist\images\insurance_form_bg.gif" />
+    <Content Include="dist\images\list-add.png" />
+    <Content Include="dist\images\list-remove.png" />
+    <Content Include="dist\images\loading-animation3.gif" />
+    <Content Include="dist\images\loading-animation3_yellow.gif" />
+    <Content Include="dist\images\loadingAnimation.gif" />
+    <Content Include="dist\images\loadingAnimation2.gif" />
+    <Content Include="dist\images\logoStandalone.svg" />
+    <Content Include="dist\images\MasterCard.gif" />
+    <Content Include="dist\images\MIpurchase_btn.gif" />
+    <Content Include="dist\images\modify_my_premium_btn.gif" />
+    <Content Include="dist\images\motorrepairer.jpg" />
+    <Content Include="dist\images\need-help-header.png" />
+    <Content Include="dist\images\NewRACLogo_Portrait.png" />
+    <Content Include="dist\images\next_btn.gif" />
+    <Content Include="dist\images\ok_btn.gif" />
+    <Content Include="dist\images\ok_btn_disabled.gif" />
+    <Content Include="dist\images\other_btn_disabled.gif" />
+    <Content Include="dist\images\other_btn_white.gif" />
+    <Content Include="dist\images\paymentIcons\amex-curved-128px.png" />
+    <Content Include="dist\images\paymentIcons\amex-curved-32px.png" />
+    <Content Include="dist\images\paymentIcons\amex-curved-64px.png" />
+    <Content Include="dist\images\paymentIcons\amex-curved-ie.png" />
+    <Content Include="dist\images\paymentIcons\direct-debit-curved-128px.png" />
+    <Content Include="dist\images\paymentIcons\direct-debit-curved-32px.png" />
+    <Content Include="dist\images\paymentIcons\direct-debit-curved-64px.png" />
+    <Content Include="dist\images\paymentIcons\direct-debit-curved-ie.png" />
+    <Content Include="dist\images\paymentIcons\mastercard-curved-128px.png" />
+    <Content Include="dist\images\paymentIcons\mastercard-curved-32px.png" />
+    <Content Include="dist\images\paymentIcons\mastercard-curved-64px.png" />
+    <Content Include="dist\images\paymentIcons\mastercard-curved-ie.png" />
+    <Content Include="dist\images\paymentIcons\visa-curved-128px.png" />
+    <Content Include="dist\images\paymentIcons\visa-curved-32px.png" />
+    <Content Include="dist\images\paymentIcons\visa-curved-64px.png" />
+    <Content Include="dist\images\paymentIcons\visa-curved-ie.png" />
+    <Content Include="dist\images\pds_document.png" />
+    <Content Include="dist\images\playSound_icon.gif" />
+    <Content Include="dist\images\please_wait_bottom.gif" />
+    <Content Include="dist\images\please_wait_top.gif" />
+    <Content Include="dist\images\priceContainer_bg.gif" />
+    <Content Include="dist\images\priceContainer_bottom.gif" />
+    <Content Include="dist\images\print_quote_btn.gif" />
+    <Content Include="dist\images\progress1.gif" />
+    <Content Include="dist\images\progress1_active.gif" />
+    <Content Include="dist\images\progress2.gif" />
+    <Content Include="dist\images\progress2_active.gif" />
+    <Content Include="dist\images\progress3.gif" />
+    <Content Include="dist\images\progress3_active.gif" />
+    <Content Include="dist\images\progress4.gif" />
+    <Content Include="dist\images\progress4_active.gif" />
+    <Content Include="dist\images\purchase_btn_top.gif" />
+    <Content Include="dist\images\purchase_policy_btn.gif" />
+    <Content Include="dist\images\purchase_summary_icon.gif" />
+    <Content Include="dist\images\QDEditBottom_bg.gif" />
+    <Content Include="dist\images\QDEditTop_bg.gif" />
+    <Content Include="dist\images\quoteDetails_bg.gif" />
+    <Content Include="dist\images\quote_bg2.gif" />
+    <Content Include="dist\images\quote_btn_1.gif" />
+    <Content Include="dist\images\quote_btn_2.gif" />
+    <Content Include="dist\images\quote_modify_bg.gif" />
+    <Content Include="dist\images\quote_purchase_btn.gif" />
+    <Content Include="dist\images\rac-logo-saturated.svg" />
+    <Content Include="dist\images\RAC-Logo.png" />
+    <Content Include="dist\images\RAC.gif" />
+    <Content Include="dist\images\RACfloatingChat.png" />
+    <Content Include="dist\images\RACLogo_Landscape.png" />
+    <Content Include="dist\images\RAC_logo.gif" />
+    <Content Include="dist\images\RAC_logo.png" />
+    <Content Include="dist\images\responsive\call-us-black.png" />
+    <Content Include="dist\images\responsive\call-us-ie.png" />
+    <Content Include="dist\images\responsive\call-us.png" />
+    <Content Include="dist\images\responsive\callback-black.png" />
+    <Content Include="dist\images\responsive\header-background.png" />
+    <Content Include="dist\images\responsive\yellow-tick-responsive-small.png" />
+    <Content Include="dist\images\responsive\yellow-tick-responsive.png" />
+    <Content Include="dist\images\retrieve_quote_button.gif" />
+    <Content Include="dist\images\roundabout.jpg" />
+    <Content Include="dist\images\roundedCornerMask\rounded-corner-sprite-gray-25px.png" />
+    <Content Include="dist\images\roundedCornerMask\rounded-corner-sprite-gray.png" />
+    <Content Include="dist\images\roundedCornerMask\rounded-corner-sprite-white-25px.png" />
+    <Content Include="dist\images\roundedCornerMask\rounded-corner-sprite-white.png" />
+    <Content Include="dist\images\roundedCornerMask\rounded-corner-sprite-yellow-25px.png" />
+    <Content Include="dist\images\roundedCornerMask\rounded-corner-sprite-yellow.png" />
+    <Content Include="dist\images\secure-icon.png" />
+    <Content Include="dist\images\secure.gif" />
+    <Content Include="dist\images\send_quote_btn.gif" />
+    <Content Include="dist\images\separator.gif" />
+    <Content Include="dist\images\small_tick.gif" />
+    <Content Include="dist\images\straight10_14.jpg" />
+    <Content Include="dist\images\straight1_4.jpg" />
+    <Content Include="dist\images\straight20_21.jpg" />
+    <Content Include="dist\images\straight9.jpg" />
+    <Content Include="dist\images\submitChanges_LBox_btn.gif" />
+    <Content Include="dist\images\submit_LBox_btn.gif" />
+    <Content Include="dist\images\T15_16.jpg" />
+    <Content Include="dist\images\T19.jpg" />
+    <Content Include="dist\images\T24_27.jpg" />
+    <Content Include="dist\images\T5_6.jpg" />
+    <Content Include="dist\images\tabs.gif" />
+    <Content Include="dist\images\tab_3rdParty_active.gif" />
+    <Content Include="dist\images\tab_3rdParty_inactive.gif" />
+    <Content Include="dist\images\tab_active.png" />
+    <Content Include="dist\images\tab_comp_active.gif" />
+    <Content Include="dist\images\tab_comp_inactive.gif" />
+    <Content Include="dist\images\tab_inactive.png" />
+    <Content Include="dist\images\temp\comprehensive_options.jpg" />
+    <Content Include="dist\images\temp\confirmation.jpg" />
+    <Content Include="dist\images\temp\purchase_begin.jpg" />
+    <Content Include="dist\images\temp\purchase_end.jpg" />
+    <Content Include="dist\images\temp\quote_details.gif" />
+    <Content Include="dist\images\temp\third_party_options.jpg" />
+    <Content Include="dist\images\tick.gif" />
+    <Content Include="dist\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="dist\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="dist\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="dist\images\ui-bg_flat_92_fdff75_40x100.png" />
+    <Content Include="dist\images\ui-bg_flat_92_feffdb_40x100.png" />
+    <Content Include="dist\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="dist\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="dist\images\ui-bg_glass_92_E3E3E3_1x400.png" />
+    <Content Include="dist\images\ui-bg_gloss-wave_85_FFE04A_500x100.png" />
+    <Content Include="dist\images\ui-bg_highlight-soft_100_FFFFFF_1x100.png" />
+    <Content Include="dist\images\ui-bg_highlight-soft_85_FFE04A_1x100.png" />
+    <Content Include="dist\images\ui-icons_000000_256x240.png" />
+    <Content Include="dist\images\ui-icons_222222_256x240.png" />
+    <Content Include="dist\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="dist\images\ui-icons_3d83bd_256x240.png" />
+    <Content Include="dist\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="dist\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="dist\images\verification.gif" />
+    <Content Include="dist\images\Visa.gif" />
+    <Content Include="dist\images\windscreen.jpg" />
+    <Content Include="dist\images\yellow-tick-full.png" />
+    <Content Include="dist\images\yellow-tick.png" />
+    <Content Include="dist\images\YourPolicyNumber_Example.gif" />
+    <Content Include="dist\kendo-raci-old\editor.png" />
+    <Content Include="dist\kendo-raci-old\glass.png" />
+    <Content Include="dist\kendo-raci-old\highlight.png" />
+    <Content Include="dist\kendo-raci-old\imagebrowser.png" />
+    <Content Include="dist\kendo-raci-old\loading-image.gif" />
+    <Content Include="dist\kendo-raci-old\loading.gif" />
+    <Content Include="dist\kendo-raci-old\slider-h.gif" />
+    <Content Include="dist\kendo-raci-old\slider-v.gif" />
+    <Content Include="dist\kendo-raci-old\sprite.png" />
+    <Content Include="dist\kendo-raci\DragHandle.png" />
+    <Content Include="dist\kendo-raci\editor.png" />
+    <Content Include="dist\kendo-raci\imagebrowser.png" />
+    <Content Include="dist\kendo-raci\loading-image.gif" />
+    <Content Include="dist\kendo-raci\loading.gif" />
+    <Content Include="dist\kendo-raci\loading_2x.gif" />
+    <Content Include="dist\kendo-raci\slider-h.gif" />
+    <Content Include="dist\kendo-raci\Slider-tick.png" />
+    <Content Include="dist\kendo-raci\slider-v.gif" />
+    <Content Include="dist\kendo-raci\sprite.png" />
+    <Content Include="dist\kendo-raci\sprite_2x.png" />
+    <Content Include="dist\textures\brushed-metal.png" />
+    <Content Include="dist\textures\dots1.png" />
+    <Content Include="dist\textures\dots10.png" />
+    <Content Include="dist\textures\dots11.png" />
+    <Content Include="dist\textures\dots12.png" />
+    <Content Include="dist\textures\dots13.png" />
+    <Content Include="dist\textures\dots2.png" />
+    <Content Include="dist\textures\dots3.png" />
+    <Content Include="dist\textures\dots4.png" />
+    <Content Include="dist\textures\dots5.png" />
+    <Content Include="dist\textures\dots6.png" />
+    <Content Include="dist\textures\dots7.png" />
+    <Content Include="dist\textures\dots8.png" />
+    <Content Include="dist\textures\dots9.png" />
+    <Content Include="dist\textures\glass-lighter.png" />
+    <Content Include="dist\textures\glass.png" />
+    <Content Include="dist\textures\highlight.png" />
+    <Content Include="dist\textures\hsv-gradient.png" />
+    <Content Include="dist\textures\hue.png" />
+    <Content Include="dist\textures\leather1.png" />
+    <Content Include="dist\textures\leather2.png" />
+    <Content Include="dist\textures\noise.png" />
+    <Content Include="dist\textures\stripe1.png" />
+    <Content Include="dist\textures\stripe2.png" />
+    <Content Include="dist\textures\stripe3.png" />
+    <Content Include="dist\textures\stripe4.png" />
+    <Content Include="dist\textures\stripe5.png" />
+    <Content Include="dist\textures\stripe6.png" />
+    <Content Include="dist\textures\transparency.png" />
+    <Content Include="dist\textures\transtexture.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Gulpfile.js" />
+    <Content Include="newrelic\Extensions\CoreInstrumentation.xml" />
+    <Content Include="newrelic\Extensions\JetBrains.Annotations.dll" />
+    <Content Include="newrelic\Extensions\JetBrains.Annotations.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Agent.AttributeFilter.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Agent.Configuration.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Agent.Core.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Agent.LabelsService.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Agent.LazyMap.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Collections.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Core.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Dispatchers.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Memoization.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.CallStack.AsyncLocal.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.TransactionContext.Asp.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.TransactionContext.Default.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.TransactionContext.Wcf3.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Asp35.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Asp35.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.HttpClient.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.HttpClient.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.MongoDb.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.MongoDb.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Mvc3.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Mvc3.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.NServiceBus.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.NServiceBus.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Owin.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Owin.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.ServiceStackRedis.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.ServiceStackRedis.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.StackExchangeRedis.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.StackExchangeRedis.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Wcf3.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Wcf3.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi1.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi1.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi2.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi2.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebOptimization.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebOptimization.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebServices.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebServices.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Reflection.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.SystemExtensions.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.SystemInterfaces.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Testing.Assertions.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Trie.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.TypeInstantiation.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.WeakActions.dll" />
+    <Content Include="newrelic\NewRelic.Agent.Core.dll" />
+    <Content Include="newrelic\NewRelic.Agent.Extensions.dll" />
+    <Content Include="newrelic\NewRelic.Profiler.dll" />
+    <Content Include="Scripts\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\BrainTreePayment.js" />
+    <Content Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\BicycleQuote.xml" />
+    <Content Include="Views\Confirmation\Confirmation.xml" />
+    <Content Include="Views\Platform\Shared\Address.xml" />
+    <Content Include="Views\Platform\Shared\BankAccountRefundViewModel.xml" />
+    <Content Include="Views\Platform\Shared\CallbackRequest.xml" />
+    <Content Include="Views\Platform\Shared\CreditCardPaymentViewModel.xml" />
+    <Content Include="Views\Platform\Shared\DetailsEditViewModel.xml" />
+    <Content Include="Views\Platform\Shared\DetailsViewModel.xml" />
+    <Content Include="Views\Platform\Shared\EndorsementErrorViewModel.xml" />
+    <Content Include="Views\Platform\Shared\EndorsementPriceChangeViewModel.xml" />
+    <Content Include="Views\Platform\Shared\GeneralPCM.xml" />
+    <Content Include="Views\Platform\Shared\GeneralText.xml" />
+    <Content Include="Views\Platform\Shared\OtherPolicyViewModel.xml" />
+    <Content Include="Views\Platform\Shared\PolicyDocumentsViewModel.xml" />
+    <Content Include="Views\Platform\Shared\PolicyPortfolioViewModel.xml" />
+    <Content Include="Views\Platform\Shared\PolicyViewModel.xml" />
+    <Content Include="Views\Platform\Shared\RepairerViewModel.xml" />
+    <Content Include="Views\Platform\Shared\ServiceStatusViewModel.xml" />
+    <Content Include="Views\Shared\Common.xml" />
+    <Content Include="_readme.txt" />
+    <Content Include="Content\bicycle-payment.less" />
+    <Content Include="package.json" />
+    <Content Include="Content\Bicycle-premium-container.less" />
+    <Content Include="EmailTemplates\Disclaimer.razor" />
+    <Content Include="EmailTemplates\Header.Email.razor" />
+    <Content Include="EmailTemplates\Header.Print.razor" />
+    <Content Include="EmailTemplates\Index.razor" />
+    <Content Include="EmailTemplates\Payment.razor" />
+    <Content Include="EmailTemplates\Styles.Print.razor" />
+    <Content Include="EmailTemplates\ThankYou.razor" />
+    <Content Include="newrelic\newrelic.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Code\UIControls.cshtml" />
+    <Content Include="App_Code\PCMInfoBoxHelper.cshtml" />
+    <Content Include="App_Code\LivePerson.cshtml" />
+    <Content Include="App_Code\CoverCompareHelper.cshtml" />
+    <Content Include="App_Code\ControlHelper.cshtml" />
+    <Content Include="App_Code\AccordionControlHelper.cshtml" />
+    <None Include="App_Offline.htm.dormant" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Raci.B2C.Bicycle.nuspec" />
+    <Content Include="newrelic\Extensions\extension.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\site.less" />
+    <None Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
+    <Content Include="dist\fonts\b2c-icons.woff" />
+    <Content Include="dist\fonts\b2c-icons.ttf" />
+    <Content Include="dist\fonts\b2c-icons.eot" />
+    <Content Include="dist\font-stag-sans\StagSans-Semibold-Web.woff" />
+    <Content Include="dist\font-stag-sans\StagSans-Semibold-Web.ttf" />
+    <Content Include="dist\font-stag-sans\StagSans-Semibold-Web.eot" />
+    <Content Include="dist\font-stag-sans\StagSans-Medium-Web.woff" />
+    <Content Include="dist\font-stag-sans\StagSans-Medium-Web.ttf" />
+    <Content Include="dist\font-stag-sans\StagSans-Medium-Web.eot" />
+    <Content Include="dist\font-stag-sans\StagSans-Book-Web.woff" />
+    <Content Include="dist\font-stag-sans\StagSans-Book-Web.ttf" />
+    <Content Include="dist\font-stag-sans\StagSans-Book-Web.eot" />
+    <Content Include="dist\font-stag-sans\StagSans-Bold-Web.woff" />
+    <Content Include="dist\font-stag-sans\StagSans-Bold-Web.ttf" />
+    <Content Include="dist\font-stag-sans\StagSans-Bold-Web.eot" />
+    <None Include="newrelic\newrelic.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Question\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\ValidatorConfig.cs" />
+    <Compile Include="ClientApi\BicyclePolicies.cs" />
+    <Compile Include="ClientApi\BicyclePoliciesExtensions.cs" />
+    <Compile Include="ClientApi\CoverOptions.cs" />
+    <Compile Include="ClientApi\CoverOptionsExtensions.cs" />
+    <Compile Include="ClientApi\IBicyclePolicies.cs" />
+    <Compile Include="ClientApi\ICoverOptions.cs" />
+    <Compile Include="ClientApi\IPolicies.cs" />
+    <Compile Include="ClientApi\IRaciB2CBicycleService.cs" />
+    <Compile Include="ClientApi\IReferenceDatas.cs" />
+    <Compile Include="ClientApi\Models\AddressDTO.cs" />
+    <Compile Include="ClientApi\Models\BicyclePolicyDetail.cs" />
+    <Compile Include="ClientApi\Models\BicyclePolicyDetailDTO.cs" />
+    <Compile Include="ClientApi\Models\CoverOptionDTO.cs" />
+    <Compile Include="ClientApi\Models\MinMaxDTO.cs" />
+    <Compile Include="ClientApi\Models\PaymentDetailDTO.cs" />
+    <Compile Include="ClientApi\Models\PolicyContactDTO.cs" />
+    <Compile Include="ClientApi\Models\PolicyDTO.cs" />
+    <Compile Include="ClientApi\Models\PolicyOptionDTO.cs" />
+    <Compile Include="ClientApi\Models\ReferenceData.cs" />
+    <Compile Include="ClientApi\Policies.cs" />
+    <Compile Include="ClientApi\PoliciesExtensions.cs" />
+    <Compile Include="ClientApi\RaciB2CBicycleService.cs" />
+    <Compile Include="ClientApi\RaciB2CBicycleServiceExtensions.cs" />
+    <Compile Include="ClientApi\ReferenceDatas.cs" />
+    <Compile Include="ClientApi\ReferenceDatasExtensions.cs" />
+    <Compile Include="Controllers\ConfirmationController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PolicyDetailController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuoteController.cs" />
+    <Compile Include="Controllers\SessionExtensions.cs" />
+    <Compile Include="FormHandlers\ConfirmationFormHandler.cs" />
+    <Compile Include="FormHandlers\ServiceInvocationException.cs" />
+    <Compile Include="FormHandlers\IConfirmationFormHandler.cs" />
+    <Compile Include="FormHandlers\IPaymentFormHandler.cs" />
+    <Compile Include="FormHandlers\IPolicyDetailFormHandler.cs" />
+    <Compile Include="FormHandlers\IQuestionFormHandler.cs" />
+    <Compile Include="FormHandlers\IBaseFormHandler.cs" />
+    <Compile Include="FormHandlers\IQuoteFormHandler.cs" />
+    <Compile Include="FormHandlers\PaymentFormHandler.cs" />
+    <Compile Include="FormHandlers\PolicyDetailFormHandler.cs" />
+    <Compile Include="FormHandlers\QuestionFormHandler.cs" />
+    <Compile Include="FormHandlers\BaseFormHandler.cs" />
+    <Compile Include="FormHandlers\QuoteFormHandler.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BicycleQuote.cs" />
+    <Compile Include="Models\BicycleQuoteConfirmation.cs" />
+    <Compile Include="Models\BicycleQuotePayment.cs" />
+    <Compile Include="Models\BicycleQuotePaymentDetails.cs" />
+    <Compile Include="Models\BicycleQuotePolicyDetail.cs" />
+    <Compile Include="Models\BicycleQuotePolicyDetailBikeDetails.cs" />
+    <Compile Include="Models\BicycleQuotePolicyDetailContact.cs" />
+    <Compile Include="Models\BicycleQuoteQuestion.cs" />
+    <Compile Include="Models\BicycleQuoteQuestionBikeDetails.cs" />
+    <Compile Include="Models\BicycleQuoteQuestionCustomerDetails.cs" />
+    <Compile Include="Models\BicycleQuoteQuote.cs" />
+    <Compile Include="Models\BicycleQuoteQuoteOption.cs" />
+    <Compile Include="Models\Braintree.cs" />
+    <Compile Include="Mvc\BaseReferenceDataExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\IEmailService.cs" />
+    <Compile Include="Service\IReferenceDataService.cs" />
+    <Compile Include="Service\ReferenceDataService.cs" />
+    <Compile Include="Service\SendGridEmailService.cs" />
+    <Compile Include="T4MVC.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Utils\DateUtil.cs" />
+    <Compile Include="Utils\Jwt.cs" />
+    <Compile Include="Utils\TaskExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <None Include="T4MVC.tt.hooks.t4" />
+    <Content Include="Views\Shared\_BikeQuoteMaster.cshtml" />
+    <Content Include="Views\Quote\Index.cshtml" />
+    <Content Include="Views\Confirmation\Index.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\PolicyDetail\Index.cshtml" />
+    <Content Include="Views\Quote\PremiumContainer.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BicycleQuoteQuoteOption.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BicycleQuoteQuoteOption.cshtml" />
+    <Content Include="Views\Shared\AnnualPremium.cshtml" />
+    <Content Include="Views\Quote\QuoteButtons.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Payment.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ConfirmationMarketing.cshtml" />
+    <Content Include="Views\Platform\Shared\_Site.Master.cshtml" />
+    <Content Include="Views\Platform\Shared\_Site.Master.Basic.cshtml" />
+    <Content Include="Views\Platform\Shared\_Site.cshtml" />
+    <Content Include="Views\Platform\Shared\_Quote.Master.cshtml" />
+    <Content Include="Views\Platform\Shared\SessionTimeOut.cshtml" />
+    <Content Include="Views\Platform\Shared\QuoteReCalculatePromptDialog.cshtml" />
+    <Content Include="Views\Platform\Shared\PageHeading.cshtml" />
+    <Content Include="Views\Platform\Shared\ObjectNotFound.cshtml" />
+    <Content Include="Views\Platform\Shared\MarketingRail.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\VerificationValue.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\VehicleSelection.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\VehicleRegistrationViewModel.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\TimeData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\TextDateData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\TelephoneData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SumInsuredData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SuburbLookup.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SuburbData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SubQuestionString.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SubQuestionSelect.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\StringArea.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\Street.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SimpleString.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SimpleSelect.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SimpleRadioSet.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\SimpleDateData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\Select.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\RadioSet.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\QuestionlessDateData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\PreferredRepairerSuburb.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\MonthYearSelectDateData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\MailingAddressFull.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\MailingAddress.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\ExcessData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\DirectDebitViewModel.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\DeclarationRadioSet.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\DateSelect.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\DateData.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\CreditCardViewModel.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\CreditCardNumberViewModel.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\CoverStartDate.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\CheckBoxList.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\CheckBox.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\Calendar.cshtml" />
+    <Content Include="Views\Platform\Shared\EditorTemplates\AddressData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\UndecoratedString.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\TimeData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\TelephoneData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\SumInsuredData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\SuburbData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\StringArea.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\String.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\SimpleString.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\SimpleSelect.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\SimpleDateData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\Select.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\RadioSet.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\QuoteDiscounts.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\QuestionlessDateData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\OtherPrice.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\DateData.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\Currency.cshtml" />
+    <Content Include="Views\Platform\Shared\DisplayTemplates\CoverStartDate.cshtml" />
+    <Content Include="Views\Platform\Shared\CustomError.cshtml" />
+    <Content Include="Views\Platform\Error\_ExceptionStackTracePartial.cshtml" />
+    <Content Include="Views\Platform\Error\PCMError.cshtml" />
+    <Content Include="Views\Platform\Error\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="lib\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\PaymentController.ts" />
+    <TypeScriptCompile Include="Scripts\BicyclePageController.ts" />
+    <TypeScriptCompile Include="Scripts\QuotePageController.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2c-common.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\B2CAccordion.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\B2CCarousel.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\CreditCardNumberControl.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\DataLayerManager.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\DatePicker.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\DefaultPageController.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\Dependency.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\FormDialog.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\Ijento.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\kendo.all.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\MailingAddressControl.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\PageController.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\PaymentPageController.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\ProductTabStrip.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\Select.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\ServiceAvailabilityPageController.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\SuburbControl.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\TextBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\b2cplatform\Util.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12652</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12645/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\OctoPack.3.0.44\tools\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.0.44\tools\OctoPack.targets')" />
+  <Target Name="EnsureOctoPackImported" BeforeTargets="BeforeBuild" Condition="'$(OctoPackImported)' == ''">
+    <Error Condition="!Exists('..\packages\OctoPack.3.0.44\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="You are trying to build with OctoPack, but the NuGet targets file that OctoPack depends on is not available on this computer. This is probably because the OctoPack package has not been committed to source control, or NuGet Package Restore is not enabled. Please enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\OctoPack.3.0.44\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

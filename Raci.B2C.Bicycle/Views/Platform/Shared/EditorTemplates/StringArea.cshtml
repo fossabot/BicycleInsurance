@@ -1,0 +1,36 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Width = EditorWidth.Columns8;
+    editorParameters.Editor = StringArea;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper StringArea(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    parameters["placeholder"] = Html.GetQuestionWatermark(ViewData.ModelMetadata, null, null, editorParameters.Watermark);
+    
+    if (editorParameters.State == EditorState.Readonly || editorParameters.State == EditorState.Disabled)
+    {
+        parameters["readonly"] = "readonly";
+          parameters["disabled"] = "disabled";
+    }
+
+    if (editorParameters.MaxLength != null)
+    {
+        parameters["maxlength"] = editorParameters.MaxLength;
+    }
+
+    parameters["rows"] = 5;
+    parameters["style"] = "width:100%;";
+  
+    @Html.TextAreaFor(m => m, parameters)
+
+}

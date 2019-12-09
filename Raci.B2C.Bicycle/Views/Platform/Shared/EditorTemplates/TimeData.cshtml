@@ -1,0 +1,78 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc.Dependency
+
+@model TimeData
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = TimeData;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Time;
+    if (@Model.Is12Hour)
+    {
+        editorParameters.Width = EditorWidth.Columns5;
+    }
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper TimeData(EditorParameters editorParameters)
+{
+    IDictionary<string, object> hourParameters = new Dictionary<string, object>();
+    IDictionary<string, object> minuteParameters = new Dictionary<string, object>();
+    IDictionary<string, object> meridiemParameters = new Dictionary<string, object>();
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string fieldId = ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    TimeReferenceData timeReferenceData = referenceData.GetTimeOptions(htmlFieldName);
+
+    hourParameters["data-role"] = "dropdownlist";
+    hourParameters["data-text-field"] = "Text";
+    hourParameters["data-value-field"] = "Value";
+    hourParameters["style"] = "width:100%;";
+    hourParameters["class"] = Html.ViewData["class"] + " roadmap";
+    hourParameters["data-source"] = timeReferenceData.Hour.CreateSelectList(null).ToJsonArray();
+    hourParameters["data-option-label"] = "hour";
+
+    minuteParameters["data-role"] = "dropdownlist";
+    minuteParameters["data-text-field"] = "Text";
+    minuteParameters["data-value-field"] = "Value";
+    minuteParameters["style"] = "width:100%;";
+    minuteParameters["class"] = Html.ViewData["class"] + " roadmap";
+    minuteParameters["data-source"] = timeReferenceData.Minute.CreateSelectList(null).ToJsonArray();
+    minuteParameters["data-option-label"] = "minute";
+
+    meridiemParameters["data-role"] = "dropdownlist";
+    meridiemParameters["data-text-field"] = "Text";
+    meridiemParameters["data-value-field"] = "Value";
+    meridiemParameters["style"] = "width:100%;";
+    meridiemParameters["class"] = Html.ViewData["class"] + " roadmap";
+    meridiemParameters["data-source"] = timeReferenceData.Meridiem.CreateSelectList(null).ToJsonArray();
+    meridiemParameters["data-option-label"] = "am/pm";
+
+    //Disabled will make the field unclickable and look correctly, where as readonly will only make the field unclickable
+    //so for drop down lists we want to treat readonly as disabled
+    if (editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly)
+    {
+        hourParameters["disabled"] = "disabled";
+        minuteParameters["disabled"] = "disabled";
+        meridiemParameters["disabled"] = "disabled";
+
+    }
+
+    <div id="@fieldId" class="row time-data collapse">
+        <div class="small-4 columns first">
+            @Html.TextBoxFor(x => x.Hour, hourParameters)
+        </div>
+        <div class="small-4 columns">
+            @Html.TextBoxFor(x => x.Minute, minuteParameters)
+        </div>
+
+        @if (@Model.Is12Hour)
+        {
+            <div class="small-4 columns last">
+                @Html.TextBoxFor(x => x.Meridiem, meridiemParameters)
+            </div>
+        }
+    </div>
+}

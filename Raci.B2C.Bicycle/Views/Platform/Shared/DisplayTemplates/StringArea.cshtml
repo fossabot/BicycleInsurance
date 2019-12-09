@@ -1,0 +1,18 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+
+@model string
+
+@if (Html.IsIncludeField(m => m))
+{
+    object styleClass = this.ViewData["class"];
+    
+    <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.String)>
+        <div class="question">
+            @Html.QuestionLabel("")
+        </div>
+        <div class="answer">
+            @Html.TextArea("", Model, new { rows = 4, @class = styleClass, disabled = "disabled", @readonly = "readonly" })            
+        </div>        
+        <br class="clear" />
+    </div>
+}

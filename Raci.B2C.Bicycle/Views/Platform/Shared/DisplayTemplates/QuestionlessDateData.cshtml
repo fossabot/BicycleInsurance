@@ -1,0 +1,29 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+@model Raci.B2C.Web.Models.Common.DateData
+@if (Html.IsIncludeField(m => m))
+{
+    string htmlFieldName = @Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    BaseReferenceData referenceData = @Html.GetReferenceData();
+    DateReferenceData dateReferenceData = referenceData.GetDateOptions(htmlFieldName);
+    
+    ((HtmlHelper)Html).ViewData["displayOnly"] = true;
+
+    ((HtmlHelper)Html).ViewData["width"] = 75;
+    
+    SelectListItem selectedMonth = dateReferenceData.Month.FirstOrDefault(x => x.Value == Model.Month.ToString());
+    
+    <fieldset id="@(htmlId)" class="dateEntry">
+        @Html.HiddenFor(m => m.Day)
+        @Html.HiddenFor(m => m.Month)
+        @Html.HiddenFor(m => m.Year)
+
+        @UIControls.TextBox(Html, Model.Day.Value, nameOverride: htmlFieldName, idOverride: htmlId + "_Day_readonly", widthOverride: 60)
+        @UIControls.TextBox(Html, selectedMonth.Text, nameOverride: htmlFieldName, idOverride: htmlId + "_Month_readonly", widthOverride: 75)
+        @UIControls.TextBox(Html, Model.Year.Value, nameOverride: htmlFieldName, idOverride: htmlId + "_Year_readonly", widthOverride: 65)
+
+    </fieldset>
+}

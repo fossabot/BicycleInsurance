@@ -1,0 +1,60 @@
+﻿@using System.Collections.Generic
+@using Raci.B2C.Model.Entity
+@using Raci.B2C.Web.Models.Common
+
+@model Raci.B2C.Web.Models.ErrorViewModel
+
+@{
+    Layout = Request.IsAjaxRequest() ? null : Model.MasterPage;
+    
+    ViewBag.Title = Model.Title;
+    ViewBag.GATitle = "Error";
+    ViewBag.ErrorMessage = Model.ErrorMessage;
+    
+    ViewBag.LivePersonParameters = ViewBag.LivePersonParameters ?? new Dictionary<string, string>();
+    ViewBag.LivePersonParameters[LivePersonVariable.Unit] = "motorsales-rac";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="error-box callback-confirmation-heading">
+        <p class="text-heading">
+            @Model.ErrorMessage
+        </p>
+        @Html.Partial(MVC.Platform.Views.Error._ExceptionStackTracePartial, Model)
+        @Html.Raw(Model.CallUsBackText)
+    </div>
+</div>
+
+@LinkBox(Model.MyInsuranceUrl, @Html.Content(ContentKey.GeneralText.General.MyInsurance).ToString())
+@*@LinkBox(Url.Action(MVC.QuoteMotor.Question.Questions()), @Html.Content(ContentKey.GeneralText.General.CarInsuranceQuote).ToString())
+@LinkBox(Url.Action(MVC.QuoteHome.Question.Questions()), @Html.Content(ContentKey.GeneralText.General.HomeInsuranceQuote).ToString())
+@LinkBox(Url.Action(MVC.Claim2.Preamble.Questions()), @Html.Content(ContentKey.GeneralText.General.MakeAClaim).ToString())*@
+@LinkBox(Model.RacHomePageUrl, @Html.Content(ContentKey.GeneralText.General.BackToRAC).ToString())
+
+@helper LinkBox(string url, string text)
+{
+    <div class="row callback-confirmation-link">
+        <a class=" large-7 columns collapse-left collapse-right" href="@url">
+            <div class="link-box callback-confirmation-link-box">
+                <div class="small-11 collapse-right columns ">@text</div>
+                <div class="small-1 collapse-left columns"><i class="icon-right-open"></i></div>
+            </div>
+        </a>
+    </div>
+}
+
+@section ScriptIncludes {
+@**@
+@*    @{  ServiceAvailabilityViewModel serviceAvailability = TempData[typeof(ServiceAvailabilityViewModel).FullName] as ServiceAvailabilityViewModel;}*@
+@**@
+@*    @Scripts.Render("~/content/js-default-controller")*@
+@*    @this.StartupScript()*@
+@**@
+@*    @if (serviceAvailability.ChatOnline != ServiceStatus.Disabled)*@
+@*    {*@
+@*        @LivePerson.SetupChat(Raci.B2C.Web.Util.AppConfig.Instance.GetLivePersonSettings(), ViewBag.LivePersonParameters)*@
+@*        @Scripts.Render("~/content/js-onlineChat")*@
+@*    }*@
+}

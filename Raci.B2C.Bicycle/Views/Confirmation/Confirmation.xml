@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <questions>
+    <question id="PolicyDetail.PolicyStartDate" label="Is your car financed?">
+    </question>
+  </questions>
+</root>

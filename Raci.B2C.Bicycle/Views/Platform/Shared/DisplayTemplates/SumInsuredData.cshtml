@@ -1,0 +1,19 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@model Raci.B2C.Web.Models.Common.SumInsuredData
+
+@if (Html.IsIncludeField(m => m))
+{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.QuestionWidthSmall = EditorWidth.Columns6;
+    editorParameters.QuestionWidth = EditorWidth.Columns8;
+    editorParameters.WidthSmall = EditorWidth.Columns6;
+    editorParameters.Editor = SumInsuredDisplayControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+
+    @UIControls.SimpleQuestionAnswer(Html, editorParameters)
+}
+
+@helper SumInsuredDisplayControl(EditorParameters editorParameters)
+{
+    @Html.Label(string.Format("{0:c0}", Model.Value))
+}

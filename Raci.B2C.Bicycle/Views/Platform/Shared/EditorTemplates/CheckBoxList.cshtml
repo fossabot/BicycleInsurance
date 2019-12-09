@@ -1,0 +1,76 @@
+﻿@using Raci.B2C.Web.Models
+
+@model Int32[]
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = CheckboxList;
+
+    editorParameters.QuestionWidthSmall = editorParameters.QuestionWidthSmall ?? EditorWidth.Columns12;
+    editorParameters.WidthSmall = editorParameters.WidthSmall ?? EditorWidth.Columns12;
+    editorParameters.Width = (editorParameters.Width == EditorWidth.Columns4) ? EditorWidth.Columns5 : editorParameters.Width;
+    editorParameters.AdditionalAnswerClass = (editorParameters.AdditionalAnswerClass ?? "") + " radioSetAnswer";
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper CheckboxList(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string validationClassName = Html.DetermineValidationClass(htmlFieldName).ToString();
+
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    IEnumerable<SelectListItem> items = referenceData.GetSelectOptions(htmlFieldName);
+
+    List<SelectListItem> selectListItems;
+
+    if (items != null)
+    {
+        selectListItems = new List<SelectListItem>(items);
+    }
+    else
+    {
+        selectListItems = new List<SelectListItem>();
+    }
+
+    string additionalClasses = editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly ? "cb-disabled" : "";
+
+    <div class="@validationClassName @additionalClasses radioSet radioSet-stacked checkbox-list" id="@htmlFieldNameId">
+        @{
+            for (int i = 0; i < selectListItems.Count(); i++)
+            {
+                string isChecked = "";
+                string isDisabled = "";
+                string fieldId = TagBuilder.CreateSanitizedId(htmlFieldName + "_" + i);
+                string fieldName = htmlFieldName.FormatAsHtmlName();
+                SelectListItem currentItem = selectListItems[i];
+
+                string className = i == 0 ? "first" : i == selectListItems.Count() - 1 ? "last" : "";
+
+                if (Model != null && Model.Contains(int.Parse(currentItem.Value)))
+                {
+                    isChecked = "checked=checked";
+                }
+
+                //The following is a work around for an IE-8 issue where disabled doesnt play nice
+                if (editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly)
+                {
+                    isDisabled = "disabled=disabled";
+                }
+
+                <div id="@(fieldId)_Label" class="checkbox @className">
+                    <input class="@(className)" id="@(fieldId)" name="@(fieldName)" value="@(currentItem.Value)" type="checkbox" @isChecked @isDisabled />
+                        <span class="cb-checkbox">
+                            <i class="icon-check" style="display: none"></i>
+                        </span>
+                        <span class="cb-text">@currentItem.Text</span>
+                </div>
+                <br />
+            }
+        }
+    </div>
+}

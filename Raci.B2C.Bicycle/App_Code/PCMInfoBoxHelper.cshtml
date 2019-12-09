@@ -1,0 +1,48 @@
+﻿@using Raci.B2C.Web.Mvc.PageExtensions
+
+@helper InfoBox(HtmlString text, string extraClasses = "")
+{
+
+    <div class="row">
+        <div class="small-12">
+            <div class="info-box is-full-length @extraClasses">@text</div>
+        </div>
+    </div>
+}
+
+@helper AlertBoxWithHeader(HtmlString text, HtmlString heading = null)
+{
+    <div class="PCMSection">
+        <div class="u-mobileMarginFrame">
+            <div class="row AlertBox is-display">
+                @if (heading != null)
+                {
+                    <div class="AlertBox-Heading small-12 columns">
+                        @heading
+                    </div>
+                }
+                <div class="AlertBox-Content small-12 columns">
+                    @text
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@helper AlertBoxWithHeader(string headingKey, string textKey, string[] headerParameters = null, params string[] textParameters)
+{
+    if (!string.IsNullOrEmpty(headingKey))
+     {
+         @AlertBoxWithHeader(@Html.Content(textKey, textParameters), @Html.Content(headingKey, headerParameters))
+     }
+     else
+     {
+        @AlertBoxWithHeader(@Html.Content(textKey, textParameters))
+     }
+}
+
+@helper AlertBox(string textKey, params string[] textParameters)
+{
+    @AlertBoxWithHeader(string.Empty, textKey, textParameters: textParameters)
+}
+

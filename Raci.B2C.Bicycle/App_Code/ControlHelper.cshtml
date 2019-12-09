@@ -1,0 +1,48 @@
+﻿@using Raci.B2C.Web.Mvc.PageExtensions;
+@using Raci.B2C.Web.Mvc.PageExtensions.Fluent;
+@using Raci.B2C.Web.Helpers;
+
+@* ======================================================================== 
+Renders a standard 'next/submit' sized button that submits the current form 
+=========================================================================== *@ 
+@helper RenderSubmitButton(string text)
+{
+    string onclick = "return SubmitForm(this,'SubmitAction', 'Submit');";
+    @RenderSubmitButton(text, onclick)
+}
+
+@* ======================================================================== 
+Renders a standard 'next/submit' sized button that executes the given code  
+when clicked 
+=========================================================================== *@ 
+@helper RenderSubmitButton(string text, string onclick)
+{
+    @RenderSubmitButton(text, onclick, "SubmitAction")
+}
+
+@* ======================================================================== 
+Renders a standard 'next/submit' sized button that executes the given code  
+when clicked 
+=========================================================================== *@ 
+@helper RenderSubmitButton(string text, string onclick, string id)
+{
+    @CustomHelper.Html.Button().Text(text).IconLocation(ButtonIconLocation.Right).Icon(ButtonIcon.Next).Size(ButtonSize.Large).OnClick(onclick).Type(ButtonType.Primary).AddClass("formSubmitButton").Id(id).Render()
+}
+
+@* ======================================================================== 
+Renders a standard 'OK' dialog sized button that executes the given code  
+when clicked 
+=========================================================================== *@ 
+@helper RenderDialogButton(string text, string onclick)
+{
+    @RenderDialogButton(text, onclick, "SubmitAction")
+}
+
+@* ======================================================================== 
+Renders a standard 'OK' dialog sized button that executes the given code  
+when clicked 
+=========================================================================== *@ 
+@helper RenderDialogButton(string text, string onclick, string id)
+{
+    @CustomHelper.Html.Button().AddCustomAttribute("Alt","Next").Text(text).Size(ButtonSize.Normal).AddClass("dialogOkButton").OnClick(onclick).Type(ButtonType.Primary).Id(id).Render()
+}

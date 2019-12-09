@@ -1,0 +1,56 @@
+﻿@model Raci.B2C.Web.Models.Common.DateData
+
+@using System.Globalization
+@using System.Web.Mvc.Html
+@using MvcContrib.FluentHtml
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = MonthYearSelectDateDataControl;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper MonthYearSelectDateDataControl(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    DateReferenceData dateReferenceData = referenceData.GetDateOptions(htmlFieldName);
+
+    Dictionary<string, object> monthParameters = new Dictionary<string, object>();
+    Dictionary<string, object> yearParameters = new Dictionary<string, object>();
+
+    monthParameters["data-option-label"] = "Month";
+    monthParameters["data-role"] = "dropdownlist";
+    monthParameters["data-text-field"] = "Text";
+    monthParameters["data-value-field"] = "Value";
+    monthParameters["style"] = "width:100%;";
+    monthParameters["data-source"] = dateReferenceData.Month.CreateSelectList(null).ToJsonArray();
+    monthParameters["class"] = Html.ViewData["class"] + " roadmap";
+
+    yearParameters["data-option-label"] = "Year";
+    yearParameters["data-role"] = "dropdownlist";
+    yearParameters["data-text-field"] = "Text";
+    yearParameters["data-value-field"] = "Value";
+    yearParameters["style"] = "width:100%;";
+    yearParameters["data-source"] = dateReferenceData.Year.CreateSelectList(null).ToJsonArray();
+    yearParameters["class"] = Html.ViewData["class"] + " roadmap";
+    <div id="@htmlId" class="row collapse month-year-select">
+        @Html.Hidden("Day", 1)
+
+        <div class="small-6 columns first">
+            @Html.TextBoxFor( m => m.Month, monthParameters)
+        </div>
+        <div class="small-6 columns last">
+            @Html.TextBoxFor( m => m.Year, yearParameters)
+        </div>
+    </div>
+}

@@ -1,0 +1,333 @@
+﻿@model VehicleSelection
+
+@using Raci.B2C.Web.ModelBinder
+@using Raci.B2C.Web.Models.Common
+
+@if (Html.IsIncludeField(m => m))
+{
+    string controlId = ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    bool useRegoLookup = Raci.B2C.Web.Util.AppConfig.Instance.EnableRegoLookup;
+
+    if (!useRegoLookup)
+    {
+        this.Model.VehicleSearchType = VehicleSelection.ByMakeModel;
+    }
+
+    <div data-role="vehicle-selection" id="@controlId">
+        <div class="vehicle-selection-section @if(!useRegoLookup) { @("make-model-search-only") }">
+            @Html.HiddenFor(m => m.VehicleSearchType)
+
+            @FindByRegistration(useRegoLookup)
+            @FindByMakeModel()
+        </div>
+
+        <div class="selectedVehicle">
+        </div>
+
+        <script type="text/x-kendo-template" class="selectedVehicleTemplate">
+            <div class="row">
+                <div class="question question-label large-4 columns">
+                    <div>
+                        <label>@Html.Content(ContentKey.GeneralText.General.SelectedCarLabelText)</label>
+                    </div>
+                </div>
+                <div class="small-12 large-8 columns">
+                    <div class="selectedVehicleBorder">
+                        <div class="selectedVehicleDescription">
+                            <div class="row">
+                                <div class="small-1 collapse-right collapse-left show-for-medium-up text-right selectedVehicleTick columns">
+                                    <i class="icon-check"></i>
+                                </div>
+                                <div class="small-11 columns">
+                                    #= description #
+                                </div>
+                                <div class="small-1 collapse-right collapse-left show-for-small text-right selectedVehicleTick columns">
+                                    <i class="icon-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row small-margin-top">
+                <div class="large-offset-4 large-8 columns">
+                    <a class='link change-car' href='\\#'>@Html.Content(ContentKey.GeneralText.General.ChangeSelectedCarActionText)</a>
+                </div>
+            </div>
+        </script>
+    </div>
+}
+
+@helper FindByRegistration(bool useRegoLookup)
+{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.DefaultAnswerLayout = false;
+
+    if (useRegoLookup)
+    {
+        editorParameters.Editor = RegistrationLookupWithFind;
+    }
+    else
+    {
+        editorParameters.Editor = RegistrationLookup;
+    }
+
+    <div data-search-type="@VehicleSelection.ByRegistration" data-url="@(Url.Action(MVC.Vehicle.FindVehicleByRegistrationNumber()))">
+        @Html.HiddenFor(m => m.RegistrationNumberSearchSelectedVehicleModelId)
+        @Html.HiddenFor(m => m.RegistrationNumberSearchSelectedVehicleDescription)
+
+        @UIControls.SimpleQuestionAnswer(Html, editorParameters, Html.StringExpressionFor(m => m.RegistrationNumber))
+
+        <div class="vehicleErrors">@Html.ValidationMessageRaciFor2(m => m.RegistrationNumberSearchSelectedVehicleModelId)</div>
+
+        <div class="row">
+            <div class="small-12 large-8 columns collapse-left collapse-right answer-field form-gap-top">
+                <div class="row search-by-make-section">
+                    @if (useRegoLookup)
+                    {
+                        <div class="question-label small-8 large-9 collapse-right columns">
+                            <span class="search-text">@Html.Content(ContentKey.GeneralText.General.MakeModelSearchPromptAText)</span>
+                        </div>
+                        <div class="small-4 large-3 columns collapse-left right">
+                            <a href="#" style="width:100%" class="btn secondary search-button" data-show-make-model-search="">
+                                <div class="btn-text">@Html.Content(ContentKey.GeneralText.General.MakeModelSearchPromptAButtonText)</div>
+                                <div class="icon-symbol">
+                                    <i class="icon-chevron-down"></i>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="question-label small-8 large-9 collapse-right columns">
+                            <span>@Html.Content(ContentKey.GeneralText.General.MakeModelSearchPromptBText)</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@helper FindByMakeModel()
+{
+    <div data-search-type="@VehicleSelection.ByMakeModel" data-url="@(Url.Action(MVC.Vehicle.GetMatchingVehicles()))">
+        @Html.HiddenFor(m => m.MakeId)
+        @Html.HiddenFor(m => m.ModelId)
+        @Html.HiddenFor(m => m.Transmission)
+        @Html.HiddenFor(m => m.MakeModelSearchSelectedVehicleModelId)
+        @Html.HiddenFor(m => m.MakeModelSearchSelectedVehicleDescription)
+        @Html.HiddenFor(m => m.VehicleId)
+        @Html.HiddenFor(m => m.Description)
+
+        @{
+            Html.ViewData["class"] = " roadmap";
+            EditorParameters makeEditorParameters = CreateMakeModelEditorParameters(MakeEditor);
+
+            EditorParameters yearEditorParameters = CreateMakeModelEditorParameters(YearEditor);
+            yearEditorParameters.Class = "roadmap";
+
+            EditorParameters modelEditorParameters = CreateMakeModelEditorParameters(ModelEditor);
+
+            EditorParameters bodyTypeEditorParameters = CreateMakeModelEditorParameters(BodyTypeEditor);
+
+            EditorParameters transmissionEditorParameters = CreateMakeModelEditorParameters(TransmissionEditor);
+        }
+        <div class="row">
+            <div class="small-12 large-8 collapse-left collapse-right columns">
+                <div class="row make-model-search-section">
+                    <div class="small-12 large-12 collapse-left collapse-right columns">
+                        <div class="makeModelYearQuestion">
+                            @UIControls.SimpleQuestionAnswer(Html, makeEditorParameters, Html.StringExpressionFor(m => m.Make))
+                        </div>
+                        <div class="makeModelYearQuestion">
+                            @UIControls.SimpleQuestionAnswer(Html, yearEditorParameters, Html.StringExpressionFor(m => m.Year))
+                        </div>
+                        <div class="makeModelYearQuestion">
+                            @UIControls.SimpleQuestionAnswer(Html, modelEditorParameters, Html.StringExpressionFor(m => m.Model))
+                        </div>
+                        <div class="makeModelYearQuestion">
+                            @UIControls.SimpleQuestionAnswer(Html, bodyTypeEditorParameters, Html.StringExpressionFor(m => m.BodyType))
+                        </div>
+                        <div class="makeModelYearQuestion">
+                            @UIControls.SimpleQuestionAnswer(Html, transmissionEditorParameters, Html.StringExpressionFor(m => m.Transmission))
+                        </div>
+
+                        <div class="row matchingVehicles">
+                        </div>
+                        <div class="row cancel-change-car">
+                            <a class='link cancel-change-car' href='#'>@Html.Content(ContentKey.GeneralText.General.CancelChangeSelectedCarActionText)</a>
+                        </div>
+                            
+                        <div class="vehicleErrors">@Html.ValidationMessageRaciFor2(m => m.MakeModelSearchSelectedVehicleModelId)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@helper RegistrationLookupTemplate(EditorParameters editorParameters, bool includeFindButton = false)
+{
+    <div class="large-4 columns answer-field left">
+        <div class="row collapse">
+            <div class="large-6 small-8 columns">
+                @Html.TextBoxFor(m => m.RegistrationNumber, new { data_url = Url.Action(MVC.Vehicle.FindVehicleByRegistrationNumber()), style = "width:100%", data_role = "textbox", placeholder = "Registration" })
+            </div>
+            @if (includeFindButton)
+            {
+                <div class="large-6 small-4 columns form-gap-left right">
+                    <a href="#" style="width:100%" class="btn secondary find-button inProgressIndicator">
+                        <div class="btn-text">@Html.Content(ContentKey.GeneralText.General.RegoSearchButtonText)</div>
+                        <div class="icon-symbol">
+                            <i class="icon-large icon-search"></i>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@helper RegistrationLookupWithFind(EditorParameters editorParameters)
+{
+    @RegistrationLookupTemplate(editorParameters, true)
+}
+
+@helper RegistrationLookup(EditorParameters editorParameters)
+{
+    @RegistrationLookupTemplate(editorParameters)
+}
+
+@functions
+{
+    EditorParameters CreateMakeModelEditorParameters(Func<EditorParameters, HelperResult> editorType)
+    {
+        EditorParameters editorParameters = new EditorParameters();
+        editorParameters.Editor = editorType;
+        editorParameters.QuestionWidth = EditorWidth.Columns6;
+        editorParameters.Width = EditorWidth.Columns6;
+
+        return editorParameters;
+    }
+
+    bool CanFetchMakes
+    {
+        get { return true; }
+    }
+
+    bool CanFetchYears
+    {
+        get { return ((CanFetchMakes) && (!string.IsNullOrWhiteSpace(Model.Make))); }
+    }
+
+    bool CanFetchModels
+    {
+        get { return ((CanFetchYears) && (Model.Year.HasValue)); }
+    }
+
+    bool CanFetchBodyTypes
+    {
+        get { return ((CanFetchModels) && (!string.IsNullOrWhiteSpace(Model.Model))); }
+    }
+
+    bool CanFetchTransmissions
+    {
+        get { return ((CanFetchBodyTypes) && (!string.IsNullOrWhiteSpace(Model.BodyType))); }
+    }
+}
+
+@helper MakeEditor(EditorParameters editorParameters)
+{
+    @Html.TextBoxFor(m => m.Make, new
+        {
+            data_role = "combobox",
+            data_option_label = VehicleSelectionModelBinder.OptionLabel,
+            data_placeholder = @Html.Content(ContentKey.GeneralText.General.MakeComboBoxPlaceHolderText),
+            data_highlight_first = "false",
+            data_suggest = "true",
+            data_text_field = "Value",
+            data_value_field = "Value",
+            data_auto_bind = CanFetchMakes.ToString().ToLower(),
+            data_url = Url.Action(MVC.Vehicle.GetVehicleMakes()),
+            style = "width:100%",
+            autocorrect = "off",
+            autocapitalize = "off",
+            autocomplete = "off",
+            data_filter = "startswith",
+            @class = " roadmap",
+        })
+}
+
+@helper YearEditor(EditorParameters editorParameters)
+{
+    @Html.TextBoxFor(m => m.Year, new
+        {
+            data_role = "dropdownlist",
+            data_option_label = VehicleSelectionModelBinder.OptionLabel,
+            data_highlight_first = "false",
+            data_suggest = "false",
+            data_text_field = "Id",
+            data_value_field = "Value",
+            data_auto_bind = CanFetchYears.ToString().ToLower(),
+            data_depends_on = ViewData.TemplateInfo.GetFullHtmlFieldId(Html.StringExpressionFor(m => m.Make)),
+            data_url = Url.Action(MVC.Vehicle.GetModelYears()),
+            style = "width:100%",
+            @class = " roadmap",
+        })
+}
+
+@helper ModelEditor(EditorParameters editorParameters)
+{
+    @Html.TextBoxFor(m => m.Model, new
+        {
+            data_role = "dropdownlist",
+            data_option_label = VehicleSelectionModelBinder.OptionLabel,
+            data_highlight_first = "false",
+            data_suggest = "false",
+            data_text_field = "Value",
+            data_value_field = "Value",
+            data_auto_bind = CanFetchModels.ToString().ToLower(),
+            data_depends_on = ViewData.TemplateInfo.GetFullHtmlFieldId(Html.StringExpressionFor(m => m.Year)),
+            data_url = Url.Action(MVC.Vehicle.GetVehicleModels()),
+            style = "width:100%",
+            @class = "roadmap"
+        })
+}
+
+@helper BodyTypeEditor(EditorParameters editorParameters)
+{
+    @Html.TextBoxFor(m => m.BodyType, new
+        {
+            data_role = "dropdownlist",
+            data_option_label = VehicleSelectionModelBinder.OptionLabel,
+            data_highlight_first = "false",
+            data_suggest = "false",
+            data_text_field = "Value",
+            data_value_field = "Value",
+            data_auto_bind = CanFetchBodyTypes.ToString().ToLower(),
+            data_depends_on = ViewData.TemplateInfo.GetFullHtmlFieldId(Html.StringExpressionFor(m => m.Model)),
+            data_url = Url.Action(MVC.Vehicle.GetBodyTypes()),
+            style = "width:100%",
+            @class = " roadmap"
+        })
+}
+
+@helper TransmissionEditor(EditorParameters editorParameters)
+{
+    @Html.TextBoxFor(m => m.TransmissionText, new
+        {
+            data_role = "dropdownlist",
+            data_option_label = VehicleSelectionModelBinder.OptionLabel,
+            data_highlight_first = "false",
+            data_suggest = "false",
+            data_text_field = "Value",
+            data_value_field = "Value",
+            data_auto_bind = CanFetchTransmissions.ToString().ToLower(),
+            data_depends_on = ViewData.TemplateInfo.GetFullHtmlFieldId(Html.StringExpressionFor(m => m.BodyType)),
+            data_url = Url.Action(MVC.Vehicle.GetTransmissions()),
+            style = "width:100%",
+            @class = " roadmap"
+        })
+}

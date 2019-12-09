@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <generalItems>
+    <!--General-->
+    <item id="pageTitle">
+      Bicycle Insurance Quote
+    </item>
+    <!--end general-->
+
+    <!--    Quote-->
+    <item id="Quote.ExcessDetails">
+      <![CDATA[
+        <div class="fine-print">
+          <div class="body-text-heading">
+            Excesses
+          </div>
+  
+          <div class="body-text">
+            <div class="row">
+              <div class="large-12 column collapse-left">
+                <span>The total of your excess is specified above. Upon the issuing of a policy, the applicable excesses will be shown on your schedule
+                </span>
+              </div>
+            </div>
+   
+          </div>
+        </div>
+      ]]>
+    </item>
+
+    <item id="Quote.ImportantQuoteInformation">
+      <![CDATA[
+        <div class="fine-print">
+          <div class="body-text-heading body-text">Important</div>
+          <div class="body-text important-text">
+            Please remember that this is a quote only and does not provide cover. The final information you provide to RAC Insurance may affect the terms and premium we offer.<br/>
+          </div>
+        </div>
+      ]]>
+    </item>
+
+    <item id="Quote.PDSInformation">
+      <![CDATA[
+          <div class="fine-print">
+            <div class="body-text-heading">Product Disclosure Statement (PDS)</div>
+            <div class="body-text pds-text">
+              It is important that you read and understand the product features and details outlined in the <a id="pds-url" class="link" href="http://rac.com.au/insurance/product-disclosure-statements/bicycle-insurance-disclosure" target="_newtab">Product Disclosure Statement</a>.<br/>
+            </div>
+          </div>
+        ]]>
+    </item>
+    <!--    End Quote-->
+  </generalItems>
+
+  <questions>
+    <question id="PolicyNumber" label="Policy Number">
+    </question>
+
+    <!--    Question-->
+    <question id="Question.BikeDetails.Make" label="Make" watermark="E.g. Giant">
+      <errors>
+        <add key="Required" value="Please enter a make." />
+      </errors>
+    </question>
+    <question id="Question.BikeDetails.Model" label="Model" watermark="E.g. Boulder">
+      <errors>
+        <add key="Required" value="Please enter a model." />
+      </errors>
+    </question>
+    <question id="Question.BikeDetails.Year" label="Year" watermark="E.g. 2015">
+      <errors>
+        <add key="Required" value="Please enter a year." />
+      </errors>
+    </question>
+    <question id="Question.BikeDetails.Type" label="Type">
+      <errors>
+        <add key="Required" value="Please enter a type." />
+      </errors>
+    </question>
+    <question id="Question.BikeDetails.Value" label="Value">
+
+    </question>
+    <question id="Question.CustomerDetails.EmailAddress" label="Email Address">
+      <errors>
+        <add key="Required" value="Please enter a valid email address." />
+      </errors>
+    </question>
+    <!--End question-->
+
+    <!-- Quote-->
+    <question id="Quote.Options.PolicyStartDate" label="Start Date"></question>
+
+    <question id="Quote.Options.FormattedExcess" label="Excess">
+      <helpText title="Excess">
+        <![CDATA[
+        <p>
+        An excess is an amount which you may have to contribute towards your claim. 
+        </p>
+        <p>
+        The acceptance of a claim is subject to the payment of any applicable excesses. 
+        </p>
+        <p>
+        Please also note the ‘Excesses’ section below.
+        </p>
+        ]]>
+      </helpText>
+    </question>
+
+    <question id="Quote.Options.SumInsured" label="Agreed Value">
+      <helpText title="Agreed Value">
+        <![CDATA[
+          <p>
+           The agreed value is the amount we agree to insure your bicycle for. 
+          </p>
+          <p>
+           The agreed value includes GST, any other ‘on-road’ costs and accessories fitted to your bicycle.
+           </p>
+        ]]>
+      </helpText>
+    </question>
+
+    <!--End quote-->
+
+    <!--Policy detail-->
+    <question id="PolicyDetail.BikeDetails.Make" label="Make">
+      <errors>
+        <add key="Required" value="Please enter a make." />
+      </errors>
+    </question>
+
+    <question id="PolicyDetail.BikeDetails.Model" label="Model">
+      <errors>
+        <add key="Required" value="Please enter a model." />
+      </errors>
+    </question>
+
+    <question id="PolicyDetail.BikeDetails.Year" label="Year">
+      <errors>
+        <add key="Required" value="Please enter a year." />
+      </errors>
+    </question>
+
+    <question id="PolicyDetail.BikeDetails.Usage" label="Usage">
+      <errors>
+        <add key="Required" value="Please enter a type." />
+      </errors>
+    </question>
+
+    <question id="PolicyDetail.BikeDetails.Value" label="Value">
+      <errors>
+        <add key="Required" value="Please enter a value range." />
+      </errors>
+    </question>
+
+
+    <question id="PolicyDetail.Contact.FirstName" label="First Name">
+      <errors>
+        <add key="Required" value="Please enter your first name." />
+      </errors>
+    </question>
+
+    <question id="PolicyDetail.Contact.LastName" label="Last Name">
+      <add key="Required" value="Please enter your last name." />
+    </question>
+
+    <question id="PolicyDetail.Contact.DateOfBirth" label="Date of Birth">
+      <add key="Required" value="Please enter your date of birth" />
+    </question>
+
+    <question id="PolicyDetail.Contact.Address" label="Address">
+      <add key="Required" value="Please enter your street address" />
+    </question>
+
+    <question id="PolicyDetail.Contact.Suburb" label="Suburb">
+      <add key="Required" value="Please enter your suburb" />
+    </question>
+
+    <question id="PolicyDetail.Contact.PostCode" label="Post Code">
+      <add key="Required" value="Please enter your postcode" />
+    </question>
+
+    <question id="PolicyDetail.Contact.ContactNumber" label="Contact Number">
+      <add key="Required" value="Please enter a contact number" />
+    </question>
+
+
+    <question id="PolicyDetail.Contact.ContactNumber" label="Contact Number">
+      <add key="Required" value="Please enter a contact number" />
+    </question>
+
+    <question id="PolicyDetail.Contact.ContactEmail" label="Contact Email">
+      <add key="Required" value="Please enter a contact email" />
+    </question>
+
+    <question id="PolicyDetail.PolicyStartDate" label="Policy Start Date">
+      <add key="Required" value="Please enter a contact email" />
+    </question>
+
+    <!--end Policy detail-->
+
+    <!--Payment-->
+    <question id="PolicyPayment.PaymentDetails.PolicyStartDate" label="Policy Start Date"></question>
+    <question id="PolicyPayment.PaymentDetails.PaymentMethod" label="Payment Method"></question>
+    <question id="PolicyPayment.PaymentDetails.PaymentFrequency" label="Payment Frequency"></question>
+    <!--End Payment-->
+
+    <!-- Confirmation -->
+    <question id="Confirmation.Make" label="Make"></question>
+    <question id="Confirmation.Model" label="Model"></question>
+    <question id="Confirmation.Year" label="Year"></question>
+    <question id="Confirmation.PolicyStartDate" label="Policy Start Date"></question>
+    <question id="Confirmation.Excess" label="Excess"></question>
+    <question id="Confirmation.Premium" label="Premium"></question>
+    <!-- Confirmation -->
+
+  </questions>
+
+  <errors>
+    <!--    <error id="DriverAgeRangeError">-->
+    <!--      Please ensure that all drivers are between the age of 16 and 100 (dd-mm-yyyy).-->
+    <!--    </error>-->
+  </errors>
+</root>

@@ -1,0 +1,26 @@
+﻿@model Raci.B2C.Bicycle.Models.BicycleQuoteQuoteOption
+
+<div class="quote-premium-cell">
+    <div class="your-quote">
+        <div class="section-heading heading show-for-medium-up">Your quote</div>
+        @Html.HiddenFor(x => x.IsSelected)
+
+        @Html.Partial("AnnualPremium", Model)
+
+        <div class="row collapse payment-icons">
+            <div class="small-5 large-5 columns">
+                <div class="payment-icon-set">
+                    <div class="payment-method mastercard"></div>
+                    <div class="payment-method visa"></div>
+                </div>
+                <div class="payment-icon-set">
+                    <div class="payment-method amex"></div>
+                </div>
+            </div>
+
+            <div class="small-7 large-7 right columns">
+                @AccordionControlHelper.BuyButton("Buy online", false)
+            </div>
+        </div>
+    </div>
+</div>

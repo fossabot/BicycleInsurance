@@ -1,0 +1,29 @@
+﻿@model Raci.B2C.Bicycle.Models.BicycleQuoteQuoteOption
+
+@{
+    EditorParameters startDateEditorParameters = new EditorParameters
+    {
+        State = EditorState.Readonly,
+        QuestionWidth = EditorWidth.Columns5,
+        Width = EditorWidth.Columns7,
+
+        QuestionWidthSmall = EditorWidth.Columns6,
+        WidthSmall = EditorWidth.Columns6,
+    };
+
+    EditorParameters excessEditorParameters = new EditorParameters
+    {
+        State = EditorState.Readonly,
+        QuestionWidth = EditorWidth.Columns8,
+        Width = EditorWidth.Columns4,
+
+        QuestionWidthSmall = EditorWidth.Columns6,
+        WidthSmall = EditorWidth.Columns6,
+    };
+}
+
+<div>
+    @Html.QuestionFor2(m => m.PolicyStartDate, parameters: startDateEditorParameters)
+    @Html.QuestionFor2(m => m.FormattedExcess, parameters: excessEditorParameters)
+    @Html.QuestionFor2(m => m.SumInsured)
+</div>

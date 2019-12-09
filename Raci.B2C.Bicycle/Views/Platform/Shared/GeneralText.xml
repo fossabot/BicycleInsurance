@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+  <generalItems>
+
+    <item id="racMobileSite">
+      http://rac.com.au/m/
+    </item>
+    <item id="quotePageGroup1">
+      Quote details
+    </item>
+
+    <item id="Yes">
+      Yes
+    </item>
+
+    <item id="CallbackOptionMorning">
+      Morning
+    </item>
+
+    <item id="CallbackOptionAfternoon">
+      Afternoon
+    </item>
+
+    <item id="CallbackOptionAnytime">
+      Anytime
+    </item>
+
+    <item id="No">
+      No
+    </item>
+
+    <item id="FullCover">
+      Full Cover
+    </item>
+
+    <item id="LimitedCover">
+      Fire &amp; Theft Cover
+    </item>
+
+    <item id="QuoteEmailSubject">
+      RAC Insurance Quote Details
+    </item>
+
+    <item id="PolicyEmailSubject">
+      RAC Insurance Policy Summary
+    </item>
+
+    <item id="AddressLabel">
+      Mailing Address
+    </item>
+
+    <item id="AddressExample">
+      (Example: 1/10 Main Street)
+    </item>
+
+    <item id="AddressRefineCriteria">
+      If your address could not be found please refine your address search criteria.
+    </item>
+
+    <item id="CarInsuranceQuote">
+      Car Insurance Quote
+    </item>
+	  
+    <item id="MyInsurance">
+		My Insurance
+	</item>
+
+    <item id="HomeInsuranceQuote">
+      Home Insurance Quote
+    </item>
+
+    <item id="MakeAClaim">
+      Make a Claim
+    </item>
+
+    <item id="BackToRAC">
+      rac.com.au
+    </item>
+
+    <item id="CallUsBackText">
+      <![CDATA[
+      <p>Please try again or call us on <strong class="u-noWrap">13 17 03</strong> to speak to the insurance team.</p>
+      ]]>
+    </item>
+    
+    <item id="RacHomeUrl">
+      <![CDATA[
+      http://www.rac.com.au
+      ]]>
+    </item>
+	  
+	<item id="CallbackConfirmationHeader">
+	  Thank you
+	</item>
+
+	<item id="CallbackConfirmationText">
+	  A call back request has been successfully submitted.
+	</item>
+
+    <item id="paymentDetailsAuthorisation">
+      <![CDATA[
+        <div class="info-box body-text payment-information">
+            <span class="body-text-heading">Authorisation</span><br/>
+            <p>
+              By clicking on the ‘Pay now’ button, you agree that RAC Insurance can debit your nominated account for the above instalments and continue to debit your account as each instalment is due for payment, including any renewal of this policy. Please refer to the Direct Debit Service Agreement contained within the <a href="{0}" class="pds-url link" target="_newtab">Product Disclosure Statement</a> for important information about your direct debit request.
+              <br/><br/>
+              Payment will be debited from your nominated account or credit card within 48 hours of the initial commencement of the policy. If payment is due on a non-business day, the amount will be debited on the next business day.
+            </p>
+        </div>
+      ]]>
+    </item>
+
+    <item id="termsAndConditionsPreamble">
+      <![CDATA[
+      <p>By clicking on the 'Purchase now' button below you are purchasing this insurance policy online.</p>
+      ]]>
+    </item>
+
+    <item id="termsAndConditions">
+      <![CDATA[
+      You acknowledge that you have read and accept RAC Insurance's
+      ]]>
+    </item>
+
+    <item id="termsAndConditions2">
+      <![CDATA[
+      which comprise the Product Disclosure Statement, Supplementary Product Disclosure Statement, Financial Services Guide, 
+      Privacy Policy and Duty of Disclosure, which have been made available here for you to view.
+      ]]>
+    </item>
+
+    <item id="emailPolicyDocs">
+      <![CDATA[
+      A summary copy of your policy schedule will be emailed to you shortly. You will receive your detailed 
+      policy schedule in the regular mail in the next few days. If you do not receive your Policy Schedule and 
+      Product Disclosure statement by mail within 5 days please contact us. Please review the details carefully and 
+      contact us on 13 17 03 if you need to make any changes.
+      ]]>
+    </item>
+
+    <item id="noEmailPolicyDocs">
+      <![CDATA[
+      You will receive a copy of your policy schedule in the regular mail within the next few days. If you do not receive 
+      your Policy Schedule and Product Disclosure statement by mail within 5 days please contact us. Please review the 
+      details carefully and contact us on 13 17 03 if you need to make any changes. 
+      ]]>
+    </item>
+
+    <item id="paymentMonthlyIncludes">
+      <![CDATA[
+      (Includes 10% instalment fee) 
+      ]]>
+    </item>
+
+    <item id="BackLink">
+      Back
+    </item>
+
+    <item id="CallbackQuoteNumber">
+      <![CDATA[
+      Please quote reference <strong>{0}</strong>.
+      ]]>
+    </item>
+
+    <item id="QuoteCallbackHeader">
+      This quote cannot be completed online.
+    </item>
+
+    <item id="QuoteCallbackMessage">
+      <![CDATA[
+      To receive a quote you will need to speak to an RAC consultant by calling <strong>13 17 03</strong>. {0}<br/><br/>
+      Alternatively, complete the form below and will call you back within 2 working days.<br/><br/>
+      <strong>Please note that until you have spoken with an RAC consultant and completed your purchase you have not obtained insurance cover.</strong>
+      ]]>
+    </item>
+
+    <item id="CallbackDialogText">
+      <![CDATA[
+       Please complete a call back request or call us on <b>13 17 03</b>. 
+      ]]>
+    </item>
+
+	  <item id="QuoteReCalculatePromptText">
+		  <![CDATA[
+       You have added Specified Contents or Personal Valuables and need to update your quote before proceeding.
+      ]]>
+	  </item>	  
+	  
+    <item id="CallbackDialogTextWithQuoteNumber">
+      <![CDATA[
+       Please complete a call back request or call us on <b>13 17 03</b>, quoting reference number {0}. 
+      ]]>
+    </item>
+    
+    <item id="PurchaseCallbackHeader">
+      This purchase cannot be completed online.
+    </item>
+
+    <item id="PurchaseCallbackMessage">
+      <![CDATA[
+      To purchase your policy you will need to speak to an RAC consultant by calling <strong>13 17 03</strong>. {0}<br/><br/>
+      Alternatively, complete the form below and we will call you back within 2 working days.<br/><br/>
+      <strong>Please note that until you have spoken with an RAC consultant and completed your purchase you have not obtained insurance cover.</strong>
+      ]]>
+    </item>
+
+    <item id="DirectDebitProductDisclosureStatement">
+      <![CDATA[
+      Please refer to the Direct Debit Service Agreement contained within the
+      ]]>
+    </item>
+
+    <item id="DirectDebitProductDisclosureStatement2">
+      <![CDATA[
+      for important information about your direct debit request.
+      ]]>
+    </item>
+
+    <item id="TermsAndConditionsStatement">
+      <![CDATA[
+      We have only provided general advice and have not taken your personal circumstances into consideration. Please refer to the
+      ]]>
+    </item>
+
+    <item id="TermsAndConditionsStatement2">
+      <![CDATA[
+      to ensure that the product is suitable for your needs.
+      ]]>
+    </item>
+
+    <item id="DriverDisclaimer">
+      Other excesses may apply depending on the age and driving history of the drivers.
+    </item>
+
+    <item id="PaymentDetailsBottomSection">
+      <![CDATA[
+      Payment will be debited from your nominated account or credit card within 48 hours of the initial commencement of the policy.
+      If payment is due on a non-business day, the amount will be debited on the next business day.
+      ]]>
+    </item>
+
+    <item id="TelephoneIncludeAreaCode">
+      (include area code)
+    </item>
+
+    <item id="SuccessfulPaymentSnailMail">
+      <![CDATA[
+      You will receive a copy of your policy schedule in the regular mail within the next few days. If you do not receive
+      your Policy Schedule and Product Disclosure statement by mail within 5 days please contact us. Please review
+      the details carefully and contact us on 13 17 03 if you need to make any changes.
+      ]]>
+    </item>
+
+    <item id="SuccessfulPaymentEMail">
+      <![CDATA[
+      A summary copy of your policy schedule will be emailed to you shortly. You will receive your detailed 
+      policy schedule in the regular mail in the next few days. If you do not receive your Policy Schedule 
+      and Product Disclosure statement by mail within 5 days please contact us. Please review the details carefully and 
+      contact us on 13 17 03 if you need to make any changes.
+      ]]>
+    </item>
+
+    <item id="TransactionIncomplete">
+      <![CDATA[
+      The transaction was unable to be completed, a consultant will contact you to take payment.
+      ]]>
+    </item>
+
+    <item id="PaymentThankYouGatewayErrored">
+      <![CDATA[
+      Your policy has been issued and you are covered, we only require payment to finalise the transaction. 
+      You will receive your policy documentation shortly outlining your payment options.
+      ]]>
+    </item>
+
+    <item id="PaymentThankYouRegistrationErrored">
+      <![CDATA[
+      Your policy has been issued and you are covered, we only require payment to finalise the transaction. 
+      You will receive your policy documentation shortly outlining your payment options. 
+      An insurance consultant will call you to register your credit card with our payment provider within two business days.
+      ]]>
+    </item>
+
+    <item id="PaymentThankyouWithErrors">
+      Thank you for providing your credit card details. Unfortunately, we are experiencing problems with our payment gateway.
+    </item>
+
+    <item id="ConfirmPurchase">
+      <![CDATA[
+      Click Continue to purchase your RAC insurance policy or Back to update or check your details.
+      ]]>
+    </item>
+
+    <item id="ChiefExecutiveSignature">
+      <![CDATA[                   
+      <p>
+          <br class="clear" />
+          Kind regards,
+          <br />
+          John Stringer
+          <br />
+          Chief Executive
+          <br />
+          RAC Insurance
+      </p>
+      ]]>
+    </item>
+
+    <item id="EmailQuotePreamble">
+      <![CDATA[
+      This quote will be sent to {0} as well as the email address entered below (if entered).
+      ]]>
+    </item>
+
+	 <item id="VehicleRegistrationIsUnknownText">
+	  <![CDATA[
+	  You must inform us of your registration number within 48 hours of paying for this policy. Please call us on 13 17 03.
+	  ]]>
+	 </item>
+
+	 <item id="VehicleRegistrationNumberNotGiven">
+		 To be advised
+	 </item>
+
+	<!-- ================================== -->
+	<!-- Vehicle selection content			-->
+	<!-- ================================== -->
+	<item id="SelectedCarLabelText">
+		Your car
+	</item>
+
+	<item id="ChangeSelectedCarActionText">
+		Change selected car
+	</item>
+
+    <item id="CancelChangeSelectedCarActionText">
+      Cancel
+    </item>
+
+
+    <item id="MakeModelSelectionHelpText">
+      <![CDATA[
+		Please search for your car by Make and Model. If you cannot find your car on our list, please call us on <b>13 17 03</b> to insure your car.
+      ]]>
+    </item>	  
+	  
+	<item id="MakeModelSearchPromptAText">
+		<![CDATA[
+			Don't know your registration number? Search for your car by make &amp; model.
+		  <a rev="Search car by make and model" rel="~/Help/GetHelpContent?contentKey=GeneralText.MakeModelSelectionHelpText" class="help-icon">
+            <i class="icon-question"></i>
+          </a>
+
+		]]>
+	</item>
+	  
+	<item id="MakeModelSearchPromptAButtonText">
+		Search
+	</item>	  
+
+	<item id="MakeModelSearchPromptBText">
+		<![CDATA[
+		Search for your car by make &amp; model.
+		]]>
+	</item>
+
+	<item id="RegoSearchButtonText">
+		Find
+	</item>		  
+
+	<item id="MakeComboBoxPlaceHolderText">
+		Enter or select your make
+	</item>		  
+	  
+	<!-- Footer text-->
+    <item id="CallBackTitle">
+      Call me back
+    </item>
+
+    <item id="CallBackText">
+      Give us your contact number and we will call you
+    </item>
+
+    <item id="CallbackUnavailable">
+      Our call me back feature is currently unavailable. Please contact our call centre on 13 17 03 to discuss your quote.
+    </item>
+
+    <item id="ChatTitle">
+      Chat online
+    </item>
+
+    <item id="ChatText">
+      Connect to our call centre using your computer
+    </item>
+
+    <item id="ChatUnavailable">
+      Our chat online feature is currently unavailable. Please contact our call centre on 13 17 03 to discuss your quote.
+    </item>
+
+    <item id="FeedbackTitle">
+      Feedback
+    </item>
+
+    <item id="FeedbackText">
+      Send us your comments
+    </item>
+
+    <item id="FeedbackUnavailable">
+      Our feedback feature is currently unavailable. Please contact our call centre on 13 17 03 to discuss your quote.
+    </item>
+    
+    <item id="EmbargoCallbackText">
+      Due to extreme weather conditions, we are unable to process this policy online.
+    </item>
+
+    <item id ="SystemUnavailable">
+      Sorry, the system is unavailable at this time.
+    </item>
+
+    <item id ="PCMSystemUnavailableTitle">
+      Error
+    </item>
+	  
+    <item id="PCMSystemUnavailable">
+      <![CDATA[
+	  We are unable to display this policy online. Please call us on <b class="u-noWrap">1300 657 627</b> if you would like to make any changes.
+      ]]>
+    </item>	  
+
+    <item id="PageNotFound">
+      Sorry, the page you want could not be found.
+    </item>
+
+    <item id="RequestTooBig">
+      The request you are trying to perform is too large for this application.
+    </item>
+
+    <item id="SessionTimeout">
+      Sorry, your session has expired.
+    </item>
+
+	<item id="SessionTimeoutPostClaimCreation">
+	  <![CDATA[
+        <p>Thank you for commencing your claim online. Your lodgement hasn’t been completed.</p>
+		<p>Please check your email for the next steps to complete your claim, or call us on <strong class="u-noWrap">13 17 03</strong>.</p>
+      ]]>
+	</item>
+	  
+	<item id="step1">
+		Details
+	</item>
+	<item id="step2">
+		Quote
+	</item>
+	<item id="step3">
+		Get policy
+	</item>
+	<item id="step4">
+		Payment
+	</item>
+    <item id="PolicyContactDetailsInfoBox">
+        Please provide at least one contact number.
+    </item>      
+
+  <item id="payment-details-annual-cheaper">
+    <![CDATA[
+      <div class="info-box payment-information">
+        It is cheaper to pay annually. Monthly instalments may vary each month for rounding purposes. The total annual premium payable, including GST and government charges is {0}.
+      </div>
+    ]]>
+  </item>
+  <item id="payment-details-authorisation">
+    <![CDATA[
+      <div class="info-box body-text payment-information">
+          <span class="body-text-heading">Authorisation</span><br/>
+          <p>
+            By clicking on the ‘Continue’ button, you agree that RAC Insurance can debit your nominated account for the above instalments and continue to debit your account as each instalment is due for payment, including any renewal of this policy. Please refer to the Direct Debit Service Agreement contained within the <a href="{0}" class="pds-url link" target="_newtab">Product Disclosure Statement</a> for important information about your direct debit request.
+            <br/><br/>
+            Payment will be debited from your nominated account or credit card within 48 hours of the initial commencement of the policy. If payment is due on a non-business day, the amount will be debited on the next business day.
+          </p>
+      </div>
+    ]]>
+  </item>
+  <item id="annual-direct-debit-payment-details-authorisation">
+    <![CDATA[
+      <div class="info-box body-text payment-information">
+          <span class="body-text-heading">Authorisation</span><br/>
+          <p>
+            By clicking on the ‘Pay now’ button, you agree that RAC Insurance can debit your nominated account for the above annual payment and continue to debit your account at each renewal of this policy. Please refer to the Direct Debit Service Agreement contained within the <a href="{0}" class="link pds-url" target="_newtab">Product Disclosure Statement</a> for important information about your direct debit request.
+            <br/><br/>
+            Payment will be debited from your nominated account or credit card within 48 hours of the initial commencement of the policy. If payment is due on a non-business day, the amount will be debited on the next business day.
+          </p>
+      </div>
+    ]]>
+  </item>
+
+    <item id="annual-credit-card-payment-details-authorisation">
+      <![CDATA[
+        <div class="info-box body-text payment-information">
+          <span class="body-text-heading">Authorisation</span><br/>
+          <p>
+            By clicking the 'Pay now' button you will be transferred to a secure payment gateway to complete your payment.
+            </p>
+        </div>
+        ]]>
+    </item>
+
+    <item id="monthly-credit-card-payment-details-authorisation">
+        <![CDATA[
+          <div class="info-box body-text payment-information">
+               <span class="body-text-heading">Authorisation</span><br/>
+               <p>
+                By clicking on the ‘Continue’ button, you will be registering your account details for instalment payments. You agree that RAC Insurance can debit your nominated account for the above instalments and continue to debit your account as each instalment is due for payment, including any renewal of this policy. 
+                Please refer to the Direct Debit Service Agreement contained within the <a href="{0}" class="link pds-url" target="_newtab">Product Disclosure Statement</a> for important information about your direct debit request.
+                <br/><br/>
+                Payment will be debited from your nominated account or credit card within 48 hours of the initial commencement of the policy. If payment is due on a non-business day, the amount will be debited on the next business day.
+          </p>
+        </div>
+      ]]>
+    </item>
+    
+
+    <item id="PreferredRepairerOutsideWAText">
+      Your Preferred Repairer is outside Western Australia.
+    </item>
+    
+  </generalItems>
+  <errors>
+    <error id="GeneralIditError">
+      An unknown error has occurred.
+    </error>
+    
+    <error id="Required">
+      {0} must be [%ENTRY_METHOD%].
+    </error>
+
+    <error id="MustBeANumber">
+      {0} must be a number.
+    </error>
+
+    <error id="StringTooLong">
+      {0} is too long. (Maximum is [%MAX_LENGTH%] characters).
+    </error>
+
+    <error id="FieldHasInvalidCharacters">
+      <![CDATA[
+      {0} contains invalid characters.
+      ]]>
+    </error>
+
+    <error id="DateRequired">
+      Please enter a valid {0}.
+    </error>
+
+    <error id="SuburbRequired">
+      Please enter your suburb and select the relevant option from the list presented.
+    </error>
+
+    <error id="StreetRequired">
+      Please enter a valid street.
+    </error>
+
+    <error id="AddressRequired">
+      Please enter a valid address.
+    </error>
+
+    <error id="AddressNotFound">
+      We can't locate your address. Please check the address you have entered and try again.
+    </error>
+
+	<error id="AddressNotFoundWithSuburbAndPostCode">
+		We can't locate your address. Please check the address you have entered and try again.
+	</error>	  
+	  
+    <error id="AddressUnableToLocate">
+      Please enter a valid address.
+    </error>
+
+    <error id="AddressAndSuburbRequired">
+      Please enter your address and suburb.
+    </error>
+
+    <error id="MailingAddressRequired">
+      Please enter your address, press ‘verify your address’ and select an option from the list.
+    </error>
+
+    <error id="TimeRequired">
+      Please enter a valid {0}.
+    </error>
+
+    <error id="DateTimeRequired">
+      Please enter a valid {0}.
+    </error>
+
+    <error id="TelephoneNumberRequired">
+      Please enter a telephone number.
+    </error>
+
+    <error id="TelephoneTypeRequired">
+      Please select a telephone type.
+    </error>
+
+    <error id="PhoneNumberFormat">
+      Please add your telephone number including your area code (10 digits).
+    </error>
+
+    <error id="MobilePhoneNumberFormat">
+      Please enter your mobile number (10 digits).
+    </error>
+    
+    <error id="MobilePhoneNumberMotorFormat">
+      Please enter a valid mobile phone number (10 digits).
+    </error>
+
+    <error id="RequireAtLeastOneNumber">
+      Please enter at least one contact phone number.
+    </error>
+
+    <error id="EmailFormat">
+      Please enter a valid email address.
+    </error>
+
+    <error id="EmailRequired">
+        Please add an email address.
+    </error>
+      
+    <error id="EmailSame">
+        Both email addresses cannot be the same.
+    </error>
+
+    <error id="CreditCardFormat">
+      Please enter a valid credit card number.
+    </error>
+
+    <error id="QuoteNotFoundAfterTransitionDate">
+      We are unable to verify the quote number and suburb you have entered. Please try again.
+    </error>
+
+    <error id="SecuredQuoteNotFoundAfterTransitionDate">
+      We are unable to verify the quote number you have entered. Please try again.
+    </error>
+
+    <error id="QuoteNotFoundBeforeTransitionDate">
+      We have recently upgraded our online insurance quoting system. For quotes taken out before {0:d} please call 13 17 03 to retrieve your quote.
+    </error>
+
+    <error id="QuoteExpired">
+      This quote has expired. Please quote again online or call 13 17 03 and reference your expired quote number.
+    </error>
+
+    <error id="QuoteChanged">
+      <![CDATA[
+      As your quote has been updated by a retail consultant, we need to speak to you to complete your purchase. Please call 13 17 03 with your quote number.
+      ]]>
+    </error>
+
+    <error id="QuoteHasSysemImposedExcess">
+      <![CDATA[
+      We need more information about your driving history before you can complete your purchase.  Please call 13 17 03 with your quote number.
+      ]]>
+    </error>
+
+    <error id="QuoteHasIrregularities">
+      This quote is no longer available online. Please call 13 17 03 or take out a new quote online.
+    </error>
+
+    <error id="QuoteIssued">
+      This quote is no longer available as it has been converted to a policy. Please call 13 17 03 if you have any questions.
+    </error>
+
+    <error id="CreateProposalFailed">
+      Failed to create the proposal. Something has not been set correctly.
+    </error>
+
+    <error id="UpdateProposalFailed">
+      Failed to update the proposal. Something has not been set correctly.
+    </error>
+
+    <error id="PolicyHolderMissingFailure">
+      Thank you for providing your driver details.  Please select a driver to be the policyholder by selecting 'Yes'.
+    </error>
+
+    <error id="PolicyHoldersExceedingLimitFailure">
+      The number of policyholders cannot exceed 4.
+    </error>
+
+    <error id="TrafficConvictionOffenceDateFailureTooOld">
+      The date of the offence must be less than 3 years ago.
+    </error>
+
+    <error id="TrafficConvictionOffenceDateFailureInFuture">
+      The date of the offence cannot be in the future.
+    </error>
+
+    <error id="AccidentClaimEventDateFailureTooOld">
+      The date of the event must be less than 3 years ago.
+    </error>
+
+    <error id="AccidentClaimEventDateFailureInFuture">
+      The date of the event cannot be in the future.
+    </error>
+
+    <error id="DeclarationDetailAnswersFailure">
+      You must provide the details of your traffic convictions or accidents before you can complete your purchase.
+    </error>
+    <error id="IsDriverMailingAddressSameAsDriver1Failure">
+      Please indicate if the driver's mailing address is the same as the mailing address of the primary driver.
+    </error>
+
+    <error id="IsPolicyholderMailingAddressSameAsDriver1Failure">
+      Please indicate if the driver's mailing address is the same as the mailing address of the primary driver.
+    </error>
+
+    <error id="IsPolicyholderMailingAddressSameAsPolicyholder1Failure">
+      Please indicate if the driver's mailing address is the same as the mailing address of the primary driver.
+    </error>
+
+    <error id="IsMailingAddressSameAsLocationAddressFailure">
+      Please indicate if mailing address is the same as location address.
+    </error>
+
+    <error id="NoMembershipNumber">
+      In order to verify your membership you must provide your membership number for at least one of the policyholders.
+    </error>
+
+    <error id="MembershipNumberMismatch">
+      The membership number entered does not validate with the membership level you have chosen. Please check your details and try again.
+    </error>
+
+    <error id="MembershipValidationFinal">
+		We are unable to match your membership number.
+	</error>
+
+    <error id="MembershipSurnameMismatch">
+      The membership surname you have specified does not match the membership number you have supplied. If this membership relates to an additional policyholder, please add a further policyholder.
+    </error>
+
+    <error id="MembershipLevelMismatch">
+      The membership level you have specified does not match the membership number you have supplied. Please return to step 1 to update your membership level.
+    </error>
+
+    <error id="MembershipLevelMismatchFinal">
+      We are unable to validate your membership level. Please check your details and try again. Alternatively complete a call back request or call 13 17 03.
+    </error>
+
+    <error id="MembershipValidation">
+      We are unable to validate your membership details. Please check these details and try again.
+    </error>
+
+    <error id="DeclarationMotorCallback">
+      We need more information about your driving history before you can complete your purchase. Please complete a call back request or call 13 17 03.
+    </error>
+
+    <error id="DeclarationHomeCallback">
+      We need more information about your history before you can complete your purchase.  Please complete a call back request or call 13 17 03.
+    </error>
+
+    <error id="PolicyNumberWrongFormat">
+      The policy number should start with HGP, MGO, MGT, MGP, MGV, BGP, MGC or MGE followed by a 9 digit number.
+    </error>
+
+    <error id="PolicyNumberHomeWrongFormat">
+      The policy number should start with HGP or MGV and be followed by a 9 digit number.
+    </error>
+
+    <error id="PolicyNumberMotorWrongFormat">
+      The policy number should start with MGP, MGO, MGT, MGV, MGC or MGE and be followed by a 9 digit number.
+    </error>
+
+    <error id="PolicyNumberMarineWrongFormat">
+      The policy number should start with BGP and be followed by a 9 digit number.
+    </error>
+
+    <error id="QuoteRetrievalNumberExceeded">
+      You have exceeded the number of attempts to retrieve this quote. Please complete a call back request or call 13 17 03 with your quote number.
+    </error>
+
+    <error id="InvalidQuoteTypeForRetieval">
+      This quote cannot be updated online. Please call 13 17 03 to retrieve your quote.
+    </error>
+
+    <error id="InFuture">
+      {0} cannot be in the future.
+    </error>
+
+    <error id="DateNotBetween">
+      {0} must be between {1} and {2}.
+    </error>
+
+    <error id="CreditCardNumberInvalidType">
+      We only accept Visa and MasterCard.
+    </error>
+
+    <error id="CreditCardDateInvalid">
+      Please select a valid expiry date.
+    </error>
+
+    <error id="RegistrationNumberInvalid">
+      Please provide your registration number.
+    </error>
+
+    <error id ="CoverForAddressDeclined">
+      Unfortunately we are unable to provide cover at this address.
+    </error>
+
+    <!-- ================================== -->
+    <!-- Integrated Claim Specific Messages -->
+    <!-- ================================== -->
+
+    <error id="IntegratedClaimsPolicyNumberWrongFormat">
+      A valid policy number should start with HGP, MGP, MGV, BGP, MGC or MGE.
+    </error>
+
+    <error id="IntegratedClaimsMotorPolicyNumberWrongFormat">
+      A valid motor policy number should start with MGP, MGV, MGC or MGE.
+    </error>
+
+    <error id="IntegratedClaimsHomePolicyNumberWrongFormat">
+      A valid home policy number should start with HGP.
+    </error>
+  </errors>
+</root>

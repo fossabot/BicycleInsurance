@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<questions>
+    <question id="EndorsementDetails.ExcessData" label="Excess">
+      <helpText title="Excess">
+        <![CDATA[
+      An excess is an amount which you may have to contribute towards your claim. 
+      The acceptance of a claim is subject to the payment of any applicable excesses. 
+      If you vary your excess, your insurance premium will change. Please also note the ‘Excesses’ section on your Policy Portfolio.
+      ]]>
+      </helpText>
+    </question>
+
+	<question id="Email" label="Please provide your email address to receive your new Policy Schedule as confirmation of your changes." watermark="Email address">
+      <errors>
+        <add key="Required" value="Please enter an email address to receive your new Policy Schedule as confirmation of your change." />
+        <add key="StringTooLong" value="Email address is too long. (Maximum is 50 characters)." />
+      </errors>
+    
+		<helpText title="Email confirmation">
+			<![CDATA[If you do not wish to provide an email address please call us on <b class="u-noWrap">1300 657 627</b> to complete the change to your policy.]]>
+		</helpText>
+	</question>
+
+
+	  <question id="EndorsementDetails.HireCarAfterAccident" label="Add hire car after accident?">
+      <helpText title="Hire car after accident">
+        <![CDATA[
+        Your policy includes an unlimited hire car after fire, theft and attempted theft as standard. 
+		You can also choose to extend this cover to include an unlimited hire car after accident. 
+		The hire car will be provided for an unlimited number of days until your car is fixed or your claim is settled.
+        ]]>
+      </helpText>
+    </question>	  
+	  
+    <question id="EndorsementDetails.ProtectNoClaimBonus" label="Add no claim bonus protection?">
+      <helpText title="No claim bonus protection">
+        <![CDATA[                    
+		If you are on the maximum no claim bonus you can protect your bonus for an additional cost. 
+		This means you retain your maximum no claim bonus even if you make one at fault claim per year. 
+        ]]>
+      </helpText>
+    </question>
+
+    <question id="EndorsementDetails.SumInsured" label="Agreed value">
+      <helpText title="Agreed value">
+        <![CDATA[
+        The agreed value is the amount we agree to insure your vehicle for.  
+        The agreed value includes GST, registration, any other ‘on-road’ costs and accessories fitted to your vehicle.  
+        You may choose to increase or decrease the agreed value of your car between the range provided.
+        ]]>
+      </helpText>
+    </question>
+
+  </questions>
+</root>

@@ -1,0 +1,65 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = String;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper String(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    parameters["placeholder"] = Html.GetQuestionWatermark(ViewData.ModelMetadata, null, null, editorParameters.Watermark);
+
+    if (editorParameters.State == EditorState.Disabled)
+    {
+        parameters["disabled"] = "disabled";
+    }
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        parameters["readonly"] = "readonly";
+    }
+
+    if (editorParameters.MaxLength != null)
+    {
+        parameters["maxlength"] = editorParameters.MaxLength;
+    }
+
+    if (editorParameters.Min != null)
+    {
+        parameters["data-min"] = editorParameters.Min;
+    }
+
+    if (editorParameters.Max != null)
+    {
+        parameters["data-max"] = editorParameters.Max;
+    }
+    
+    if (editorParameters.Format != null)
+    {
+        parameters["data-format"] = editorParameters.Format;
+    }
+
+    if (editorParameters.Step != null)
+    {
+        parameters["data-step"] = editorParameters.Step;
+    }
+
+    if (editorParameters.NumberOfDecimals != null)
+    {
+        parameters["data-decimals"] = editorParameters.NumberOfDecimals;
+    }
+
+    parameters["data-role"] = "numerictextbox";
+    parameters["type"] = "number";
+    parameters["style"] = "width:100%;";
+    parameters["data-spinners"] = "false";
+    
+    @Html.TextBoxFor(m => m, parameters)
+}

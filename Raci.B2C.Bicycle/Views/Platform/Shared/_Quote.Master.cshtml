@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Site.Master.cshtml";
+}
+
+@section SiteHeaderIncludes {
+    @RenderSection("HeaderIncludes", false)
+}
+
+@section SiteHeaderContent {
+    @RenderSection("HeaderContent", false)
+}
+
+@section SiteContent {
+    @RenderSection("MainContent", false)
+}
+
+@section SiteScriptIncludes {
+    @RenderSection("ScriptIncludes", false)
+}

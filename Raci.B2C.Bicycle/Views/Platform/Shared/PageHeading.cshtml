@@ -1,0 +1,65 @@
+﻿@using System.Web.Mvc
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model PageHeadingModel
+
+@helper CreatePageTitle()
+{
+    if (Model.ReferenceNumber == null || ViewBag.PageTitle != null)
+    {
+        MvcHtmlString pageTitle = ViewBag.PageTitle ?? Html.Content(Model.PageTitle);
+        
+        <span>@pageTitle</span>
+    }
+    else
+    {
+
+        MvcHtmlString pageTitleDesktop = Html.Content(Model.PageTitleWithReferenceNumberDesktop, Model.ReferenceNumber);
+        MvcHtmlString pageTitleMobile = Html.Content(Model.PageTitleWithReferenceNumberMobile, Model.ReferenceNumber);
+        
+        <span class="show-for-medium-up">@pageTitleDesktop</span>
+        <span class="show-for-small">@pageTitleMobile</span>
+    }
+}
+
+@helper CreateStep(HtmlHelper html, int stepNumber, string stepText, int activeStepNumber)
+{
+    string className = "step";
+    if (activeStepNumber == stepNumber)
+    {
+        className += " current";
+    }
+    else if (stepNumber < activeStepNumber)
+    {
+        className += " previous";
+    }
+    
+    <div class="@className">
+        <div class="step-number">@stepNumber</div>
+        <div class="step-text show-for-medium-up">
+            @html.Content(stepText)
+        </div>
+    </div>
+}
+
+@helper CreateSteps(HtmlHelper html, IEnumerable<StepIndicatorModel> steps, int activeStepNumber)
+{
+    <div class="step-indicator">
+        @foreach (var step in steps)
+        {
+            @CreateStep(html, step.StepNumber, step.StepName, activeStepNumber)
+        }
+    </div>
+}
+
+<div class="row collapse page-heading @Model.AdditionalClasses">
+    <div class="small-12 columns">
+        <span class="action-heading">@CreatePageTitle()</span>
+        
+        @if (Model.ActiveStepNumber != 0)
+        {
+            @CreateSteps(Html, Model.StepIndicator, Model.ActiveStepNumber)
+        }
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿@model Raci.B2C.Web.Areas.Claim2.Models.PreferredRepairerSuburb
+
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = PreferredRepairerControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+    editorParameters.Width = EditorWidth.Columns8;
+
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+<div class="row collapse vehicle-registration-isunknown">
+    <div class="info-box vehicle-registration-isunknown-box">
+        <p>@Html.Content(ContentKey.GeneralText.General.VehicleRegistrationIsUnknownText)</p>
+    </div>
+</div>
+
+
+@helper PreferredRepairerControl(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    Dictionary<string, object>
+    parameters = new Dictionary<string, object>
+        ();
+    Dictionary<string, object>
+        checkboxParameters = new Dictionary<string, object>();
+
+    parameters["data-role"] = "textbox";
+    parameters["style"] = "width:100%;padding-top:5px";
+    parameters["maxlength"] = 12;
+    parameters["placeholder"] = "Enter preferred suburb";
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        parameters["readonly"] = "readonly";
+    }
+
+    checkboxParameters["style"] = "width:100%";
+    checkboxParameters["class"] = "roadmap";
+
+    <div id="@htmlFieldNameId" class="row collapse preferred-repairer">
+
+        <div class="row collapse">
+            <div class="large-6 columns preferred-repairer-suburb">
+
+
+                @{
+
+                    var editorparameters = new EditorParameters
+                    {
+                        SimpleRender = true,
+                        Watermark = "Enter preferred suburb"
+                    };
+                }
+
+                @Html.QuestionFor2(m => m.Suburb, parameters: editorparameters)
+
+            </div>
+        </div>
+
+        @if (editorParameters.State != EditorState.Readonly)
+        {
+
+
+            <div class="row collapse ">
+                <div class="small-1 column left">
+                    <div class="checkbox">
+
+                            @Html.CheckBox("SuburbOutsideWA",Model.SuburbOutsideWA.HasValue ? Model.SuburbOutsideWA : false)
+                        
+                        <span class="cb-checkbox">
+                            <i class="icon-check" style="display: none"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="small-11 column preferred-repairer-checkbox-label">
+                    @Html.SimpleQuestionLabelFor(m => m.SuburbOutsideWA)
+                </div>
+            </div>
+
+        }
+
+    </div>
+}
+
+@helper OutsideWA(bool? outsideWa)
+{
+    
+    
+}

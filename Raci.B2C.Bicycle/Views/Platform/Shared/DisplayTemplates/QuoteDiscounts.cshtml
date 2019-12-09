@@ -1,0 +1,24 @@
+﻿@model IList<Raci.B2C.Web.Areas.Quote.Models.QuoteDiscount>
+
+<table class="full border-top small-bottom-margin discounts-table">
+    @foreach (var discountRow in @Model)
+    {
+        var rowClass = "";
+        var displayValue = "";
+            
+        if (discountRow.IsError)
+        {
+            rowClass = "error-line";
+        }
+            
+        if (!string.IsNullOrEmpty(discountRow.DisplayValue))
+        {
+            displayValue = string.Format("-{0}", discountRow.DisplayValue);
+        }
+        
+        <tr class="@rowClass">
+            <td>@discountRow.Description</td>
+            <td class="right-align discount-amount">@displayValue</td>
+        </tr>
+    }
+</table>

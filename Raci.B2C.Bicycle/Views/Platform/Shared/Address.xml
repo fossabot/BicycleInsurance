@@ -1,0 +1,39 @@
+﻿<root>
+  <questions>
+
+    <!-- TODO: Currently the street and suburb field content is taken 
+    from integratedClaim as a workaround to auto prefixing of html ids -->
+
+    <!-- Street -->
+    <question id="Street" label="Street Details">
+      <helpText title="Policy Holder's Street Name">
+        <![CDATA[
+                  Enter street name only.
+                  eg: Wellington Street
+                ]]>
+      </helpText>
+    </question>
+
+    <!-- Street -->
+    <question id="StreetNumber" label="Street Number">
+      <helpText title="Policy Holder's Street Number">
+        <![CDATA[
+                  Enter street number only.
+                  eg: 832 or 1/23
+                ]]>
+      </helpText>
+    </question>
+
+    <!-- Suburb -->
+    <question id="Suburb" label="Suburb">
+      <helpText title="Suburb">
+        <![CDATA[
+                  Please include your suburb as appears on your policy schedule.
+                ]]>
+      </helpText>
+    </question>
+
+  </questions>
+</root>
+
+

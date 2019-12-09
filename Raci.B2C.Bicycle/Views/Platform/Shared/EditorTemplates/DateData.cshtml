@@ -1,0 +1,71 @@
+﻿@using System.Globalization
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+@model Raci.B2C.Web.Models.Common.DateData
+
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = DateData;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Date;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper DateData(EditorParameters editorParameters)
+{
+    string dayText = "";
+    string monthText = "";
+    string yearText = "";
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    DateReferenceData dateReferenceData = Html.GetReferenceData().GetDateOptions(htmlFieldName);
+
+    if ((Model != null) && (Model.Day != null))
+    {
+        yearText = Model.Day.Value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    if ((Model != null ) && (Model.Month != null))
+    {
+        SelectListItem selectedMonth = dateReferenceData.Month.FirstOrDefault(x => x.Value == Model.Month.ToString());
+
+        if (selectedMonth != null) 
+        { 
+            monthText = selectedMonth.Text;
+        }
+    }
+
+    if ((Model != null ) && (Model.Year != null))
+    {
+        yearText = Model.Year.Value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    if (editorParameters.State == EditorState.Disabled)
+    {
+        parameters["disabled"] = "disabled";
+    }
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        parameters["readonly"] = "readonly";
+    }
+
+    parameters["data-role"] = "numerictextbox";
+    parameters["class"] = "date-item";
+    @Html.HiddenFor(m => m.Day)
+    @Html.HiddenFor(m => m.Month)
+    @Html.HiddenFor(m => m.Year)
+
+    @Html.TextBox("Day.Value", dayText, parameters)
+    @Html.TextBox("Month.Value", monthText, parameters)
+    @Html.TextBox("Year.Value", yearText, parameters) 
+}
+
+

@@ -1,0 +1,176 @@
+﻿@model Raci.B2C.Web.Models.Common.AddressData
+
+@using Raci.B2C.Web.Mvc.Dependency
+
+@if (Html.IsIncludeField(m => m))
+{
+    Question question = Html.PeekQuestionContainer().CurrentQuestion;
+
+    if (question != null)
+    {
+        question.ErrorsHandled = true;
+    }
+
+
+    string controlId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    //
+    // We give the data-url the control id to all multiple versions on the same page
+    // to fetch data at the same time because the ajax framework will abort them if they
+    // have the same URL.
+    //
+    <div id="@controlId"
+         class="mailing-address questionContainer"
+         data-role="mailing-address"
+         data-url="@Url.Action(MVC.Address.FindMailingAddressFull())?controlId=@controlId"
+         data-gnaf-validation-url="@Url.Action(MVC.Address.ValidateAddress())"
+         data-full-address="true"
+         data-lock-to-street-address="@Model.LockToStreetAddress"
+         @Html.GetDependencyAttributes("", DependencyStartupScriptType.Other)>
+
+        @Html.HiddenFor(m => m.AddressDescription)
+        @Html.HiddenFor(m => m.AddressMoniker)
+        @Html.HiddenFor(m => m.UseGnafForSearch)
+
+        <div class="row mailing-address-full-container">
+            @MailingAddressControl()
+        </div>
+
+        <div class="row selected-full-address-container">
+            <div class="question question-label large-4 columns">
+                @Html.SimpleQuestionLabelFor(m => m)
+                @Html.HelpFor(m => m)
+            </div>
+            <div class="answer answer-field large-4 columns left">
+                <div class="selectedAddress"></div>
+            </div>
+        </div>
+
+        <div class="row matchingAddresses">
+        </div>
+
+        <div class="row matchingAddressesInfo">
+            <div class="large-offset-4 large-8 columns small-margin-top info"></div>
+        </div>
+
+        @{
+    //Putting a div around this prevents it from showing all of the errors (any errors returned from complex validation)
+        }
+        <div class="addressErrors"></div>
+        @Html.ValidationMessageRaciFor2(m => m)
+
+        <script type="text/x-kendo-template" class="matchingAddressesTemplate">
+            <div class="large-offset-4 large-8 columns">Please select your mailing address <i class="icon-chevron-down"></i></div>
+
+            <div class="large-offset-4 large-8 columns">
+                <table class="address-find-table">
+                    <tbody>
+                        # for (var i = 0; i < data.AddressList.length; i++) { #
+                        <tr data-id="#= data.AddressList[i].Moniker #" data-description="#= data.AddressList[i].DisplayAddress #  #= data.AddressList[i].Postcode #">
+                            <td class="show-for-medium-up"><input name="selectedAddressCheckBox" type="checkbox" value="#= data.AddressList[i].Moniker #" /></td>
+                            <td>#= data.AddressList[i].DisplayAddress # #= data.AddressList[i].Postcode #</td>
+                        </tr>
+                        # } #
+                    </tbody>
+                </table>
+            </div>
+        </script>
+
+        <script type="text/x-kendo-template" class="selectedAddressTemplate">
+            <div class="selectedAddressDescription">
+                <div class="row">
+                    <div class="small-1 show-for-medium-up collapse-left collapse-right inProgressIndicator columns text-center">
+                        <i class="icon-check"></i>
+                    </div>
+                    <div class="small-11 columns">
+                        #= description #
+                    </div>
+                    <div class="small-1 show-for-small collapse-left collapse-right inProgressIndicator columns text-center">
+                        <i class="icon-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row collapse">
+                <div class="small-12 change-link columns">
+                    <a class="link selectChangeAddress" href="javascript:;"  @Html.TrackClickEvents(new{@event ="clicked.changemailingaddress"})>Change selected address</a>
+                </div>
+            </div>
+        </script>
+    </div>
+}
+
+@helper MailingAddressControl()
+{
+     <div class="mailing-address-full">
+        @Html.QuestionFor2(m => m.IsStreetAddress)
+    </div>
+
+    <div class="mailing-address-input mailing-address-full">
+        <div>
+            <div class="po-box">
+                @Html.QuestionFor2(m => m.PostBoxNumber, parameters: new EditorParameters
+           {
+               Watermark = "e.g. PO Box 123, RMB 123",
+               IncludeErrors = false
+           })
+            </div>
+            <div class="non-po-box">
+                @Html.QuestionFor2(m => m.UnitNumber, parameters: new EditorParameters
+           {
+               Watermark = "e.g. 6",
+               IncludeErrors = false
+           })
+                @Html.QuestionFor2(m => m.HouseNumber, parameters: new EditorParameters
+           {
+               Watermark = "e.g. 10",
+               IncludeErrors = false
+           })
+                @Html.QuestionFor2(m => m.Street, parameters: new EditorParameters
+           {
+               Watermark = "e.g. Sample street",
+               IncludeErrors = false
+           })
+            </div>
+
+            @if (Html.ViewData.GetEditorParameters().RestrictedDataset)
+            {
+                // Use the autolookup restricted suburb view rather than a standard textbox
+                @Html.QuestionFor2(m => m.Suburb, "SuburbLookup", parameters: new EditorParameters
+           {
+               Watermark = "e.g. West Perth",
+               State = Model.LockSuburbAndPostCode ? EditorState.Readonly : EditorState.Default,
+               IncludeErrors = false
+           })
+                @Html.HiddenFor(x => x.ZipId)
+                @Html.HiddenFor(x => x.CityId)
+                @Html.HiddenFor(x => x.SuburbName)
+                @Html.HiddenFor(x => x.PostCode)
+            }
+            else
+            {
+                @Html.QuestionFor2(m => m.SuburbName, parameters: new EditorParameters
+           {
+               Watermark = "e.g. West Perth",
+               State = Model.LockSuburbAndPostCode ? EditorState.Readonly : EditorState.Default,
+               IncludeErrors = false
+           })
+                @Html.QuestionFor2(m => m.PostCode, parameters: new EditorParameters
+           {
+               Watermark = "e.g. 6005",
+               State = Model.LockSuburbAndPostCode ? EditorState.Readonly : EditorState.Default,
+               IncludeErrors = false
+           })
+            }
+        </div>
+
+        <div class="row questionContainer">
+            <div class="large-4 columns question question-label"></div>
+            <div class="answer answer-field large-4 columns">
+                <button class="btn secondary find-address-button inProgressIndicator">
+                    <span class="btn-text">Verify your address</span>
+                    <span class="icon-symbol"> <i class="icon-search"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+}

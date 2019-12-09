@@ -1,0 +1,10 @@
+﻿@using Raci.B2C.Common.Util
+@model Raci.B2C.Web.Models.Common.Premium
+
+@if(Model.Breakdown.Total > 0)
+{
+    <tr>
+        <td>@Model.Description<a rev="@Model.HelpTitle" rel='@Url.Action(MVC.Help.GetHelpContent(@Model.ContentKey, ViewData["helpParameters"] as string ))' class="help-icon"><i class="icon-question"></i></a></td>
+        <td class="right-align"> @String.Format("{0:c}",Model.Breakdown.Total)</td>
+    </tr>
+}

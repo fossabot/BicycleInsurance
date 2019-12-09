@@ -1,0 +1,75 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Util
+@model Raci.B2C.Web.Models.Common.TelephoneData
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Width = EditorWidth.Columns8;
+    editorParameters.Editor = TelephoneData;
+    editorParameters.Errors = ErrorMessages;
+  
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Other;
+}
+
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper TelephoneData(EditorParameters editorParameters)
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string fieldId = ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    BaseReferenceData referenceData = Html.GetReferenceData();
+
+    IEnumerable<SelectListItem> selectListItems = referenceData.GetSelectOptions(htmlFieldName);
+    IDictionary<string, object> phoneNumberParameters = new Dictionary<string, object>();
+    IDictionary<string, object> phoneTypeParameters = new Dictionary<string, object>();
+
+    if (editorParameters.MaxLength != null)
+    {
+        phoneNumberParameters["maxlength"] = editorParameters.MaxLength;
+    }
+
+    phoneNumberParameters["placeholder"] = Html.GetQuestionWatermark(ViewData.ModelMetadata, null, null, editorParameters.Watermark);
+    
+    
+    phoneNumberParameters["data-role"] = "textbox";
+    phoneNumberParameters["style"] = "width:100%;";
+    
+    phoneTypeParameters["data-source"] = selectListItems.CreateSelectList(null).ToJsonArray();
+    phoneTypeParameters["data-role"] = "dropdownlist";
+    phoneTypeParameters["data-text-field"] = "Text";
+    phoneTypeParameters["data-value-field"] = "Value";
+    phoneTypeParameters["style"] = "width:100%;";
+    phoneTypeParameters["class"] = Html.ViewData["class"] + " roadmap";
+    phoneTypeParameters["data-option-label"] = editorParameters.SelectOption;
+
+    //Disabled will make the field unclickable and look correctly, where as readonly will only make the field unclickable
+    //so for drop down lists we want to treat readonly as disabled (the opposite is the case for strings in mobile.)
+    if (editorParameters.State == EditorState.Disabled || editorParameters.State == EditorState.Readonly)
+    {
+        phoneNumberParameters["readonly"] = "readonly";
+        phoneTypeParameters["disabled"] = "disabled";
+
+    }
+    
+    <div id="@fieldId" class="row">
+        <div class="small-6 columns collapse-left">
+            @Html.TextBoxFor(x => x.PhoneNumber, phoneNumberParameters)
+        </div>
+        <div class="small-6 large-4 columns collapse-left">
+            @Html.TextBoxFor(x => x.PhoneType, phoneTypeParameters)
+        </div>
+      
+        @*This is here so that foundation doesnt pull the div right in large mode.*@
+        <div class="show-for-medium-up large-2"></div>
+        
+    </div>
+
+}
+
+@helper ErrorMessages()
+{
+   @Html.ValidationMessageRaciFor2(x => x.PhoneNumber)
+   @Html.ValidationMessageRaciFor2(x => x.PhoneType)
+}

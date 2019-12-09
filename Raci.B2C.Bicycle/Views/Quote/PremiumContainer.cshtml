@@ -1,0 +1,30 @@
+﻿@using System.Globalization
+@model Raci.B2C.Bicycle.Models.BicycleQuote
+
+@{
+    int i = ViewBag.Index;
+    // ViewBag.ProductKey = Model.MotorQuoteProducts[i].SynchronisationKey;
+}
+
+@*@Html.HiddenFor(x => x.MotorQuoteProducts[i].IsComprehensive)
+@Html.HiddenFor(x => x.MotorQuoteProducts[i].PDSUrl)
+@Html.Hidden("MotorQuoteProductIndex_" + i, i)
+
+@Html.TrackQuoteIssued("motor", Model.ProposalVersionNumber, Model.MotorQuoteProducts[i].AnnualPremium.Breakdown.Total, "data-layer-object-motor-quote-issued-" + i, Model.MotorQuoteProducts[i].CoverTypeDescription)*@
+
+
+<div class="premium-container-table">
+    @Html.DisplayFor(x => x.Quote.Options[i], new { quoteNumber = Model.PolicyNumber })
+    <div class="customise-your-quote-cell">
+        <div class="customise-your-quote-header">
+            <div class="section-heading heading" style="">
+            Policy Details
+            </div>
+        </div>
+        <div class="customise-your-quote-container">
+            <br/>
+            @Html.EditorFor(x => x.Quote.Options[i])
+
+        </div>
+    </div>
+</div>

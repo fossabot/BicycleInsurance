@@ -1,0 +1,71 @@
+﻿@using System.Web.Optimization
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model Raci.B2C.Bicycle.Models.BicycleQuote
+
+@{
+    var editorParametersWithHorizontalRadioSet = new EditorParameters();
+    editorParametersWithHorizontalRadioSet.Width = EditorWidth.Columns4;
+    editorParametersWithHorizontalRadioSet.QuestionWidth = EditorWidth.Columns4;
+    editorParametersWithHorizontalRadioSet.RadioStackState = StackState.StackOnMobile;
+    editorParametersWithHorizontalRadioSet.WidthSmall = EditorWidth.Columns12;
+}
+
+
+@{
+    ViewBag.Title = "Payment";
+    ViewBag.ActiveStepNumber = 4;
+
+    Layout = Request.IsAjaxRequest() ? null : (ViewEngines.Engines.FindView(this.ViewContext.Controller.ControllerContext, "_BikeQuoteMaster", "").View as RazorView)?.ViewPath;
+
+    string selectedAccordion = (string)ViewData["selectedAccordion"];
+
+    Dictionary<string, object>
+    formAttributes = new Dictionary<string, object>();
+    formAttributes.Add("class", "insuranceForm questionForm formTop");
+}
+
+@if (Html.HasModelError())
+{
+    @Html.ValidationSummary(true)
+}
+
+@using (Ajax.BeginForm(LocalMVC.Payment.Index(), new AjaxOptions() { OnSuccess = "pageController.ajaxSubmitSuccess" }, formAttributes))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.AntiBotCheck()
+
+    <div class="row accordion" data-selected-accordion="@selectedAccordion">
+        <div class="accordion-heading loading" data-accordion-id="@ViewData.TemplateInfo.GetFullHtmlFieldId(Html.StringExpressionFor(m => m.Question.BikeDetails))">
+            <div class="text label2">Your Payment Details</div>
+        </div>
+        <div class="accordion-panel loading">
+
+            @Html.QuestionFor2(m => m.PolicyPayment.PaymentDetails.PolicyStartDate, parameters: new EditorParameters { State = EditorState.Display, AdditionalAnswerClass = "" })
+            @Html.QuestionFor2(m => m.PolicyPayment.PaymentDetails.Premium, parameters: new EditorParameters { State = EditorState.Display })
+            @Html.QuestionFor2(m => m.PolicyPayment.PaymentDetails.PaymentFrequency, templateName: TemplateNames.RadioSet, parameters: editorParametersWithHorizontalRadioSet)
+
+            <div class="payment-icons on-payment">
+                <div class="payment-icon-set payment-page">
+                    <div class="payment-method mastercard"></div>
+                    <div class="payment-method visa"></div>
+                    <div class="payment-method amex"></div>
+                </div>
+            </div>
+
+            @Html.QuestionFor2(m => m.PolicyPayment.PaymentDetails.PaymentMethod, templateName: TemplateNames.RadioSet, parameters: editorParametersWithHorizontalRadioSet)
+            @Html.QuestionFor2(m => m.PolicyPayment.PaymentDetails.BrainTree, templateName: "Payment")
+
+            @AccordionControlHelper.SubmitButton("Pay Now")
+        </div>
+    </div>
+}
+
+@section ScriptIncludes {
+    <script>
+        var pageController = new B2C.DefaultPageController();
+        pageController.init();
+    </script>
+}

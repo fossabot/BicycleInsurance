@@ -1,0 +1,58 @@
+﻿@helper tableRow(string title,
+        bool? firstRowCheck, bool? secondRowCheck, bool? thirdRowCheck, bool? fourthRowCheck,
+        string firstRowString = null, string secondRowString = null, string thirdRowString = null, string fourthRowString = null,
+        bool alternateRow = false, string extraCellClass = "") {
+	
+	string rowStyle = alternateRow ? "alt-table-row" : "";
+	string cellStyle = "label-cell";    
+	
+	<tr class="@rowStyle">
+		<td class="@cellStyle first-column-cell">
+			@title
+		</td>
+		
+		@rowCell(cellStyle, firstRowString, firstRowCheck, extraCellClass)
+		@rowCell(cellStyle, secondRowString, secondRowCheck)
+	    
+        @if (thirdRowCheck.HasValue || !string.IsNullOrEmpty(thirdRowString))
+        {
+            @rowCell(cellStyle, thirdRowString, thirdRowCheck)
+        }
+
+        @if (fourthRowCheck.HasValue || !string.IsNullOrEmpty(fourthRowString))
+        {
+            @rowCell(cellStyle, fourthRowString, fourthRowCheck)
+        }
+	</tr>
+}
+
+@helper rowCell(string cellStyle, string rowString, bool? rowCheck, string extraCellClass = "") {
+	<td class="@cellStyle @extraCellClass">
+		@displayIconForBool(rowCheck)
+			
+		@if (rowString != null)
+		{
+			if (rowCheck.HasValue && rowCheck.Value)
+			{
+				<br/>
+			}
+			<span>@rowString</span>
+		}
+	</td>  
+}
+
+@helper displayIconForBool(bool? iconValue) {
+	if (!iconValue.HasValue)
+	{
+		return;
+	}
+	
+	if (iconValue.Value)
+	{
+		<i class="icon-check"></i>
+	}
+	else
+	{
+		<i class="icon-cancel"></i>
+	}
+}

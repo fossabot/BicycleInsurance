@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<generalItems>
+		<item id="Policyholders">
+			Policyholders
+		</item>
+
+		<item id="PaymentDetails">
+			Payment details
+		</item>
+
+		<item id="ClaimDetails">
+			Claim details
+		</item>
+
+		<item id="PoliceDetails">
+			Police details
+		</item>
+
+		<item id="PCMClaimButton">
+			Make a claim
+		</item>
+
+		<item id="GetCertificateOfCurrency">
+			Get certificate of currency
+		</item>
+
+		<!--You can add more NCB descriptions by comma separating them-->
+		<item id="NcbDescriptionLevelForPostProcessing">
+			55%
+		</item>
+
+		<item id="NcbNotProtectedText">
+			Maximum
+		</item>
+
+		<item id="NcbProtectedText">
+			Protected maximum
+		</item>
+
+		<item id="ExcessDetails">
+			Excess details
+		</item>
+
+		<item id="Repairer">
+			Repairer
+		</item>
+
+		<item id="PhoneNumber">
+			Phone number
+		</item>
+
+		<item id="PhoneNumbers">
+			Phone numbers
+		</item>
+
+		<item id="ChangeMyDetailsAccordionHeaderText">
+			Change my details
+		</item>
+
+		<item id="ChangeWhereIKeepMyCarButton">
+			Change where I keep my car
+		</item>
+
+		<item id="ChangeWhereIKeepMyCarAccordion">
+			Change where I keep my car
+		</item>
+
+		<item id="ChangeMyCarButton">
+			Change my car details
+		</item>
+
+		<item id="ChangeMyCarAccordion">
+			Your car details
+		</item>
+
+		<item id="RenewPolicyAccordion">
+			Your annual premium
+		</item>
+
+
+		<item id="ChangeWhereIKeepMyCarHelpText">
+			Your car address is one of the factors which can affect your premium. If there is a change to your premium it will be shown at the next step.
+		</item>
+
+		<item id="ChangeToPremiumAccordionTitle">
+			Change to your premium
+		</item>
+
+		<item id="DecreaseToPremiumAccordionTitle">
+			Your premium has reduced by
+		</item>
+
+		<item id="NoChangeToPremiumAccordionText">
+			There was no change to your premium.
+		</item>
+
+		<item id="PaymentDetailsAccordionTitle">
+			Payment details
+		</item>
+
+
+		<item id="ChangeConfirmationTitle">
+			Confirmation
+		</item>
+
+		<item id="RenewPolicyConfirmationMessage">
+			<![CDATA[
+			<div class="PCMHeadingText">Thank you</div>
+			<br/>
+			You've successfully renewed your policy.
+        ]]>
+		</item>
+
+		<item id="RenewPolicyConfirmationMessageForPaymentError">
+			<![CDATA[
+		    <div class="PCMHeadingText">Thank you</div>
+		    <br/>		    
+        ]]>
+		</item>
+
+		<item id="VehicleTransferConfirmationMessage">
+			<![CDATA[
+			<div class="PCMHeadingText">Thank you</div>
+			<br/>
+			You have successfully updated your policy with your new car information.
+			<br/><br/>
+			If this change also applies to your roadside assistance, please call us on <b class='u-noWrap'>13 17 03</b>. 
+        ]]>
+		</item>
+
+		<item id="MotorAddressChangeConfirmationMessage">
+			<![CDATA[
+			<div class="PCMHeadingText">Thank you</div>
+			<br/>
+			You have successfully updated the address where you keep your car.
+			<br/><br/>
+			<b>Other policies?</b> 
+			<br/><br/>
+			If you have any other car insurance policies please change your address on each individual policy. For home insurance policies please call us on <b class='u-noWrap'>1300 657 627</b> to update your address.
+			<br/><br/>
+			<b>Mailing address</b>
+			<br/><br/>
+			Do you need to update your policy mailing address with this new address? Please edit your mailing address in <a class="link" href="{0}">My details</a>.
+        ]]>
+		</item>
+
+		<item id="MailingAddressChangeAdviceMessageText">
+			<![CDATA[
+			The mailing address for this policy can only be updated by {0}. To update the mailing address on this policy, please ask this policyholder either to login and update their details or give us a call on <b class='u-noWrap'>1300 657 627</b>.
+        ]]>
+		</item>
+
+		<item id="MotorAddressChangeConfirmationImportantMessage">
+			Do you need to update your mailing address with your new address? Please edit your mailing address in ‘My details’.
+		</item>
+
+		<item id="ConfirmationViewBackToPoliciesButtonText">
+			Back to My policies
+		</item>
+
+		<item id="ConfirmationViewBackToDetailsButtonText">
+			Back to My details
+		</item>
+
+		<item id="CancelConfirmation">
+			Are you sure you want to cancel? The changes you have made will not be saved.
+		</item>
+
+		<item id="CancelConfirmationTitle">
+			Are you sure?
+		</item>
+
+		<item id="CloseConfirmation">
+      Are you sure you want to close?
+    </item>
+
+		<item id="CloseConfirmationTitle">
+			Are you sure?
+		</item>
+
+    <item id="PremiumDueForRenewal">
+        Your total annual premium for your next period of insurance is shown above.
+    </item>
+
+		<item id="AddressChangePriceChangeText">
+			<![CDATA[
+        Adjustment premium
+        
+        <a rev="Adjustment premium" rel="~/Help/GetHelpContent?contentKey=GeneralPCM.AddressChangePriceChangeHelpText" class="help-icon"><i class="icon-question"></i></a>
+        ]]>
+		</item>
+
+		<item id="AddressChangePriceChangeHelpText">
+			<helpText title="Adjustment premium ">
+				<![CDATA[
+        Your car address is one of the factors that can affect your premium. You may be required to pay an additional premium or we may need to refund you part of your premium in order to make this change effective. The adjustment premium is the change of premium that applies to your new car address.
+        ]]>
+			</helpText>
+		</item>
+
+		<item id="FutureEndorsementInfoBoxText">
+			<![CDATA[
+      		  You have recently made changes to this policy which are displayed below. These changes start from {0}. If you require further changes to your policy before this date please call <b class="u-noWrap">1300 657 627</b>.
+        ]]>
+		</item>
+
+		<item id="SubmittedInfoBoxText">
+			Your policy has a payment pending which means you are unable to edit your policy until the payment has been processed. This can take up to 5 working days.
+		</item>
+
+		<item id="RejectedInfoBoxText">
+			<![CDATA[
+      Your policy has a rejected payment which needs to be actioned before you can edit your policy. Please call us on <b class="u-noWrap">1300 657 627</b> to arrange payment.
+      ]]>
+		</item>
+
+		<item id="FrozenInfoBoxText">
+			This is an inactive policy. Please ignore this policy and refer to your replacement policy.
+		</item>
+
+		<item id="NextInstalmentDescription">
+			Please check your Policy Schedule for future instalment amounts as they may differ.
+		</item>
+
+		<item id="YourNextInstalmentLabel">
+			Your next instalment
+		</item>
+
+		<item id="NextInstalmentLabel">
+			Next instalment
+		</item>
+
+		<item id="NextInstalmentText">
+			{0} will be debited on {1}.
+		</item>
+
+		<item id="RefundInstallmentText">
+			We have paid your remaining instalment(s) and you will receive a refund of {0}.
+		</item>
+
+
+		<item id="AddressChangeNoPriceChangeText">
+			No change to your premium
+		</item>
+
+		<item id="PremiumChangePromptForAnnualCash">
+			You will need to make a one off payment to cover your adjustment premium.
+		</item>
+
+		<item id="PremiumChangePromptForOneOffDirectDebit">
+			You will need to make a one off payment to cover the change to your premium.  The payment will be debited on the next business day.
+		</item>
+
+		<item id="PremiumRefundPromptForAnnualCash">
+			You will receive a one off refund as a result of the change to your policy.
+		</item>
+
+		<item id="PremiumChangePromptForInstalment">
+			This amount will be adjusted across your remaining instalments.
+		</item>
+
+		<item id="BoatAssetDescription">
+			Boat
+		</item>
+
+		<item id="PolicyActionsHeader">
+			What would you like to do with your policy?
+		</item>
+
+		<item id="ClaimViewHeaderText">
+			Welcome to claims
+		</item>
+
+		<item id="ClaimViewText">
+			Here you can view your claims in progress and access claims help and information.
+		</item>
+
+		<item id="PaymentAuthorizationInfoBox">
+			<![CDATA[
+      <div class="info-box body-text payment-information">          
+          <p>
+            By clicking the "Pay Now" button you will be transferred to a secure payment gateway to complete your payment.
+          </p>
+      </div>
+    ]]>
+		</item>
+
+		<item id="RefundAuthorizationInfoBox">
+			<![CDATA[
+      <div class="info-box body-text payment-information">
+          <span class="body-text-heading">Important: Check account details</span><br/>
+          <p>
+            Please check the account details you have entered. 
+            It is your responsibility to ensure the details, including Account number, BSB and Account name have been entered correctly. 
+            Entering incorrect details may mean the wrong account is credited and it may not be possible to recover the funds. 
+            To the extent permitted by law, RAC Insurance is not liable for loss arising from any error in instructions given by you.
+          </p>
+      </div>
+    ]]>
+		</item>
+
+		<item id="BankAccountRefundMessage">
+			<![CDATA[
+      An amount of {0} will be refunded to you. <br />
+      Please enter the details for the account you would like credited with the refund amount.
+      ]]>
+		</item>
+
+		<item id="PolicyInRenewalPeriod">
+			<![CDATA[
+      Your policy is currently in renewal which means any changes you make to your policy will only be effective from your renewal date. Your renewal date is shown in the start date field below. If you need to make a change before this date please call us on <b class="u-noWrap">1300 657 627</b>.
+      ]]>
+		</item>
+
+		<item id="NavigationMyInsuranceHeading">
+			My Insurance
+		</item>
+
+		<item id="NavigationMyClaimsSection">
+			My claims
+		</item>
+
+		<item id="NavigationMyPoliciesSection">
+			My policies
+		</item>
+
+		<item id="NavgationMyDetailsSection">
+			My details
+		</item>
+
+		<item id="HomePolicyExcessFinePrint">
+			<![CDATA[
+				<div class="PCMSection">
+					<div class="PCMHeading">Excesses</div>
+					<div class="excess-fine-print">
+						<p>The total of your basic excess is specified above. Please note that other additional excesses may apply, including:</p>
+						<table>
+							<tr>
+								<td>Earthquake excess</td>
+								<td>$500</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>Flood excess</td>
+								<td>$200</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>Malicious damage/theft excess (applies to landlord's policies only)</td>
+								<td>$300</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>Personal valuables excess</td>
+								<td>$100</td>
+							</tr>
+						</table>
+						<p>We will tell you if any other excess applies based on your individual risk details and claims experience.</p>
+						<p>Upon issuing of a policy, the applicable excesses will be shown on your policy documents.</p>
+					</div>
+				</div>
+			]]>
+		</item>
+
+		<item id="MotorPolicyExcessFinePrint">
+			<![CDATA[
+				<div class="PCMSection">
+					<div class="PCMHeading">Excesses</div>
+					<div class="excess-fine-print">
+						<p>The total of your basic excess and voluntary excess is specified above. Please note other additional excesses may apply, including:</p>
+						<table class="age-excess">
+							<caption>Age excess</caption>
+							<tr>
+								<td>A driver under 19 years of age</td>
+								<td>$650</td>
+							</tr>
+							<tr>
+								<td>A driver aged 19 to 20 years</td>
+								<td>$550</td>
+							</tr>
+							<tr>
+								<td>A driver aged 21 to 23 years</td>
+								<td>$450</td>
+							</tr>
+							<tr>
+								<td>A driver aged 24 to 25 years</td>
+								<td>$300</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>
+									Inexperienced driver excess
+									<a rev="Inexperienced driver excess" rel="~/Help/GetHelpContent?contentKey=GeneralPCM.InexperiencedDriverHelp" class="help-icon"><i class="icon-question"></i></a>
+								</td>
+								<td>$300</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>
+									Windscreen and window glass replacement excess ($0 if removed)
+									<a rev="Windscreen and window glass replacement excess" rel="~/Help/GetHelpContent?contentKey=GeneralPCM.ExcessWindscreenHelp" class="help-icon"><i class="icon-question"></i></a>
+								</td>
+								<td>$100</td>
+							</tr>
+						</table>
+						<p>Imposed excess, based on your individual risk details and claims experience.</p>
+						<p>The applicable imposed excesses or any excluded driver conditions will be shown on your policy documents.</p>
+					</div>
+				</div>			
+			]]>
+		</item>
+
+		<item id="ExcessWindscreenHelp">
+			<![CDATA[
+  This excess applies for replacement of windscreen or window glass only.  If your windscreen or window glass is repaired (and not replaced) no excess applies.  No other additional excesses will apply.  
+     ]]>
+		</item>
+
+		<item id="InexperiencedDriverHelp">
+			<![CDATA[
+    This additional excess applies when the car is being driven by a person 26 years of age or over who has held a motor driver’s licence for less than 2 years.
+      ]]>
+		</item>
+
+		<item id="NoPoliciesInPortfolio">
+			<![CDATA[
+      Currently there are no active insurance policies to display.
+      <br/>
+      <br/>
+      Have an active policy and it’s not displayed? Please call us on <b class="u-noWrap">1300 657 627</b>.
+      ]]>
+		</item>
+
+		<item id="NoClaimsInPortfolio">
+			<![CDATA[
+      To make a claim, select the <a class="link" href="{0}">policy</a> you want to make claim on, and select ‘Make a claim’.
+      ]]>
+		</item>
+
+		<item id="NonFactoryModificationsMessage">
+			We need more information about the modifications to your car before we can change your car.
+		</item>
+
+		<item id="NonFactoryModificationsSubject">
+			RAC Policy and Claims Management - Car Modification call back
+		</item>
+
+		<item id="CallbackDialogText">
+			<![CDATA[
+       Please complete a call back request or call us on <b class="u-noWrap">1300 657 627</b>. 
+      ]]>
+		</item>
+
+		<item id="CallbackDialogTextWithPolicyNumber">
+			<![CDATA[
+       Please complete a call back request or call us on <b class="u-noWrap">1300 657 627</b>, quoting your policy number {0}. 
+      ]]>
+		</item>
+
+		<item id="ProductName_Motor_Comp">
+			<![CDATA[
+			Comprehensive
+		]]>
+		</item>
+
+		<item id="ProductName_Motor_Tpo">
+			<![CDATA[
+			Third party property
+		]]>
+		</item>
+
+		<item id="ProductName_Motor_TPFT">
+			<![CDATA[
+			Third party fire & theft
+		]]>
+		</item>
+
+		<item id="ProductName_Building">
+			<![CDATA[
+			Building
+		]]>
+		</item>
+
+		<item id="ProductName_Contents">
+			<![CDATA[
+			Contents
+		]]>
+		</item>
+
+		<item id="ProductName_BuildingAndContents">
+			<![CDATA[
+			Building & contents
+		]]>
+		</item>
+
+		<item id="ProductName_LandlordsBuilding">
+			<![CDATA[
+		Landlord's building
+		]]>
+		</item>
+
+		<item id="ProductName_LandlordsContents">
+			<![CDATA[
+		Landlord's contents
+		]]>
+		</item>
+
+		<item id="ProductName_LandlordsBuildingAndContents">
+			<![CDATA[
+		Landlord's building & contents
+		]]>
+		</item>
+
+		<item id="ProductName_Renters">
+			<![CDATA[
+		Renters
+		]]>
+		</item>
+
+		<item id="ProductName_BuildingAndLimitedContents">
+			<![CDATA[
+		Building & renters
+		]]>
+		</item>
+
+		<item id="UnableToCompleteVehicleTransferError">
+			<![CDATA[
+	  We need more information about your new car before you can complete this transaction. <br /> Please call us on <b class="u-noWrap">1300 657 627</b>.
+	]]>
+		</item>
+
+		<item id="UnableToCompleteVehicleTransferAccordionHeader">
+			<![CDATA[
+	  Please call us
+	]]>
+		</item>
+
+		<item id="CustomisePremiumHeading">
+			Customise your premium
+		</item>
+
+		<item id="RenewMyPolicyButton">
+			Renew my policy
+		</item>
+		<item id="InRenewalAnnualCashInfoTextBox">
+			<![CDATA[
+        Your policy is due for renewal.
+		If you want your cover to continue beyond your renewal date, you need to renew your policy by paying the premium. 
+		You can review and pay your renewal or vary your excess or agreed value by selecting ‘Renew my policy’.
+ 		If you need to make any other changes to your policy, call us on <b class="u-noWrap">1300 657 627</b>.
+      ]]>
+		</item>
+		<item id="InRenewalInstallmentsInfoTextBox">
+			<![CDATA[
+        Your policy is due for renewal.
+		If you wish to review your renewal, vary your excess or agreed value, select ‘Renew my policy’.
+		Otherwise your policy will automatically renew using your current direct debit details.
+		If you need to make any other changes to your policy, call us on <b class="u-noWrap">1300 657 627</b>.
+      ]]>
+		</item>
+		<item id="InRenewalInfoTextBox">
+			<![CDATA[
+        Your policy is currently in renewal and no further changes can be made online until {0}.  
+		If you need to make any other changes to your policy, call us on <b class="u-noWrap">1300 657 627</b>.
+      ]]>
+		</item>
+
+		<item id="YourAnnualPremium">
+			Your annual premium
+		</item>
+
+
+		<item id="AnnualPremium">
+			Annual premium
+		</item>
+
+		<item id="DocumentCertificateOfCurrencyAccordionHeaderText">
+			Your certificate of currency
+		</item>
+
+		<item id="DocumentCertificateOfCurrencySummary">
+			<![CDATA[
+			<p>Your certificate of currency is a document that confirms the currency of your insurance policy and provides a summary of the cover.</p>
+			
+			<p>You can view and download your certificate of currency, or email it to an address of your choice. Simply choose the option that best suits your needs using the buttons below. The certificate can be downloaded as many times as necessary.</p>
+      
+      <p>Should you have more than one financier please call <b class="u-noWrap">13 17 03</b></p>
+		  ]]>
+		</item>
+
+    <item id="DocumentCertificateOfCurrencySent">
+        <![CDATA[
+        <p>The requested document has been successfully sent to {0}.</p>
+        
+        <p>If you do not receive an email within one hour, please check your spam folder.</p>
+		]]>
+    </item>
+
+    <item id="DocumentCertificateOfCurrencySendError">
+        <![CDATA[
+        <p>There was a problem sending your email.</p>
+        
+        <p>Please try again later or call RAC Insurance to obtain your document.</p>
+	]]>
+    </item>
+
+	</generalItems>
+</root>

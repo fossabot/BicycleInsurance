@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <questions>
+    <question id="PaymentAmount" label="Adjustment premium">
+    </question>
+
+    <question id="BankAccountDetails.Bsb" label="BSB">
+      <errors>
+        <add key="Required" value="Please enter your BSB number." />
+        <add key="FieldHasInvalidCharacters" value="Please enter a valid BSB number." />
+      </errors>
+    </question>
+
+    <question id="BankAccountDetails.AccountNumber" label="Account number">
+      <errors>
+        <add key="Required" value="Please enter your bank account number." />
+        <add key="FieldHasInvalidCharacters" value="Please enter a valid bank account number." />
+      </errors>
+    </question>
+
+    <question id="BankAccountDetails.AccountName" label="Account name">
+      <errors>
+        <add key="StringTooLong" value="Account name can be a maximum of [%MAX_LENGTH%] characters." />
+        <add key="FieldHasInvalidCharacters" value="The account name contains invalid characters." />
+      </errors>
+    </question>
+  </questions>
+</root>

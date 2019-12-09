@@ -1,0 +1,17 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+@model string
+           
+@if (Html.IsIncludeField(m => m))
+{
+    string htmlFieldName = Html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.String)>
+        <div class="question">
+            @Html.QuestionLabel("")
+        </div>
+        <div class="answer" id="@htmlId">
+            @Model
+        </div>
+    </div>
+}

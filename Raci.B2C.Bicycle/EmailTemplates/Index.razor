@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        table, thead, tbody, tr, td, th {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #333333;
+        }
+
+		a {
+			color: #768692;			
+		}		
+
+        .main-table {
+            width: 100%;
+        }
+
+        .content-table {
+            width: 600px;
+        }
+
+        .information-table {
+            width: 100%;
+            padding: 10px 5px 10px 5px;
+        }
+
+        .header-table {
+            height: 110px;
+            width: 100%;
+            background-color: #333;
+        }
+
+            .header-table tr {
+                height: 110px;
+            }
+
+            .header-table td {
+                background-image: url('~/content/images/email/header_slice.gif');
+                background-repeat: repeat;
+            }
+
+
+        .thankyou-table {
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .thankyou-main {
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .thankyou-detail {
+            font-size: 16px;
+            font-weight: normal;
+            width: 100%;
+        }
+
+
+        table.fine-print {
+            text-align:center;
+            width: 600px;
+            color: #333333;
+        }
+
+        table.fine-print td a {
+            color: #333333;
+        }
+            
+        .fine-print-content {
+            font-size: 9px;
+        }
+
+        .policy-number {
+            background-color: #EEEEEE;
+            padding: 10px 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .summary-header {
+            padding-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .summary-header-payment {
+            padding-top: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-top: 2px solid #FFD100;
+            padding-left: 10px;
+            background-color: #EEEEEE;
+        }
+            .summary-table td {
+                width: 50%;
+            }
+
+            .summary-table .summary-label {
+                font-weight: bold;
+                vertical-align: top;
+                width:30%
+            }
+
+            .summary-table .summary-value {
+                width:70%
+            }
+
+        .footer-row {
+            background-color: #768692;
+            width:100%;
+            height: 40px;
+        }
+
+        .summary-content-table {
+            width: 100%;
+        }
+
+        .summary-inner-table {
+            width: 100%;
+        }
+
+        .footer-cell {
+            height: 40px;
+            width:100%;
+        }
+
+        .disclaimer-table {
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 10px;
+            
+            border-top: 1px dotted #333333;
+        }
+
+    </style>
+
+    @Raw(@Model.Styles)
+
+</head>
+
+<body style="margin: 0">
+    <table class="mainTable" cellspacing="0" cellpadding="0" align="center">
+        <tbody>
+            <tr>
+                <td>
+                    <table class="content-table" cellspacing="0" cellpadding="0" align="center">
+                        <tbody>
+
+                            <tr style="width: 100%">
+                               @Raw(@Model.HeaderContent)
+                            </tr>
+
+                            <tr style="width: 100%">
+                                <td width="100%">
+                                    <table class="information-table"  cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr style="width: 100%">
+                                                <td width="100%">
+                                                    @Raw(@Model.ThankyouContent)
+                                                </td>
+                                            </tr>
+
+                                            <tr style="width: 100%">
+                                                <td width="100%">
+                                                    @Raw(@Model.SummaryContent)
+                                                </td>
+                                            </tr>
+
+                                            <tr style="width: 100%">
+                                                <td width="100%">
+                                                    @Raw(@Model.PaymentContent)
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr style="width: 100%">
+                                                <td width="100%">@Raw(@Model.DisclaimerContent)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            @if(@Model.IsMediaPrint != true)
+                            {
+                                <tr class="footer-row">
+                                    <td class="footer-cell">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    @if(@Model.IsMediaPrint != true)
+    {
+    <table class="fine-print" align="center">
+        <tbody>
+            <tr>
+                <td>
+                    <span class="fine-print-content"><a href="@Raw(@Model.UnsubscribeUrl)">Unsubscribe</a> from RAC insurance email messages &nbsp;|&nbsp; <a href="http://www.rac.com.au">rac.com.au</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    }
+</body>
+
+@helper SpacingGap(String height) {
+    <span style="font-size:@height;">
+        <br/>&nbsp;
+    </span>
+}

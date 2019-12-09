@@ -1,0 +1,73 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@model Raci.B2C.Web.Models.Common.SumInsuredData
+
+@if (Html.IsIncludeField(m => m))
+{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.QuestionWidthSmall = EditorWidth.Columns6;
+    editorParameters.QuestionWidth = EditorWidth.Columns8;
+    editorParameters.WidthSmall = EditorWidth.Columns6;
+    editorParameters.Editor = SumInsuredInputControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+
+    @UIControls.SimpleQuestionAnswer(Html, editorParameters)
+    
+    if (!editorParameters.SimpleRender)
+    {
+        @SliderControl()
+    }
+}
+
+@helper SumInsuredInputControl(EditorParameters editorParameters)
+{
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("Value");
+    string htmlSliderFieldNameId = htmlFieldNameId + "_Slider";
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    parameters["class"] = "item-input";
+    parameters["style"] = "width:100%;";
+    parameters["data-role"] = "numerictextbox";
+    parameters["data-spinners"] = "false";
+    parameters["data-min"] = Model.MinValue;
+    parameters["data-max"] = Model.MaxValue;
+    parameters["data-step"] = 100;
+    parameters["data-format"] = "c0";
+    parameters["data-sum-insured-slider-id"] = htmlSliderFieldNameId;
+    parameters["type"] = "number";
+    @Html.TextBoxFor(m => m.Value, parameters)
+}
+
+@helper SliderControl()
+{
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("Value");
+    string htmlSliderFieldNameId = htmlFieldNameId + "_Slider";
+    <div class="slider-control show-for-medium-up">
+        <div class="row collapse">
+            <div class="small-6 large-6 columns slider-boundaries">
+                @Model.MinValue.ToString("c0")
+            </div>
+            <div class="small-6 large-6 columns right-align slider-boundaries">
+                @Model.MaxValue.ToString("c0")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="slider-container">
+                <input id="@htmlSliderFieldNameId" 
+
+                    data-role="slider" 
+                   data-min="@Model.MinValue" 
+                   data-max="@Model.MaxValue" 
+                   data-value="@Model.Value" 
+                   data-small-step="100" 
+                   data-large-step="1000" 
+                   data-show-buttons="false" 
+                   data-tick-placement="none" 
+                   data-tooltip = "{enabled: false}" 
+                   data-min-label="@(Model.MinValue.ToString("c0"))" 
+                   data-max-label="@(Model.MaxValue.ToString("c0"))" 
+                   data-sum-insured-text-box-id="@htmlFieldNameId" />
+            </div>
+        </div>
+    </div>
+}

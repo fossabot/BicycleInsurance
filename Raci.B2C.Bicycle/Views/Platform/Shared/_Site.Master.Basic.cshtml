@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "RAC Insurance - " + ViewBag.Title;
+    Layout = MVC.Platform.Views.Shared._Site_Master;
+}
+
+@section SiteScriptIncludes
+{
+    @RenderSection("ScriptIncludes", false)
+}
+
+<div class="header-seperator" ></div>
+
+<div class="row">
+    <div class="large-12 columns collapse-left collapse-right">
+        <div class="body-content">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+

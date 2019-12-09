@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Raci.B2C.Bicycle</id>
+        <version>1.0.0</version>
+        <title>Bicycle Insurance</title>
+        <authors>RAC Insurance</authors>
+        <owners>RAC Insurance</owners>
+        <description>RAC Insurance Bicycle Insurance</description>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    </metadata>
+    <files>
+        <!--
+            Adding this will make Octopack put the webjobs into the right place. You will also need to open the solution properties and add a 
+            dependency from the web project to the web job to make sure the job is compiled first.
+        -->
+        <file src="..\BikeInsuranceDataExtract\bin\release\**\*.*" target="App_Data\jobs\triggered\DataExtract"/>
+    </files>
+</package>

@@ -1,0 +1,28 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = StringControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+    editorParameters.QuestionWidthSmall = EditorWidth.Columns5;
+    editorParameters.WidthSmall = EditorWidth.Columns7;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper StringControl(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    parameters["placeholder"] = Html.GetQuestionWatermark(ViewData.ModelMetadata, null, null, editorParameters.Watermark);
+    parameters["data-role"] = "textbox";
+    parameters["style"] = "width:100%;";
+
+    <div class="row collapse">
+        <div class="large-3 small-6 columns">
+            @Html.TextBoxFor(m => m, parameters)
+        </div>
+    </div>
+}

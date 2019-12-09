@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+  <generalItems>
+    <item id="PolicyDetails">
+      Policy details
+    </item>
+    <item id="AssetDetails">
+      Asset details
+    </item>
+    <item id="ContactRACForMoreDetails">
+      <![CDATA[
+	  <b>New features coming soon!</b> </br>
+	  We are working on new features which will help you manage your policy online.
+	  In the meantime, if you would like to make changes to this policy please call us on <b class="u-noWrap">1300 657 627</b>.
+      ]]>
+    </item>
+  </generalItems>
+  <questions>
+    <question id="PolicyDetails.PolicyNumber" label="Policy number">
+    </question>
+    <question id="PolicyDetails.RenewalDate" label="Renewal date">
+    <helpText title="Renewal date">
+        <![CDATA[                    
+        This is the date on which your current policy is due to expire.
+        ]]>
+      </helpText>
+	</question>
+    <question id="PolicyDetails.MailingAddress" label="Policy mailing address">
+    <helpText title="Policy mailing address">
+        <![CDATA[                    
+        This is the address you have nominated for your policy documentation to be delivered to, it is not necessarily the address of your insured property.
+        ]]>
+      </helpText>
+	</question>	  
+  </questions>
+</root>
+

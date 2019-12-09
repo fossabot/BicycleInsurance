@@ -1,0 +1,70 @@
+﻿@model Raci.B2C.Web.Areas.QuoteMotor.Models.VehicleRegistrationViewModel
+
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = VehicleRegistrationControl;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.String;
+    editorParameters.Width = EditorWidth.Columns8;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+    <div class="row collapse vehicle-registration-isunknown">
+        <div class="info-box vehicle-registration-isunknown-box">
+            <p>@Html.Content(ContentKey.GeneralText.General.VehicleRegistrationIsUnknownText)</p>
+        </div>    
+    </div>
+
+
+@helper VehicleRegistrationControl(EditorParameters editorParameters)
+{
+    Html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldNameId = Html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+    Dictionary<string, object> checkboxParameters = new Dictionary<string, object>();
+
+    parameters["data-role"] = "textbox";
+    parameters["style"] = "width:100%";
+    parameters["maxlength"] = 12;
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        parameters["readonly"] = "readonly";
+    }
+    
+    checkboxParameters["style"] = "width:100%";
+    checkboxParameters["class"] = "roadmap";
+    
+    <div id="@htmlFieldNameId" class="row collapse vehicle-registration">
+        
+        <div class="row collapse">
+            <div class="large-4 columns vehicle-registration-number">
+                @Html.TextBoxFor(m => m.Number, parameters)
+            </div>
+        </div>
+        
+        @if (editorParameters.State != EditorState.Readonly)
+        {
+
+            <div class="row collapse ">
+                <div class="small-1 column left">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.IsUnknown, checkboxParameters)
+                
+                        <span class="cb-checkbox">
+                            <i class="icon-check" style="display: none"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="small-11 column vehicle-registration-checkbox-label">
+                    @Html.SimpleQuestionLabelFor(m => m.IsUnknown)
+                </div>
+            </div>
+
+        }
+
+    </div>
+}

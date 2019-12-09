@@ -1,0 +1,18 @@
+﻿@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc.Dependency
+
+@{
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = TimeData;
+    editorParameters.DependencyScriptType = DependencyStartupScriptType.Time;
+}
+
+@UIControls.SimpleQuestionAnswer(Html, editorParameters)
+
+@helper TimeData(EditorParameters editorParameters)
+{
+    TimeData currentValue = Model;
+    <div class="display-answer">
+        @currentValue.ToString()
+    </div>
+}

@@ -1,0 +1,6 @@
+﻿@model Raci.B2C.Web.Models.Common.DateData
+
+@if (Html.IsIncludeField(m => m))
+{
+    @UIControls.DayMonthYearSelect(Html, Model)
+}

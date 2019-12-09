@@ -1,0 +1,66 @@
+﻿@using System.Collections.Generic
+@using Raci.B2C.Model.Entity
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@helper SetupChat(LivePersonSettings settings, Dictionary<string, string> livePersonParameters = null)
+{
+    string unit = ChatExtensions.GetUnit(livePersonParameters);
+    string mobileSkill = unit != null ? unit + "-mobile" : "";
+
+    if (settings != null)
+    {
+    <script type="text/javascript">
+        var lpTag = lpTag || {}; lpTag.vars = lpTag.vars || []; lpTag.dbs = lpTag.dbs || [];
+
+        lpTag.site = "@(settings.AccountNumber)";
+
+        @if (livePersonParameters != null)
+        {
+            foreach (var keyValuePair in livePersonParameters)
+            {
+                @:lpTag.vars.push([{scope: "page", name: "@keyValuePair.Key", value: "@keyValuePair.Value"}]);
+            }
+        }
+
+        /* LP Mobile JS Configuration */
+        var setButtonImage = function(selector, imageUrl) {
+            var button = document.querySelector(selector);
+            button.style.display = "block";
+            button.setAttribute("disabled", "true");
+            button.innerHTML = "<img src='" + imageUrl + "'>";
+        }
+
+        var _LP_CFG_ = {
+            app_id: "@(settings.AccountNumber)",
+            options: {
+                triggerSelector: ".initiate-chat-button", // optional CSS selector to provide a button on the page
+                skill: "@(mobileSkill)",
+
+                extras: function () {
+                    var extras = {};
+
+                    @if (livePersonParameters != null)
+                    {
+                        foreach (var keyValuePair in livePersonParameters)
+                        {
+                            @:extras["@(keyValuePair.Key)"] = "@(keyValuePair.Value)";
+                        }
+                    }
+
+                    return extras;
+
+                },
+                onChatDisabled: function (els) {
+                    setButtonImage("#lpButtonDiv-mobfoot", "https://rac.com.au/cs/groups/public/documents/internetcontent/racstg054751.png");
+                    setButtonImage("#lpButtonDiv-deskfoot", "https://rac.com.au/cs/groups/public/documents/internetcontent/racstg054080.gif");
+                },
+                onChatEnabled: function (els) {
+                    setButtonImage("#lpButtonDiv-mobfoot", "https://rac.com.au/cs/groups/public/documents/internetcontent/racstg054750.png");
+                    setButtonImage("#lpButtonDiv-deskfoot", "https://rac.com.au/cs/groups/public/documents/internetcontent/racstg054076.gif");
+                }
+            }
+        };
+    /* End of Configuration */
+    </script>
+    }
+}

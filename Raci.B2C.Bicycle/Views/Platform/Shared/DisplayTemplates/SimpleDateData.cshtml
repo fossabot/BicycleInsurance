@@ -1,0 +1,17 @@
+﻿@model Raci.B2C.Web.Models.Common.DateData
+
+@if (Html.IsIncludeField(m => m))
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    ((HtmlHelper) Html).ViewData["displayOnly"] = true;
+    ((HtmlHelper)Html).ViewData["id"] = htmlId + "_displayOnly";
+
+
+    <fieldset id="@(htmlId)" class="dateEntry">
+        @Html.HiddenFor(m => m.Day)
+        @Html.HiddenFor(m => m.Month)
+        @Html.HiddenFor(m => m.Year)
+        @UIControls.TextBox(Html, Model.ToString())
+    </fieldset>
+}

@@ -1,0 +1,83 @@
+﻿@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model Raci.B2C.Web.Models.Common.SuburbData
+
+@{    
+    EditorParameters editorParameters = Html.ViewData.GetEditorParameters();
+    editorParameters.Editor = SuburbData;
+    editorParameters.Errors = ErrorMessages;
+    editorParameters.LabelForExpression = "Suburb";
+}
+
+@if (!editorParameters.SimpleRender)
+{
+    @UIControls.SimpleQuestionAnswer(Html, editorParameters)
+}
+else
+{
+    //@UIControls.SimpleAnswer(Html,editorParameters)
+    @SuburbData(editorParameters)
+}
+
+@helper SuburbData(EditorParameters editorParameters)
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName(""); 
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    bool? includePoBoxes = ViewData["include-PoBoxes"] as bool?;
+    string idMemberId = ViewData.TemplateInfo.GetFullHtmlFieldId("ZipId");
+    string cityId = ViewData.TemplateInfo.GetFullHtmlFieldId("CityId");
+    
+    string nameMemberId = ViewData.TemplateInfo.GetFullHtmlFieldId("Suburb");
+    string postCodeMemberId = ViewData.TemplateInfo.GetFullHtmlFieldId("PostCode");
+    string callbackFunctionName = ViewBag.CallbackFunctionName;
+    
+    Dictionary<string, object> generalParameters = new Dictionary<string, object>();
+    generalParameters["data-role"] = "suburbEntry";
+    generalParameters["data-id-member-id"] = idMemberId;
+    generalParameters["data-id-member-cityid"] = cityId;
+    generalParameters["data-name-member-id"] = nameMemberId;
+    generalParameters["data-postcode-member-id"] = postCodeMemberId;
+    
+    generalParameters["data-url"] = Url.Action(MVC.Address.GetSuburbPostCodeCompletionList());
+    Dictionary<string, object> suburbParameters = new Dictionary<string, object>();
+    suburbParameters["data-placeholder"] = editorParameters.Watermark;
+    suburbParameters["style"] = "width:100%";
+    suburbParameters["autocorrect"] = "off";
+    suburbParameters["autocapitalize"] = "off";
+    suburbParameters["autocomplete"] = "off";
+
+    if (includePoBoxes == null)
+    {
+        includePoBoxes = true;    
+    }
+
+    generalParameters["data-include-poboxes"] = includePoBoxes;
+    
+    if (callbackFunctionName != null)
+    {
+        generalParameters["data-callback-funcation"] = callbackFunctionName;
+    }
+
+
+    if (editorParameters.State == EditorState.Disabled)
+    {
+        suburbParameters["disabled"] = "disabled";
+    }
+
+    if (editorParameters.State == EditorState.Readonly)
+    {
+        suburbParameters["readonly"] = "readonly";
+    }
+        
+    <div class="suburbEntry" id="@htmlId" @generalParameters.ToHtmlAttributes()>
+        @Html.TextBoxFor(m => m.Suburb, suburbParameters) 
+        @Html.HiddenFor(m => m.ZipId)
+        @Html.HiddenFor(m => m.CityId)
+        @Html.HiddenFor(m => m.PostCode)
+    </div>
+}
+
+@helper ErrorMessages()
+{
+    @Html.ValidationMessageRaciFor2(m => m.Suburb)    
+}

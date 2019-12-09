@@ -1,0 +1,9 @@
+﻿@{
+    string marketingRailStyle = ViewBag.MarketingRailStyle;
+    string marketingRailWidth = ViewBag.MarketingRailWidth ?? "large-3 right-rail";
+}
+
+<div class="@marketingRailWidth columns collapse-right show-for-medium-up">
+    <div id="marketing-area" class="@marketingRailStyle">
+    </div>
+</div>

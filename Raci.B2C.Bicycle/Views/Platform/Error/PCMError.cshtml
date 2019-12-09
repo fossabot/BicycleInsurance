@@ -1,0 +1,13 @@
+﻿@model Raci.B2C.Web.Models.ErrorViewModel
+
+@{
+    Layout = Request.IsAjaxRequest() ? null : MVC.Shared.Views._Site_Master_PCM;
+}
+
+
+<div class="pcm-generic-error">
+    <div class="row">
+        @PCMInfoBoxHelper.AlertBoxWithHeader(new HtmlString(Model.ErrorMessage))
+        @Html.Partial(MVC.Error.Views._ExceptionStackTracePartial, Model)
+    </div>    
+</div>

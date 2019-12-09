@@ -1,0 +1,61 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc.Dependency
+
+@if (Html.IsIncludeField(m => m))
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlFieldNameId = ViewData.TemplateInfo.GetFullHtmlFieldId("");
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    IEnumerable<SelectListItem> items = referenceData.GetSelectOptions(htmlFieldName);
+    List<SelectListItem> selectListItems;
+
+    if (items != null)
+    {
+        selectListItems = new List<SelectListItem>(items);
+    }
+    else
+    {
+        selectListItems = new List<SelectListItem>();
+    }
+
+    <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.RadioSet)>
+        <div class="question">
+            @Html.QuestionLabel("")
+        </div>
+        <div class="answer">
+            <div class="@(Html.DetermineValidationClass(htmlFieldName)) radioSet" id="@htmlFieldNameId" disabled="disabled">
+                @{
+                    for (int i = 0; i < selectListItems.Count(); i++)
+                    {
+                        SelectListItem currentItem;
+                        string className;
+                        string fieldId;
+
+                        currentItem = selectListItems[i];
+                        fieldId = TagBuilder.CreateSanitizedId(htmlFieldName + "." + currentItem.Value);
+                        
+                        if (i == 0)
+                        {
+                            className = "firstRadioItem";
+                        }
+                        else
+                        {
+                            className = "otherRadioItem";
+                        }
+
+                        bool isChecked = false;
+                            
+                        if( Model != null )
+                        {
+                            isChecked = String.Equals(Model.ToString(), currentItem.Value, StringComparison.OrdinalIgnoreCase);
+                        }
+
+                        @Html.RadioButton("", currentItem.Value, isChecked, new { id = fieldId, disabled = "disabled", @readonly = "readonly" })
+                        <label id="@(fieldId)_Label" for="@(fieldId)" class="@className">@currentItem.Text</label>
+                    }
+                }
+            </div>           
+        </div> 
+        <br class="clear" />
+    </div>
+}

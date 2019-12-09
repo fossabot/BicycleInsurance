@@ -1,0 +1,14 @@
+﻿@model Raci.B2C.Web.Mvc.B2CModelViewUserControl<System.Web.Mvc.HandleErrorInfo>
+
+@{
+    ViewBag.Title = "CustomError";
+    Layout = "~/Views/Shared/_Site.Master.cshtml";
+}
+
+@Html.Raw(@Html.Content(ContentKey.GeneralText.Error.CallUsBackText))
+@Html.ActionLink("Car insurance quote", "Questions", "Question", new { area = "QuoteMotor" }, new { @class = "racInternalLink" } )
+<br />
+@Html.ActionLink("Home insurance quote", "Questions", "Question", new { area = "QuoteHome" }, new { @class = "racInternalLink" } )
+<br />
+@Html.ActionLink("Submit a claim", "Questions", "Preamble", new { area = "Claim2" }, new { @class = "racInternalLink" } )
+

@@ -1,0 +1,57 @@
+declare module B2C {
+    class MailingAddressControl {
+        private _mailingAddressControl;
+        private _answer;
+        private _searchControls;
+        private _isStreetAddress;
+        private _lockToStreetAddress;
+        private _mailingAddressFullContainer;
+        private _mailingAddressStreetPOBoxRadioSet;
+        private _unitNumber;
+        private _houseNumber;
+        private _postBoxNumber;
+        private _streetAddress;
+        private _suburbName;
+        private _postCode;
+        private _addressDescription;
+        private _addressMoniker;
+        private _matchingAddresses;
+        private _selectedAddress;
+        private _selectedFullAddressContainer;
+        private _isStreetAddressQuestion;
+        private _selectedChangeAddress;
+        private _infoArea;
+        private _infoContent;
+        private _errors;
+        private _dataUrl;
+        private _findButton;
+        private _isFullAddressMode;
+        private _matchingAddressesTemplate;
+        private _selectedAddressTemplate;
+        private _useGnaf;
+        private _gnafValidationUrl;
+        constructor(controlId: any, antiforgeryTokenValue: any);
+        static init(scope: any, antiforgeryTokenValue: any): void;
+        init(): void;
+        showOrHidePoBox(): void;
+        search(isPageLoad: any): void;
+        private initControlState();
+        onChangeSelectedAddress(e: any): boolean;
+        private onAddressSelected(e);
+        private setSelectedAddress(addressMoniker, addressDescription, isPageLoad?);
+        private performGnafVerification();
+        private selectAddressInRow(row);
+        private hideInputsAndShowSelected();
+        private hideSelectedAndShowInputs();
+        private makeAnswerAreaBig();
+        private makeAnswerAreaSmall();
+        private showSelectedAddress(_addressDescription, isPageLoad?);
+        private performSearch(isPageLoad);
+        private performFullSearch(isPageLoad);
+        private resetSearch(inlcudeHidden, isPageLoad);
+        private clearErrors();
+        private hideInfo();
+        private clearSeletedAddress();
+        private updateSelectedAddress(data, isPageLoad);
+    }
+}

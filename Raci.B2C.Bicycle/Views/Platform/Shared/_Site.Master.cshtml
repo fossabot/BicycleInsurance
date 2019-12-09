@@ -1,0 +1,171 @@
+﻿@using System.Collections.Generic
+@using System.Web.Mvc
+@using Raci.B2C.Model.Entity
+@using Raci.B2C.Web.DynamicContent
+@using Raci.B2C.Web.FluentHtml
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@{
+    ServiceAvailabilityViewModel serviceAvailability;
+
+    if (TempData.ContainsKey(typeof(ServiceAvailabilityViewModel).FullName))
+    {
+        serviceAvailability = TempData[typeof(ServiceAvailabilityViewModel).FullName] as ServiceAvailabilityViewModel;
+    }
+    else
+    {
+        serviceAvailability = new ServiceAvailabilityViewModel();
+    }
+
+    ContactUsViewModel contactUsViewModel = ViewBag.ContactUs ?? ContactUsViewModel.Default;
+
+    ViewBag.Title = "RAC Insurance - " + ViewBag.Title;
+
+    Layout = (ViewEngines.Engines.FindView(this.ViewContext.Controller.ControllerContext, "_Site", "").View as RazorView)?.ViewPath;
+
+    ViewBag.LivePersonParameters = ViewBag.LivePersonParameters ?? new Dictionary<string, string>();
+    ViewBag.LivePersonParameters[LivePersonVariable.PageName] = ViewBag.Title;
+}
+
+<div id="wrapper" class="main-section">
+    @UIControls.OutdatedBrowserWarning()
+    
+    @RenderSection("OffCanvasHeader", false)
+    @RenderSection("OffCanvasMenu", false)
+
+    <div class="header-sunburst show-for-medium-up"></div>
+    <div class="quote-site-header">
+        <div class="row">
+            <div class="small-7 large-4 collapse-left columns">
+                <div class="header-image header-logo-image" data-onclick-navigation-url="@Raci.B2C.Web.Util.ExternalUrlConfig.Instance.RacUrl"></div>
+            </div>
+
+            @RenderSection("HeaderContent", false)
+
+            <div class='small-5 large-4 right columns'>
+                <div class="header-call-us show-for-medium-up">
+                    Need help? Call  <strong class="u-noWrap">@contactUsViewModel.PhoneNumberFormatted</strong>
+                </div>
+                <a href="tel:@contactUsViewModel.PhoneNumber" target="_blank" class="show-for-small btn secondarydark header-call-us-button">
+                    Call us
+                </a>
+            </div>
+
+            <div class='large-4 columns'>
+                @RenderSection("Close", false)
+            </div>
+
+            <div class='large-4 columns'>
+                @RenderSection("TerminateSession", false)
+            </div>
+        </div>
+    </div>
+
+    <noscript>
+        <div id="contentContainer">
+            <div id="noscriptText">To utilise the full features of our website, please enable JavaScript.</div>
+        </div>
+    </noscript>
+
+    @RenderBody()
+    
+    <div id="push"></div>
+</div>
+
+@if (serviceAvailability.ChatOnline != ServiceStatus.Disabled)
+{
+    <div class="show-for-medium-up">
+        <div id="@(Html.ChatFloatingButtonId(ViewBag.LivePersonParameters as Dictionary<string, string>))"></div>
+    </div>
+}
+
+@Footer(serviceAvailability)
+
+@helper Footer(ServiceAvailabilityViewModel serviceAvailability)
+{
+    <div id="floating-footer-note-container">
+        <div class="floating-footer-note">
+            <div class="row collapse">
+                @if (serviceAvailability.Callback != ServiceStatus.Disabled)
+                {
+                    @FooterButton("call-back-button", "icon-call-back", Html.Content(ContentKey.GeneralText.General.CallBackTitle).ToString(), Html.Content(ContentKey.GeneralText.General.CallBackText).ToString(), @Url.Action(MVC.ServiceAvailability.IsCallbackServiceAvailable()))
+                }
+
+                @if (serviceAvailability.ChatOnline != ServiceStatus.Disabled)
+                {
+                    @*PLATFORM @ChatFooterButton(@Url.Action(MVC.ServiceAvailability.IsChatServiceAvailable()))*@
+                }
+
+                @if (serviceAvailability.Feedback != ServiceStatus.Disabled)
+                {
+                    @FooterButton("feedback-button", "icon-mail", Html.Content(ContentKey.GeneralText.General.FeedbackTitle).ToString(), Html.Content(ContentKey.GeneralText.General.FeedbackText).ToString(), @Url.Action(MVC.ServiceAvailability.IsFeedbackServiceAvailable()))
+                }
+            </div>
+
+            <div class="footer-links-container show-for-medium-up">
+                &nbsp; <a rel="nofollow" class="footer-links" target="_blank" href="@Raci.B2C.Web.Util.ExternalUrlConfig.Instance.PrivacyUrl">Privacy</a>
+                &nbsp; <a rel="nofollow" class="footer-links" target="_blank" href="@Raci.B2C.Web.Util.ExternalUrlConfig.Instance.SecurityUrl">Security</a>
+                &nbsp; <a rel="nofollow" class="footer-links" target="_blank" href="@Raci.B2C.Web.Util.ExternalUrlConfig.Instance.DisclaimerUrl">Disclaimer</a>
+            </div>
+            <span class="footer-version show-for-medium-up">@Raci.B2C.Web.Util.AppConfig.Instance.Version</span>
+        </div>
+    </div>
+}
+
+@helper FooterButton(string id, string imageClass, string title, string description, string availabilityServiceUrl)
+{
+    <div id="@id" class="large-4 small-4 collapse-left columns" data-service-availibility-url="@availabilityServiceUrl">
+        <div class="footer-button clickable show-for-medium-up">
+            <div class="footer-image @imageClass"></div>
+            <div class="footer-text">
+                <div class="footer-title">@title</div>
+                <div class="footer-description">@description</div>
+            </div>
+        </div>
+
+        <div class="footer-button clickable collapse-bottom show-for-small">
+            <div class="footer-image @imageClass"></div>
+            <br />
+            <span class="footer-title">@title</span>
+        </div>
+    </div>
+}
+
+@helper ChatFooterButton(string availabilityServiceUrl)
+{
+    <div id="chat-button" class="large-4 small-4 collapse-left columns left" data-service-availibility-url="@availabilityServiceUrl">
+        <div class="footer-button show-for-medium-up">
+            @* adding the nbsp to the div stops it from collapsing to nothing when first loaded. It will be replaced with the chat button *@
+            <div id="@(Html.ChatDesktopButtonId(ViewBag.LivePersonParameters as Dictionary<string, string>))" class="initiate-chat-button">&nbsp;</div>
+        </div>
+
+        <div class="footer-button collapse-bottom show-for-small">
+            <div id="@(Html.ChatMobileButtonId(ViewBag.LivePersonParameters as Dictionary<string, string>))" class="initiate-chat-button">&nbsp;</div>
+        </div>
+    </div>
+}
+
+@section HeaderStyles
+{
+    <link href="/dist/b2cplatform.min.css" rel="stylesheet" />
+    <link href='/dist/b2cplatform.desktop.min.css' rel='stylesheet' type='text/css' media='only screen and (min-width: 768px)' />
+    @RenderSection("HeaderStyles", false)
+}
+
+@section StartOfBody
+{
+    @RenderSection("StartOfBody", false)
+}
+
+@section HeaderIncludes 
+{
+    @RenderSection("HeaderIncludes", false)
+}
+
+@section SiteScriptIncludes 
+{
+    @RenderSection("SiteScriptIncludes", false)
+}

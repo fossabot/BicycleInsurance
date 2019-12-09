@@ -1,0 +1,24 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@model Raci.B2C.Web.Models.Common.SuburbData
+           
+@if (Html.IsIncludeField(m => m))
+{
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    ((HtmlHelper)Html).ViewData["width"] = 200;
+    ((HtmlHelper)Html).ViewData["displayOnly"] = true;
+    ((HtmlHelper)Html).ViewData["id"] = htmlId + "_displayOnly";
+    
+    <div class="@Html.GetQuestionContainerClass()" @Html.GetDependencyAttributes("", DependencyStartupScriptType.Other)> 
+        <div class="question">
+            @Html.QuestionLabelFor(m => m.Suburb)
+        </div>
+        <div class="answer">
+            <fieldset class="suburbEntry" id="@htmlId">                   
+                @UIControls.TextBox( Html, Model.Suburb )
+            </fieldset>
+        </div>
+    </div>
+}

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<questions>
+		<question id="MailingAddress" label="Mailing address">
+		</question>
+
+		<question id="Address.IsStreetAddress" label="Mailing address">
+			<helpText title="Mailing address">
+				<![CDATA[
+					Please select if your mailing address is a Street address or a Post office box. A post office box also includes GPO, Private bag, Locked bag and other 
+					Australia Post classifications. Simply enter the prefix and then click "Verify your address".
+					<br/><br/>
+					If you are unable to find your address, enter fewer details e.g. remove the unit number or postcode and try again.
+					<br/><br/>
+					If you cannot locate your address please call us on 1300 657 627.
+				]]>
+			</helpText>
+
+		</question>
+
+		<question id="EmailAddress" label="Email address">
+			<errors>
+				<add key="Required" value="Please enter your email address."/>
+				<add key="EmailFormat" value="Please enter a valid email address."/>
+				<add key="StringLength" value="Email addrss is too long. (Maximum 50 characters)" />
+			</errors>
+			<helpText>
+			</helpText>
+		</question>
+
+		<question id="Address" label="Mailing address">
+			<helpText>
+			</helpText>
+		</question>
+
+		<question id="Address.UnitNumber" label="Unit number">
+			<helpText title="Unit number">
+				<![CDATA[
+					Please enter the number for your unit, apartment, flat etc.
+				]]>
+			</helpText>
+		</question>
+
+		<question id="Address.PostBoxNumber" label="Post box number">
+			<helpText title = "Post box number">
+				<![CDATA[
+					Please enter your PO Box, GPO, Private bag, Locked bag or other Australia Post classification number.
+				]]>
+			</helpText>
+		</question>
+
+		<question id="Address.HouseNumber" label="House number">
+			<helpText title="House number">
+				<![CDATA[
+					Please enter the number of your home.
+				]]>
+			</helpText>
+		</question>
+
+		<question id="Address.SuburbName" label="Suburb">
+		</question>
+
+		<question id="Address.PostCode" label="Postcode">
+		</question>
+
+		<question id="Address.Street" label="Street">
+			<helpText title="Street name">
+				<![CDATA[
+					Please enter your street name including the type e.g. street, road, court etc.
+				]]>
+			</helpText>
+		</question>
+
+		<question id="Title" label="Title">
+			<errors>
+				<add Key="RequiredSelect" value="Please select a title."/>
+			</errors>
+			<helpText >
+			</helpText>
+		</question>
+
+		<question id="FirstName" label="First name">
+			<errors>
+				<add Key="RequiredText" value="Please enter your first name."/>
+				<add key="StringLength" value="First name can be a maximum of [%MAX_LENGTH%] characters." />
+				<add key="FieldHasInvalidCharacters" value="The first name contains invalid characters." />
+			</errors>
+			<helpText >
+			</helpText>
+		</question>
+
+		<question id="MiddleName" label="Middle name">
+			<errors>
+				<add key="StringLength" value="Middle name can be a maximum of [%MAX_LENGTH%] characters." />
+				<add key="FieldHasInvalidCharacters" value="The middle name contains invalid characters." />
+			</errors>
+			<helpText>
+			</helpText>
+		</question>
+
+		<question id="LastName" label="Last name">
+			<errors>
+				<add key="StringLength" value="Last name can be a maximum of [%MAX_LENGTH%] characters." />
+				<add key="FieldHasInvalidCharacters" value="The last name contains invalid characters." />
+			</errors>
+			<helpText>
+			</helpText>
+
+		</question>
+
+		<question id="DateOfBirth" label="Please confirm your date of birth"></question>
+
+		<question id="MobileNumber" label="Mobile phone number">
+			<errors>
+			</errors>
+			<helpText>
+			</helpText>
+		</question>
+
+		<question id="HomeNumber" label="Home phone number">
+			<errors>
+			</errors>
+			<helpText>
+			</helpText>
+		</question>
+
+		<question id="WorkNumber" label="Work phone number">
+			<errors>
+			</errors>
+			<helpText>
+			</helpText>
+		</question>
+	</questions>
+	<generalItems>
+		<error id="DateOfBirthIsRequired">
+			<![CDATA[
+				<span id="date-of-birth-error">Please enter your date of birth <span class="u-noWrap">(dd-mm-yyyy)</span>.</span>
+			]]>
+		</error>
+		
+		<error id="DateOfBirthDoesNotMatch">
+			<![CDATA[
+				<span id="date-of-birth-error">Unfortunately we are unable to complete your request please call <strong class="u-noWrap">1300 657 627</strong> for assistance.</span>
+			]]>
+		</error>
+		
+		<item id="MemberDetailsChangeConfirmationMessage">
+			<![CDATA[
+				<div class="PCMHeadingText">Thank you</div>
+				<br/>
+				You have successfully updated your personal details. These changes will be reflected in your membership and roadside assistance records. 
+				<br/><br/>
+				<b>Policy address(s)</b> 
+				<br/><br/>
+				If you have updated your address and this change also applies to your policy(s), please update where you keep your car for your car policies in <a class="link" href="{0}">My policies</a>. Or for home insurance please call us on <b class='u-noWrap'> 1300 657 627</b> to change your address.
+				<br/><br/>
+				<b>Other policyholders </b>
+				<br/><br/>
+				Please ensure that other policyholders have also changed their mailing address if required.
+	        ]]>
+		</item>
+	</generalItems>
+</root>

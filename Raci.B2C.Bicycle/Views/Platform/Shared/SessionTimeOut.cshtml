@@ -1,0 +1,15 @@
+﻿@model HandleErrorInfo
+
+@{
+
+    Layout = MVC.Shared.Views._Site_Master;
+}
+
+
+
+<div class="contentContainer">
+    <div class="row accordion" data-selected-accordion="">
+        some info about Session Timeout .
+        @Model.Exception;
+    </div>
+</div>

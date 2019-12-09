@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+    <generalItems>
+        <item id="questionsGroup1">
+            Please call me back on my preferred contact number
+        </item>
+    </generalItems>
+
+    <questions>
+        <question id="FirstName" label="First name">
+			<errors>
+				<add key="Required" value="Please specify your first name" />
+			</errors>
+            <helpText>
+            </helpText>
+        </question>
+        <question id="LastName" label="Last name">
+			<errors>
+				<add key="Required" value="Please specify your last name" />
+			</errors>
+            <helpText>
+            </helpText>
+        </question>
+        <question id="TelephoneNumber" label="Phone number">
+			<errors>
+				<add key="Required" value="Please specify a contact phone number" />
+			</errors>
+            <helpText>
+            </helpText>
+        </question>
+        <question id="PreferredContactTime" label="Preferred contact time">
+			<errors>
+				<add key="Required" value="Please specify a preferred contact time" />
+			</errors>
+            <helpText>
+            </helpText>
+        </question>
+    </questions>
+</root>

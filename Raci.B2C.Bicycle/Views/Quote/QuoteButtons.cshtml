@@ -1,0 +1,25 @@
+﻿@using Raci.B2C.Web.Util;
+
+@model Raci.B2C.Bicycle.Models.BicycleQuote
+
+<div class="row">
+    <div id="midpage-back">
+        @UIControls.BackButton("Back")
+    </div>
+    <div class="quote-buttons">
+        @*<a id="save-quote" class="expando-button" onclick="pageController.SaveQuote();">
+            <span class="icon-upload"></span>
+            <h5>Save my<br /> quote</h5>
+        </a>*@
+
+@*        <a id="print-quote" class="expando-button show-for-medium-up" onclick="@String.Format("pageController.print('{0}', 'Saving quote...'); return false;",  Url.Action("SaveAndPrintQuote", "Quote", new { policyId = Model.PolicySessionId }))" href="#print-quote">*@
+@*            <span class="icon-printer"></span>*@
+@*            <h5>Print my <br />quote</h5>*@
+@*        </a>*@
+@**@
+@*        <a id="email-quote" class="expando-button" onclick="pageController.OpenSaveAndEmailDialog(); return false;" data-open-dialog-url="@Url.Action("SaveAndEmailQuoteDialog")">*@
+@*            <span class="icon-mail"></span>*@
+@*            <h5>Email me <br />my quote</h5>*@
+@*        </a>*@
+    </div>
+</div>

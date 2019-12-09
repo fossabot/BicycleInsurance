@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Update quote";
+}
+
+<div id="simple-dialog">
+    @Html.AntiForgeryToken()
+    
+    <div class="questionSetContainer">
+
+        @Html.Content(ContentKey.GeneralText.General.QuoteReCalculatePromptText)
+    
+    </div>
+    
+        <div class="button-container row">
+        <div class="small-12 columns text-right">
+            <button class="btn primary animate-chevron-right dialog-button"onclick="@ViewData["onAction"]">
+                <span class="btn-text">Update my quote</span>
+                <span class="icon-symbol"><i class="icon-chevron-right"></i></span>
+            </button>
+        </div>
+    </div>
+
+</div>

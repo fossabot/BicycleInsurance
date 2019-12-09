@@ -1,0 +1,25 @@
+﻿@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@{
+ string controlSuperScript = ViewData["Superscript"] as string;
+ string containerclass = ViewData["class"] as string;
+
+ @* don't allow the class to descend to the selectList rendering level *@
+ ViewData["class"] = null;
+
+ }
+
+<div class="@containerclass">
+
+@* render the superscript text above *@
+@if (!String.IsNullOrEmpty(controlSuperScript))
+{
+    <div class="superscript">
+        @controlSuperScript
+    </div>
+}
+
+@UIControls.SelectList(Html, Model)
+
+</div>

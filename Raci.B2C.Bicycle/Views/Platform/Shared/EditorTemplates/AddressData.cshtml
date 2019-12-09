@@ -1,0 +1,52 @@
+﻿@using System.Web.Mvc.Html
+@using MvcContrib.FluentHtml
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.Script
+@using Raci.B2C.Web.Mvc.PageExtensions
+@using Raci.B2C.Web.Views.Shared.EditorTemplates.Scripts
+
+@model Raci.B2C.Web.Models.Common.AddressData
+           
+@if (Html.IsIncludeField(m => m))
+{
+    string suburbHtmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string suburbHtmlId = suburbHtmlFieldName.FormatAsHtmlId();
+    <div @Html.GetDependencyAttributes("", DependencyStartupScriptType.String) >
+   
+        <!-- Suburb -->
+        <div class="question"> 
+            <label class="questionLabel">Driver Address: </label>
+        </div>
+        <div class="answer">
+            <fieldset class="suburbEntry" id="@suburbHtmlId">                   
+                @Html.TextBoxFor(m => m.Suburb, new { @class = "fieldMedium" })
+                @Html.HiddenFor(m => m.ZipId)
+                @Html.HiddenFor(m => m.CityId)
+                @Html.HiddenFor(m => m.PostCode)
+                @Html.HelpFor(m => m.Suburb)
+            </fieldset>
+        </div>
+        <br class='clear' />
+        @Html.ValidationMessageRaciFor(m => m.Suburb)
+
+        <div class="clear"></div>
+
+        <!-- Street -->
+        <span class="question">&nbsp;</span>
+        <div class="answer">
+            @Html.EditorFor(m => m.Street, width: 260, templateName: "Street", subScript: "(Example: 1/10 Main Street)", watermark: "Enter street")
+        </div>
+        @Html.HiddenFor(m => m.AddressMoniker)                              
+    </div>
+    
+    string nameMemberId = ViewData.TemplateInfo.GetFullHtmlFieldId("Suburb");
+    string postCodeMemberId = ViewData.TemplateInfo.GetFullHtmlFieldId("PostCode");
+    string callbackFunctionName = ViewBag.CallbackFunctionName;
+           
+    string idMemberId = ViewData.TemplateInfo.GetFullHtmlFieldId("SuburbId");
+    string addressText = ViewData.TemplateInfo.GetFullHtmlFieldId("Street");
+    string addressMoniker = ViewData.TemplateInfo.GetFullHtmlFieldId("AddressMoniker");
+
+    ScriptRegistrarFactory.ScriptRegistrar.AddStartup(new SuburbEditorStartupScript(idMemberId, nameMemberId, postCodeMemberId, callbackFunctionName));
+    ScriptRegistrarFactory.ScriptRegistrar.AddStartup(new AddressEditorStartUpScript(addressMoniker, addressText, idMemberId));
+}

@@ -1,0 +1,31 @@
+﻿@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@if (Html.IsIncludeField(m => m))
+{
+    BaseReferenceData referenceData = Html.GetReferenceData();
+    SelectList selectListItems = referenceData.GetSelectOptions(ViewData.TemplateInfo.GetFullHtmlFieldName("")).CreateSelectList((object)Model);
+
+    string result = "";
+    SelectListItem firstOrDefault = null;
+
+    if (selectListItems.SelectedValue != null)
+    {
+        firstOrDefault = selectListItems.FirstOrDefault(item => item.Value == selectListItems.SelectedValue.ToString());
+    }
+    
+    if (firstOrDefault != null)
+    {
+        result = firstOrDefault.Text;
+    }
+
+    string htmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("") + ".displayOnly";
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    
+    @Html.HiddenFor(m => m)
+
+    ((HtmlHelper)Html).ViewData["displayOnly"] = true;
+    ((HtmlHelper)Html).ViewData["id"] = htmlId;
+
+    @UIControls.TextBox(Html, result, nameOverride: htmlFieldName)
+}

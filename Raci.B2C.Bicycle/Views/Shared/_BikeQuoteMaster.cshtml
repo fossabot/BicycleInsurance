@@ -1,0 +1,113 @@
+﻿@using System.Web.Optimization
+@using Raci.B2C.Bicycle.Models
+@using Raci.B2C.Model.Entity
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc.PageExtensions.GoogleTagManagerDataLayer
+
+@{
+    BasicDataLayer dataLayer = ViewBag.DataLayer ?? new BasicDataLayer();
+
+    if (Model is ViewModelBase)
+    {
+        dataLayer.DataLayerDictionary.Add("pageTitle", ((ViewModelBase)Model).PageIdentifier ?? ViewBag.Title);
+    }
+    else
+    {
+        dataLayer.DataLayerDictionary.Add("pageTitle", ViewBag.GATitle ?? ViewBag.Title);
+        dataLayer.DataLayerDictionary.Add("errorMessage", ViewBag.ErrorMessage);
+    }
+
+    bool hasOffCanvas = ViewBag.HasOffCanvas ?? false;
+}
+
+@{
+    ViewBag.ContactUs = new ContactUsViewModel { PhoneNumber = "0861506410", PhoneNumberFormatted = "08 6150 6410" };
+
+    Layout = Request.IsAjaxRequest() ? null : (ViewEngines.Engines.FindView(this.ViewContext.Controller.ControllerContext, "_Site.Master", "").View as RazorView)?.ViewPath;
+    ViewBag.PageType = PageType.Motor;
+
+    ViewBag.Title = "Bicycle - " + ViewBag.Title;
+    string quoteNumber = ViewBag.QuoteNumber ?? Model.PolicyNumber;
+
+    ViewBag.DataLayer = new MotorQuoteDataLayer
+    {
+        PolicyNumber = Model.PolicyNumber,
+        QuoteNumber = quoteNumber
+    };
+
+    ViewBag.CallUsNumber = "08 6150 6410"; //PLATFORM Html.Content(ContentKey.MotorQuote.General.DirectToMotorQuoteQueuePhoneNumber);
+
+    string mainAreaWidth = ViewBag.MainAreaWidth ?? "content-with-right-rail";
+
+    ViewBag.LivePersonParameters = ViewBag.LivePersonParameters ?? new Dictionary<string, string>();
+    ViewBag.LivePersonParameters[LivePersonVariable.QuoteRetrieval] = Model.IsRetrieved ? "1" : "0";
+    ViewBag.LivePersonParameters[LivePersonVariable.Unit] = "motorsales-rac";
+    ViewBag.LivePersonParameters[LivePersonVariable.QuoteNumber] = quoteNumber;
+
+    PageHeadingModel pageHeadingModel = BicycleQuote.HeadingModel;
+    //pageHeadingModel.ReferenceNumber = quoteNumber;
+    pageHeadingModel.ActiveStepNumber = ViewBag.ActiveStepNumber;
+
+}
+
+@section StartOfBody {
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-LD27D" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MKLFM6');
+
+    </script>
+    <!-- End Google Tag Manager -->
+}
+
+@section SiteScriptIncludes
+{
+    @{
+        ServiceAvailabilityViewModel serviceAvailability = TempData[typeof(ServiceAvailabilityViewModel).FullName] as ServiceAvailabilityViewModel;
+    }
+
+    @Scripts.Render("~/content/bicycle-js")
+
+    @RenderSection("ScriptIncludes", false)
+
+    @if (serviceAvailability != null && serviceAvailability.ChatOnline != ServiceStatus.Disabled)
+    {
+        @LivePerson.SetupChat(Raci.B2C.Web.Util.AppConfig.Instance.GetLivePersonSettings(), ViewBag.LivePersonParameters)
+        @Scripts.Render("~/content/js-onlineChat")
+    }
+
+    <script>
+        $(function () {
+            var gaData = $("#googleDataLayer").data("google-ga");
+            dataLayer.push(gaData);
+        });
+
+    </script>
+}
+
+@Html.Partial("PageHeading", pageHeadingModel)
+
+<div class="row">
+    <div class="body-content @mainAreaWidth columns collapse-left collapse-right">
+        @RenderBody()
+    </div>
+
+    @Html.Partial("MarketingRail")
+</div>
+
+@section HeaderStyles
+{
+    @Styles.Render("~/content/bicycle-css")
+    @RenderSection("HeaderStyles", false)
+}

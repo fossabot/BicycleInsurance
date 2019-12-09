@@ -1,0 +1,60 @@
+@media only screen and (max-width: 400px) {
+  .payment-icons .payment-icon-set .payment-page {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .radioSet {
+    float: none;
+    margin-left: 10px;
+  }
+  i.tick {
+    top: 11px;
+  }
+  .payment-icons .payment-icon-set.payment-page {
+    width: 91px;
+  }
+  #payment-method {
+    background-size: contain;
+    height: 16px;
+    width: 41px;
+    position: absolute;
+    top: 11px;
+    right: 51px;
+  }
+  /*styling for payment controls.*/
+  #card-number,
+  #expiration-date,
+  #cvv {
+    height: 2.4rem !important;
+    font-size: 100%;
+  }
+}
+i.tick {
+  width: 16px;
+  height: 16px;
+  right: 30px;
+  position: absolute;
+  top: 7px;
+  background-image: url('Images/tick-icon.png');
+}
+#payment-method {
+  background-size: contain;
+  height: 16px;
+  width: 41px;
+  position: absolute;
+  top: 7px;
+  right: 51px;
+}
+#card-number,
+#expiration-date,
+#cvv {
+  height: 1.8rem;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+#card-number.braintree-hosted-fields-invalid,
+#expiration-date.braintree-hosted-fields-invalid,
+#cvv.braintree-hosted-fields-invalid {
+  border: 1px solid tomato;
+}

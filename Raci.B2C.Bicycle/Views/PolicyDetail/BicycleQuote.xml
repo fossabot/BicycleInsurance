@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+  <generalItems>
+    <item id="pageTitle">
+      Bicycle Insurance Quote
+    </item>
+  </generalItems>
+
+  <questions>
+    <question id="BikeDetails.Make" label="Make">
+    </question>
+
+    <question id="BikeDetails.Model" label="Model">
+    </question>
+
+    <question id="BikeDetails.Year" label="Year">
+    </question>
+
+    <question id="BikeDetails.Usage" label="Usage">
+    </question>
+
+    <question id="BikeDetails.Value" label="Value">
+    </question>
+
+    
+    <question id="Contact.FirstName" label="First Name">
+      <errors>
+        <add key="Required" value="Please provide a first name" />
+      </errors>
+    </question>
+
+    <question id="Contact.LastName" label="Last Name">
+      <errors>
+        <add key="Required" value="asdfasdf" />
+      </errors>
+    </question>
+
+    <question id="Contact.DateOfBirth" label="Date of Birth">
+      <errors>
+        <add key="Required" value="asdfasdf" />
+      </errors>
+    </question>
+
+    <question id="Contact.Address" label="Address">
+      <errors>
+        <add key="Required" value="asdfasdf" />
+      </errors>
+    </question>
+
+    <question id="Contact.ContactNumber" label="Contact Number">
+      <errors>
+        <add key="Required" value="asdfasdf" />
+      </errors>
+    </question>
+
+    <question id="Contact.ContactEmail" label="Contact Email">
+      <errors>
+        <add key="Required" value="adsfasdf" />
+      </errors>
+    </question>
+  </questions>
+
+  <errors>
+    <error id="DriverAgeRangeError">
+      Please ensure that all drivers are between the age of 16 and 100 (dd-mm-yyyy).
+    </error>
+  </errors>
+</root>

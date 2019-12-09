@@ -1,0 +1,329 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using MvcContrib.FluentHtml
+@using Raci.B2C.Web.Models
+@using Raci.B2C.Web.Mvc
+@using Raci.B2C.Web.Models.Common
+@using Raci.B2C.Web.Mvc.Dependency
+@using Raci.B2C.Web.Mvc.PageExtensions
+
+@functions
+{
+    public static string QuestionSpan(EditorWidth questionWidth = EditorWidth.Columns4, EditorWidth? questionWidthSmall = null)
+    {
+        string result = "";
+
+        if (questionWidthSmall != null)
+        {
+            result += "small-" + (byte)questionWidthSmall + " ";
+        }
+
+        result += "large-" + (byte)questionWidth;
+
+        if (!string.IsNullOrWhiteSpace(result))
+        {
+            result = result + " columns";
+        }
+
+        return result;
+    }
+
+    public static string AnswerSpan(EditorWidth editorWidth = EditorWidth.Columns4, EditorWidth? editorWidthSmall = null)
+    {
+        string result = "";
+
+        if (editorWidthSmall != null)
+        {
+            result += "small-" + (byte)editorWidthSmall + " ";
+        }
+
+        result += "large-" + (byte)editorWidth;
+
+        if (!string.IsNullOrWhiteSpace(result))
+        {
+            result = result + " columns";
+        }
+
+        return result;
+    }
+}
+
+@helper SimpleQuestionAnswer(System.Web.Mvc.HtmlHelper html, EditorParameters parameters, string expression = "")
+{
+    if (html.IsIncludeField(expression))
+    {
+        if (html.ViewData.ModelMetadata.HideSurroundingHtml)
+        {
+            <div class="row @html.GetQuestionContainerClass()" @html.GetDependencyAttributes("", parameters.DependencyScriptType)>
+                @parameters.Editor(parameters)
+            </div>
+        }
+        else
+        {
+            <div class="row @html.GetQuestionContainerClass()" @html.GetDependencyAttributes("", parameters.DependencyScriptType)>
+                <div class="question question-label @QuestionSpan(parameters.QuestionWidth, parameters.QuestionWidthSmall) @parameters.AdditionalQuestionClass">
+                    <div>
+                        @html.SimpleQuestionLabel(expression, forExpression: parameters.LabelForExpression)
+                        @html.Help(expression, parameters.ConditionalHelpContentKey, parameters.HelpParameters,ignoreHelpText:parameters.IgnoreHelpText)
+                    </div>
+                </div>
+                @if (parameters.DefaultAnswerLayout)
+                {
+                    <div class="answer answer-field @AnswerSpan(parameters.Width, parameters.WidthSmall)  @parameters.AdditionalAnswerClass">
+                        @parameters.Editor(parameters)
+                    </div>
+                }
+                else
+                {
+                    @parameters.Editor(parameters)
+                }
+            </div>
+            if (@parameters.Errors != null)
+            {
+                @parameters.Errors()
+            }
+        }
+    }
+}
+
+@helper SelectList(System.Web.Mvc.HtmlHelper html, object model)
+{
+    html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldName = html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    parameters["data-role"] = "dropdownlist";
+
+    if (html.ViewData["selectOption"] != null)
+    {
+        parameters["data-option-label"] = html.ViewData["selectOption"];
+    }
+
+    if (html.ViewData["displayOnly"] != null)
+    {
+        parameters["displayOnly"] = html.ViewData["displayOnly"];
+
+        parameters["readonly"] = "readonly";
+        parameters["disabled"] = "disabled";
+    }
+
+    if (html.ViewData["width"] != null)
+    {
+        parameters["style"] = string.Format("width:{0}px", html.ViewData["width"]);
+    }
+
+    if (html.ViewData["listWidth"] != null)
+    {
+        parameters["data-list-width"] = html.ViewData["listWidth"];
+    }
+
+    if (html.ViewData["dataSource"] == null)
+    {
+        SelectList selectItems = html.ViewData["options"] as SelectList;
+
+        if (selectItems == null)
+        {
+            BaseReferenceData referenceData = html.GetReferenceData();
+            selectItems = referenceData.GetSelectOptions(htmlFieldName).CreateSelectList(null);
+        }
+
+        parameters["data-source"] = @selectItems.ToJsonArray();
+    }
+    else
+    {
+        parameters["data-source"] = html.ViewData["dataSource"];
+    }
+
+    parameters["data-text-field"] = "Text";
+    parameters["data-value-field"] = "Value";
+    parameters["class"] = html.ViewData["class"];
+
+    @html.TextBox("", model, parameters)
+}
+@helper RadioSet(System.Web.Mvc.HtmlHelper html, object model, IEnumerable<System.Web.Mvc.SelectListItem> items = null)
+{
+    html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string validationClassName = html.DetermineValidationClass(html.ViewData.TemplateInfo.GetFullHtmlFieldName("")).ToString();
+    string htmlFieldName = html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlFieldNameId = html.ViewData.TemplateInfo.GetFullHtmlFieldId("");
+
+    IList<System.Web.Mvc.SelectListItem> selectItems;
+
+    if (items == null)
+    {
+        BaseReferenceData referenceData = html.GetReferenceData();
+        selectItems = referenceData.GetSelectOptions(html.ViewData.TemplateInfo.GetFullHtmlFieldName("")).CreateSelectList(model).ToList();
+    }
+    else
+    {
+        selectItems = items.ToList();
+    }
+
+    <div class="@validationClassName radioSet" id="@htmlFieldNameId">
+        @{
+            for (int i = 0; i < selectItems.Count(); i++)
+            {
+                System.Web.Mvc.SelectListItem currentItem;
+                string className;
+                string fieldId;
+
+                currentItem = selectItems[i];
+                fieldId = TagBuilder.CreateSanitizedId(htmlFieldName + "." + currentItem.Value);
+
+                if (i == 0)
+                {
+                    className = "firstRadioItem";
+                }
+                else
+                {
+                    className = "otherRadioItem";
+                }
+
+                bool isChecked = false;
+
+                if (model != null)
+                {
+                    isChecked = string.Equals(model.ToString(), currentItem.Value, StringComparison.OrdinalIgnoreCase);
+                }
+
+                @html.RadioButton("", currentItem.Value, isChecked, new { id = fieldId, @class = className })
+                <label id="@(fieldId)_Label" for="@(fieldId)" class="@className">@currentItem.Text</label>
+            }
+        }
+    </div>
+}
+@helper TextBox(System.Web.Mvc.HtmlHelper html, object model, string classOverride = null, string watermark = null, string nameOverride = null, string idOverride = null, int? widthOverride = null)
+{
+    Dictionary<string, object> parameters = new Dictionary<string, object>();
+    MvcHtmlString width = new MvcHtmlString("");
+    string spanClass;
+    string inputName;
+
+    if (widthOverride.HasValue)
+    {
+        width = new MvcHtmlString("style=\"width:" + widthOverride.Value + "px\"");
+    }
+    else if ((html.ViewData.ContainsKey("width")) && (html.ViewData["width"] != null))
+    {
+        width = new MvcHtmlString("style=\"width:" + html.ViewData["width"] + "px\"");
+    }
+
+    if (string.IsNullOrWhiteSpace(classOverride))
+    {
+        parameters["class"] = "k-input";
+    }
+    else
+    {
+        parameters["class"] = classOverride;
+    }
+
+    parameters["style"] = "width:100%";
+
+    if (html.ViewData["displayOnly"] != null)
+    {
+        spanClass = "k-widget k-header k-state-disabled k-autocomplete";
+
+        parameters["readonly"] = "readonly";
+        parameters["disabled"] = "disabled";
+    }
+    else
+    {
+        spanClass = "k-widget k-header k-state-default k-autocomplete";
+    }
+
+    if (idOverride != null)
+    {
+        parameters["id"] = idOverride;
+    }
+    else if ((html.ViewData.ContainsKey("id")) && (html.ViewData["id"] != null))
+    {
+        parameters["id"] = html.ViewData["id"];
+    }
+
+    if (watermark != null)
+    {
+        parameters.Add("placeholder", watermark);
+    }
+
+    if (string.IsNullOrWhiteSpace(nameOverride))
+    {
+        inputName = "";
+    }
+    else
+    {
+        inputName = nameOverride;
+    }
+
+    <span class="@spanClass" @width>
+        @html.TextBox(inputName, model, parameters)
+    </span>
+}
+@helper DayMonthYearSelect(System.Web.Mvc.HtmlHelper html, DateData model)
+{
+    html.ViewData.TemplateInfo.FixCollectionPrefix();
+
+    string htmlFieldName = html.ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    string htmlId = htmlFieldName.FormatAsHtmlId();
+    BaseReferenceData referenceData = html.GetReferenceData();
+    DateReferenceData dateReferenceData = referenceData.GetDateOptions(htmlFieldName);
+
+    <fieldset class="@(html.DetermineValidationClass(htmlFieldName)) dateEntry" id="@(htmlId)">
+        @html.Editor("Day", TemplateNames.SimpleSelect, selectOption: "Day", options: dateReferenceData.Day.CreateSelectList(null), width: 60)
+        @html.Editor("Month", TemplateNames.SimpleSelect, selectOption: "Month", options: dateReferenceData.Month.CreateSelectList(null), width: 75)
+        @html.Editor("Year", TemplateNames.SimpleSelect, selectOption: "Year", options: dateReferenceData.Year.CreateSelectList(null), width: 65)
+    </fieldset>
+}
+
+@helper QuestionInformationBox(System.Web.Mvc.HtmlHelper html, string id, string contentkey)
+{
+    <div class="row collapse question-lined-below" @html.GetDependencyAttributesForContent(id) data-wrapper-for="@id">
+        <div class="small-12 large-12 columns">
+            <div class="info-box standard">
+                @html.Content(contentkey)
+            </div>
+        </div>
+    </div>
+}
+
+@helper AddItemButton(string title, string id, string data = "")
+{
+    <div class="row">
+        <div id="@id" class="valuables-box add inProgressIndicator" @data tabindex="0">
+            <div class="row collapse">
+                <div class="large-10 small-10 columns">
+                    @title
+                </div>
+                <div class="small-2 large-2 columns">
+                    <i class="icon-add"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@helper BackButton(string text)
+{
+    <div class="small-4 collapse-right collapse-left columns">
+        <button class="btn back back-button buy-button-back" type="button">
+            <span class="icon-symbol"><i></i></span>
+            <span class="btn-text">Back</span>
+        </button>
+    </div>
+}
+
+
+@helper OutdatedBrowserWarning()
+{
+
+    <!--[if lt IE 9]>
+    <div class="outdated-browser-version">
+            You are using an outdated browser. For the best experience, we recommend installing
+            <a href='https://www.google.com/intl/en/chrome/browser/' target='_blank'>Chrome</a>,
+            <a href='http://www.mozilla.org/en-US/firefox/new/' target='_blank'>Firefox </a>
+            or upgrading to the newest <a href='http://windows.microsoft.com/en-gb/internet-explorer/download-ie' target='_blank'>Internet Explorer </a>
+    </div>
+    <![endif]-->
+}
+

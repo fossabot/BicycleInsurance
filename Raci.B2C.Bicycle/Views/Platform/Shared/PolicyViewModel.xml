@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <questions>
+    <question id="PaymentDetailsOld.CreditCardType" label="Credit card type:">
+    </question>
+
+    <question id="PaymentDetailsOld.CreditCardNumber" label="Credit card number:">
+		<errors>
+			<add key="Required" value="Please enter credit card number" />
+		</errors>
+    </question>
+
+	<question id="PaymentDetailsOld.PaymentMethod" label="Payment method:">
+	  <errors>
+		  <add key="Required" value="Please select a Payment method" />
+	  </errors>
+	</question>
+
+	<question id="PaymentDetailsOld.CreditCardNumber1" label="">
+	  <errors>
+		  <add key="Required" value="Please enter credit card number 1st value" />
+	  </errors>
+	</question>
+	  
+	<question id="PaymentDetailsOld.CreditCardNumber2" label="">
+	  <errors>
+		  <add key="Required" value="Please enter credit card number 2nd value" />
+	  </errors>
+	</question>
+
+	<question id="PaymentDetailsOld.CreditCardNumber3" label="">
+	  <errors>
+		  <add key="Required" value="Please enter credit card number 3rd value" />
+	  </errors>
+	</question>
+
+	<question id="PaymentDetailsOld.CreditCardNumber4" label="">
+	  <errors>
+		  <add key="Required" value="Please enter credit card number 4th value" />
+	  </errors>
+	</question>
+
+	  <question id="PaymentDetailsOld.CardHolderName" label="Credit card holder name:">
+		  <errors>
+			  <add key="StringLength" value="Credit card holder name can be a maximum of [%MAX_LENGTH%] characters." />
+		  </errors>
+		  <errors>
+			  <add key="CharactersValidation" value="Credit card holder name contains invalid characters" />
+		  </errors>
+		  <errors>
+			  <add key="Required" value="Credit card holder name required" />
+		  </errors>
+    </question>
+
+    <question id="PaymentDetailsOld.CardExpiryDate" label="Card expiry date:">
+		<errors>
+			<add key="DateDataFormat" value="Please select a date" />
+		</errors>
+    </question>
+
+    <question id="PaymentDetailsOld.PaymentMethod" label="Payment method:">
+		<errors>
+			<add key="Required" value="Please select a Payment method" />
+		</errors>
+    </question>
+
+    <question id="PaymentDetailsOld.BankAccountBSB" label="Bank account BSB:">
+		<errors>
+			<add key="Required" value="Please enter a BSB" />
+		</errors>
+    </question>
+
+    <question id="PaymentDetailsOld.BankAccountNumber" label="Account number:">
+		<errors>
+		<add key="Required" value="Please enter a bank account number" />
+		</errors>
+    </question>
+
+    <question id="PaymentDetailsOld.BankAccountName" label="Account name:">
+		<errors>
+			<add key="StringLength" value="Account name can be a maximum of [%MAX_LENGTH%] characters." />
+		</errors>
+		<errors>
+			<add key="CharactersValidation" value="Account name contains invalid characters." />
+		</errors>
+    </question>
+
+    <question id="PaymentDetailsOld.PolicyPaidBy" label="Who is paying for this policy?">
+		<errors>
+			<add key="Required" value="Please select a payer" />
+		</errors>
+    </question>
+
+    <question id="PaymentDetailsOld.PaymentFrequency" label="Payment frequency:">
+		<errors>
+			<add key="Required" value="Please select a Payment frequency" />
+		</errors>
+    </question>
+
+	<question id="PaymentDetailsOld.Authorised" label="">
+	  <errors>
+		  <add key="Required" value="In order to proceed, please authorise RAC Insurance to direct debit your nominated account" />
+	  </errors>
+	</question>
+
+    <question id="PaymentDetailsOld.PaymentAmount" label="Payment amount:">
+    </question>
+
+    <question id="PaymentDetailsOld.Cvv" label="CVV:">
+		<errors>
+		<add key="Required" value="Please enter card verification value (CVV)" />
+		</errors>
+      <helpText title="What is my CVV">
+        <![CDATA[
+        For your safety and security, RAC requires that you enter your card verification value (CVV) when paying via credit card.
+        On the back of all Visa and MasterCard cards all or part of your account number is printed on the signature strip followed by three extra digits.
+        The CVV is the final three digits printed.
+        ]]>
+      </helpText>
+    </question>
+  </questions>
+</root>

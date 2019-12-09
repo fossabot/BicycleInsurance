@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <errors>  
+    <error id="PaymentGatewayError">
+      <![CDATA[
+     Unfortunately, we are experiencing problems with our payment gateway at this time, and your credit card payment has not been processed. 
+     Don’t worry though, your policy has been updated and you are covered, we only require payment to finalise the transaction. 
+      ]]>
+    </error>
+  </errors>
+</root>
